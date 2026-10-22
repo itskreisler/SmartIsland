@@ -1782,4 +1782,35 @@
     <!-- ===== Tiempo relativo ===== -->
     <string name="idle_in_relative">en %1$s</string>
     <string name="updates_by">por %1$s</string>
+
+    <!-- ===== Estadísticas del clima y descripciones de tarjetas ===== -->
+    <string name="exempt_apps_landscape">La isla se apaga por completo en horizontal mientras cualquiera de estas apps esté abierta.</string>
+    <string name="exempt_apps_portrait">Mientras cualquiera de estas apps esté abierta, la isla se apaga (oculta, sin ventanas emergentes ni gestos) o queda estática (la isla contraída se mantiene en su sitio, pero no hace nada).</string>
+    <string name="notif_more_customized_apps">+%1$d apps personalizadas más</string>
+    <string name="transfer_estimated_speed">Estimada por la velocidad de red</string>
+    <string name="wifi_connected">Wi-Fi conectado</string>
+    <string name="vpn_connected">VPN conectada</string>
+    <string name="vpn_finding_location">Buscando ubicación…</string>
+    <string name="vpn_secure_connection">Conexión segura activa</string>
+    <string name="audio_recording">Grabación de audio</string>
+    <string name="screen_recording">Grabación de pantalla</string>
+    <string name="call_incoming">Llamada entrante</string>
+    <string name="call_active">Llamada activa</string>
+    <string name="weather_stat_high_low">Máx. / Mín.</string>
+    <string name="weather_stat_rain">Prob. de lluvia</string>
+    <string name="weather_stat_humidity">Humedad</string>
+    <string name="weather_stat_uv">Índice UV</string>
+    <string name="weather_stat_sun">Sol</string>
+    <string name="weather_stat_aqi">Calidad del aire</string>
+    <string name="weather_uv_low">Bajo</string>
+    <string name="weather_uv_moderate">Moderado</string>
+    <string name="weather_uv_high">Alto</string>
+    <string name="weather_uv_very_high">Muy alto</string>
+    <string name="weather_uv_extreme">Extremo</string>
+    <string name="weather_aqi_good">Buena</string>
+    <string name="weather_aqi_moderate">Moderada</string>
+    <string name="weather_aqi_poor">Mala</string>
+    <string name="weather_aqi_unhealthy">Insalubre</string>
+    <string name="weather_aqi_very_bad">Muy mala</string>
+    <string name="weather_aqi_hazardous">Peligrosa</string>
 </resources>

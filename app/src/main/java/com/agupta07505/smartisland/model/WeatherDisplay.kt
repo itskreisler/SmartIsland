@@ -6,6 +6,9 @@
  */
 
 package com.agupta07505.smartisland.model
+import android.content.Context
+import androidx.annotation.StringRes
+import com.agupta07505.smartisland.R
 
 import java.util.Locale
 import org.json.JSONArray
@@ -283,33 +286,51 @@ object WeatherDisplay {
         return height.coerceAtMost(ISLAND_MAX_DP)
     }
 
-    fun stat(id: String, x: WeatherExtras, fahrenheit: Boolean, is24: Boolean): WeatherStat? = when (id) {
+    fun stat(context: Context, id: String, x: WeatherExtras, fahrenheit: Boolean, is24: Boolean): WeatherStat? = when (id) {
         WeatherReadouts.HIGH_LOW ->
-            WeatherStat("High / Low", IdleWidgets.displayTemp(x.highC, fahrenheit) + " / " + IdleWidgets.displayTemp(x.lowC, fahrenheit))
-        WeatherReadouts.RAIN -> WeatherStat("Rain chance", "${x.rainChancePct}%")
-        WeatherReadouts.HUMIDITY -> WeatherStat("Humidity", "${x.humidityPct}%")
-        WeatherReadouts.UV -> WeatherStat("UV index", "${Math.round(x.uvIndex)} ${uvLabel(x.uvIndex)}")
+            WeatherStat(
+                context.getString(R.string.weather_stat_high_low),
+                IdleWidgets.displayTemp(x.highC, fahrenheit) + " / " + IdleWidgets.displayTemp(x.lowC, fahrenheit)
+            )
+        WeatherReadouts.RAIN ->
+            WeatherStat(context.getString(R.string.weather_stat_rain), "${x.rainChancePct}%")
+        WeatherReadouts.HUMIDITY ->
+            WeatherStat(context.getString(R.string.weather_stat_humidity), "${x.humidityPct}%")
+        WeatherReadouts.UV ->
+            WeatherStat(
+                context.getString(R.string.weather_stat_uv),
+                "${Math.round(x.uvIndex)} ${context.getString(uvLabelRes(x.uvIndex))}"
+            )
         WeatherReadouts.SUN ->
-            WeatherStat("Sun", "\u2191" + clockText(x.sunriseSec, x.utcOffsetSec, is24) + " \u2193" + clockText(x.sunsetSec, x.utcOffsetSec, is24))
-        WeatherReadouts.AQI -> WeatherStat("Air quality", "${x.aqi} ${aqiLabel(x.aqi)}")
+            WeatherStat(
+                context.getString(R.string.weather_stat_sun),
+                "\u2191" + clockText(x.sunriseSec, x.utcOffsetSec, is24) + " \u2193" + clockText(x.sunsetSec, x.utcOffsetSec, is24)
+            )
+        WeatherReadouts.AQI ->
+            WeatherStat(
+                context.getString(R.string.weather_stat_aqi),
+                "${x.aqi} ${context.getString(aqiLabelRes(x.aqi))}"
+            )
         else -> null
     }
 
-    fun uvLabel(uv: Float): String = when (Math.round(uv)) {
-        in Int.MIN_VALUE..2 -> "Low"
-        in 3..5 -> "Moderate"
-        in 6..7 -> "High"
-        in 8..10 -> "Very high"
-        else -> "Extreme"
+    @StringRes
+    fun uvLabelRes(uv: Float): Int = when (Math.round(uv)) {
+        in Int.MIN_VALUE..2 -> R.string.weather_uv_low
+        in 3..5 -> R.string.weather_uv_moderate
+        in 6..7 -> R.string.weather_uv_high
+        in 8..10 -> R.string.weather_uv_very_high
+        else -> R.string.weather_uv_extreme
     }
 
-    fun aqiLabel(aqi: Int): String = when {
-        aqi <= 50 -> "Good"
-        aqi <= 100 -> "Moderate"
-        aqi <= 150 -> "Poor"
-        aqi <= 200 -> "Unhealthy"
-        aqi <= 300 -> "Very bad"
-        else -> "Hazardous"
+    @StringRes
+    fun aqiLabelRes(aqi: Int): Int = when {
+        aqi <= 50 -> R.string.weather_aqi_good
+        aqi <= 100 -> R.string.weather_aqi_moderate
+        aqi <= 150 -> R.string.weather_aqi_poor
+        aqi <= 200 -> R.string.weather_aqi_unhealthy
+        aqi <= 300 -> R.string.weather_aqi_very_bad
+        else -> R.string.weather_aqi_hazardous
     }
 
     fun upcomingHours(x: WeatherExtras, nowMs: Long, count: Int = HOURLY_SHOWN): List<HourPoint> =

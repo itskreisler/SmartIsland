@@ -178,7 +178,8 @@ class ConnectivityEventMonitor(
                 packageName = "com.android.systemui",
                 appName = "Wi-Fi",
                 title = ssid ?: "Wi-Fi",
-                text = if (ssid != null) "Connected" else "Wi-Fi connected",
+                text = if (ssid != null) context.getString(R.string.expanded_bluetooth_connected)
+                    else context.getString(R.string.wifi_connected),
                 category = "wifi",
                 mode = IslandMode.Bluetooth,
                 timeMillis = System.currentTimeMillis()
@@ -291,7 +292,11 @@ class ConnectivityEventMonitor(
     private fun showVpn(network: Network) {
         vpnJob?.cancel()
         vpnJob = scope.launch {
-            postVpn("VPN connected", if (settingsProvider().allowNetworkChecks) "Finding location…" else "Secure connection active")
+            postVpn(
+                context.getString(R.string.vpn_connected),
+                if (settingsProvider().allowNetworkChecks) context.getString(R.string.vpn_finding_location)
+                else context.getString(R.string.vpn_secure_connection)
+            )
             if (settingsProvider().allowNetworkChecks) {
                 // The tunnel needs a moment before traffic flows through it, so retry a few times.
                 var location: String? = null
@@ -303,7 +308,12 @@ class ConnectivityEventMonitor(
                 if (location == null) {
                     runCatching { AppLogRecorder.w(TAG, "VPN location lookup failed after $LOOKUP_ATTEMPTS attempts") }
                 }
-                postVpn(location ?: "VPN connected", if (location != null) "VPN connected" else "Secure connection active", autoExpand = false)
+                postVpn(
+                        location ?: context.getString(R.string.vpn_connected),
+                        if (location != null) context.getString(R.string.vpn_connected)
+                        else context.getString(R.string.vpn_secure_connection),
+                        autoExpand = false
+                    )
             }
             delay(TRANSIENT_DISPLAY_MS)
             repository.removeNotification(KEY_VPN)

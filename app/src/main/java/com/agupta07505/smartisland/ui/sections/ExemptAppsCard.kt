@@ -71,9 +71,9 @@ fun ExemptAppsCard(
     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         Text(
             text = if (landscape) {
-                "The island is totally off in landscape while any of these apps is open."
+                stringResource(R.string.exempt_apps_landscape)
             } else {
-                "While any of these apps is open the island is either off (hidden, no popups, no gestures) or static (the collapsed island stays in place, but does nothing)."
+                stringResource(R.string.exempt_apps_portrait)
             },
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant

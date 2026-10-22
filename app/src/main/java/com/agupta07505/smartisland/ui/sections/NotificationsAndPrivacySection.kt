@@ -1266,7 +1266,7 @@ fun NotificationsAndPrivacySection(
 
                         if (customizedApps.size > 4) {
                             Text(
-                                text = "+${customizedApps.size - 4} more customized apps",
+                                text = stringResource(R.string.notif_more_customized_apps, customizedApps.size - 4),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier

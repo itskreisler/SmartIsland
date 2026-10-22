@@ -413,7 +413,7 @@ private fun WeatherIslandBody(frame: IdleWidgetFrame) {
             }
         }
         if (extras != null && available.isNotEmpty()) {
-            val stats = available.mapNotNull { WeatherDisplay.stat(it, extras, frame.fahrenheit, is24) }
+            val stats = available.mapNotNull { WeatherDisplay.stat(context, it, extras, frame.fahrenheit, is24) }
             stats.chunked(2).forEach { pair ->
                 Row(modifier = Modifier.fillMaxWidth().height(WeatherDisplay.ISLAND_STAT_ROW_DP.dp)) {
                     pair.forEach { stat -> WeatherStatCell(stat, Modifier.weight(1f)) }

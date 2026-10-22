@@ -274,7 +274,7 @@ fun DownloadExpanded(
         // Speed / ETA read from the notification, or the measured speed of an estimated card
         val detailLine = listOfNotNull(
             notification.transferDetail.takeIf { it.isNotBlank() },
-            "Estimated from network speed".takeIf { notification.isEstimatedTransfer }
+            context.getString(R.string.transfer_estimated_speed).takeIf { notification.isEstimatedTransfer }
         ).joinToString(" · ")
         if (detailLine.isNotBlank()) {
             Text(

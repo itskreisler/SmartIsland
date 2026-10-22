@@ -7,6 +7,9 @@
 
 package com.agupta07505.smartisland.ui.expanded
 
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
+
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
@@ -25,8 +28,8 @@ fun ScreenRecordingExpanded(
         bottomPadding = bottomPadding,
         onCollapse = onCollapse,
         accent = Color(settings.screenRecordingColor),
-        defaultTitle = "Screen recording",
-        statusLabel = "Screen recording",
+        defaultTitle = stringResource(R.string.screen_recording),
+        statusLabel = stringResource(R.string.screen_recording),
         leadingIcon = null
     )
 }

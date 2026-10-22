@@ -7,6 +7,9 @@
 
 package com.agupta07505.smartisland.ui.expanded
 
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -98,7 +101,7 @@ fun IncomingCallExpanded(
             Text(
                 text = notification?.title?.takeIf { it.isNotBlank() }
                     ?: notification?.text?.takeIf { it.isNotBlank() }
-                    ?: if (isRinging) "Incoming call" else "Active call",
+                    ?: if (isRinging) stringResource(R.string.call_incoming) else stringResource(R.string.call_active),
                 color = LocalIslandPalette.current.text,
                 fontSize = 17.sp,
                 fontWeight = FontWeight.SemiBold,

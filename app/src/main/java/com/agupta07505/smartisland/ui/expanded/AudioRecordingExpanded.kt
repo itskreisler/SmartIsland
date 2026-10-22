@@ -7,6 +7,9 @@
 
 package com.agupta07505.smartisland.ui.expanded
 
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
+
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.runtime.Composable
@@ -28,8 +31,8 @@ fun AudioRecordingExpanded(
         bottomPadding = bottomPadding,
         onCollapse = onCollapse,
         accent = Color(settings.screenRecordingColor),
-        defaultTitle = "Audio recording",
-        statusLabel = "Audio recording",
+        defaultTitle = stringResource(R.string.audio_recording),
+        statusLabel = stringResource(R.string.audio_recording),
         leadingIcon = Icons.Rounded.Mic
     )
 }
