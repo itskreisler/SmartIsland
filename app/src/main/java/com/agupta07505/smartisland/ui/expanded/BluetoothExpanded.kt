@@ -263,7 +263,7 @@ fun BluetoothExpanded(
                         ) {
                             Icon(
                                 imageVector = batteryIcon,
-                                contentDescription = "Battery Level",
+                                contentDescription = stringResource(R.string.bluetooth_battery_level),
                                 tint = batteryColor,
                                 modifier = Modifier.size(18.dp)
                             )
@@ -286,7 +286,7 @@ fun BluetoothExpanded(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Headphones,
-                            contentDescription = "Earbuds",
+                            contentDescription = stringResource(R.string.bluetooth_earbuds),
                             tint = Color(settings.bluetoothColor),
                             modifier = Modifier.size(24.dp)
                         )
@@ -296,7 +296,7 @@ fun BluetoothExpanded(
         } else {
             Image(
                 painter = painterResource(id = R.drawable.ic_bluetooth_device),
-                contentDescription = "Bluetooth Device Image",
+                contentDescription = stringResource(R.string.bluetooth_device_image),
                 modifier = Modifier
                     .size(46.dp)
                     .clip(RoundedCornerShape(12.dp))

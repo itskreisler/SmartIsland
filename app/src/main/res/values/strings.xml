@@ -1742,4 +1742,15 @@
     <string name="dev_geometry_value">%1$dx%2$ddp (Y: %3$ddp, R: %4$ddp, Opacity: %5$d%%)</string>
     <string name="slider_decrease">Decrease</string>
     <string name="slider_increase">Increase</string>
+
+    <!-- ===== Bluetooth and timer details (EN) ===== -->
+    <string name="timer_add_minute">+1 min</string>
+    <string name="bluetooth_battery_level">Battery Level</string>
+    <string name="bluetooth_earbuds">Earbuds</string>
+    <string name="bluetooth_device_image">Bluetooth Device Image</string>
+    <string name="battery_icon_cd">Battery</string>
+    <plurals name="hotspot_devices_connected">
+        <item quantity="one">%1$d connected</item>
+        <item quantity="other">%1$d connected</item>
+    </plurals>
 </resources>

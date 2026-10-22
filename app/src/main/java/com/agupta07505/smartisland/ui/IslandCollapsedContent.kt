@@ -1166,7 +1166,7 @@ fun BluetoothCollapsedRight(
     } else if (!settings.showBluetoothBattery || batteryLevel == null) {
         Image(
             painter = painterResource(id = com.agupta07505.smartisland.R.drawable.ic_bluetooth_device),
-            contentDescription = "Bluetooth Device",
+            contentDescription = stringResource(com.agupta07505.smartisland.R.string.expanded_bluetooth_device),
             modifier = Modifier
                 .size(20.dp)
                 .clip(CircleShape)
@@ -1206,7 +1206,7 @@ fun BluetoothCollapsedRight(
                     }
                     Icon(
                         imageVector = batteryIcon,
-                        contentDescription = "Battery",
+                        contentDescription = stringResource(com.agupta07505.smartisland.R.string.battery_icon_cd),
                         tint = batteryColor,
                         modifier = Modifier.size(13.dp)
                     )
@@ -1227,7 +1227,7 @@ fun BluetoothCollapsedRight(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Headphones,
-                        contentDescription = "Earbuds",
+                        contentDescription = stringResource(com.agupta07505.smartisland.R.string.bluetooth_earbuds),
                         tint = Color(settings.bluetoothColor),
                         modifier = Modifier.size(13.dp)
                     )

@@ -620,7 +620,7 @@ private fun TimerExpandedCurrent(
                     contentAlignment = Alignment.Center
                 ) {
                     Text(
-                        text = "+1 min",
+                        text = stringResource(R.string.timer_add_minute),
                         color = timerColor,
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Bold,

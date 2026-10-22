@@ -58,7 +58,7 @@ fun HotspotExpanded(
 
     val deviceCountText = remember(notification.text, notification.title) {
         val count = HotspotUtil.parseDeviceCount(notification.title, notification.text)
-        "$count connected"
+        context.resources.getQuantityString(R.plurals.hotspot_devices_connected, count, count)
     }
 
     // Strip "Active . 2 device" string from subtitle so it displays clean description

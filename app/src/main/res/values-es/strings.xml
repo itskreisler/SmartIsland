@@ -1742,4 +1742,15 @@
     <string name="dev_geometry_value">%1$dx%2$ddp (Y: %3$ddp, R: %4$ddp, Opacidad: %5$d%%)</string>
     <string name="slider_decrease">Disminuir</string>
     <string name="slider_increase">Aumentar</string>
+
+    <!-- ===== Detalles de Bluetooth y temporizador ===== -->
+    <string name="timer_add_minute">+1 min</string>
+    <string name="bluetooth_battery_level">Nivel de batería</string>
+    <string name="bluetooth_earbuds">Auriculares</string>
+    <string name="bluetooth_device_image">Imagen del dispositivo Bluetooth</string>
+    <string name="battery_icon_cd">Batería</string>
+    <plurals name="hotspot_devices_connected">
+        <item quantity="one">%1$d conectado</item>
+        <item quantity="other">%1$d conectados</item>
+    </plurals>
 </resources>
