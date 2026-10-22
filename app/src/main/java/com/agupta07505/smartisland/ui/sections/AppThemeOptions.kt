@@ -52,24 +52,24 @@ import com.agupta07505.smartisland.ui.glass.Switch
 // Settings > Appearance: the liquid glass switch, Material You, and the Material colour picker for the app's accent.
 
 private val MaterialAccentSwatches = listOf(
-    0xFFF44336L to "Red",
-    0xFFE91E63L to "Pink",
-    0xFF9C27B0L to "Purple",
-    0xFF673AB7L to "Deep purple",
-    0xFF3F51B5L to "Indigo",
-    0xFF2196F3L to "Blue",
-    0xFF03A9F4L to "Light blue",
-    0xFF00BCD4L to "Cyan",
-    0xFF009688L to "Teal",
-    0xFF4CAF50L to "Green",
-    0xFF8BC34AL to "Light green",
-    0xFFCDDC39L to "Lime",
-    0xFFFFC107L to "Amber",
-    0xFFFF9800L to "Orange",
-    0xFFFF5722L to "Deep orange",
-    0xFF795548L to "Brown",
-    0xFF607D8BL to "Blue grey",
-    0xFF4A8CFFL to "Azure (default)"
+    0xFFF44336L to R.string.accent_red,
+    0xFFE91E63L to R.string.accent_pink,
+    0xFF9C27B0L to R.string.accent_purple,
+    0xFF673AB7L to R.string.accent_deep_purple,
+    0xFF3F51B5L to R.string.accent_indigo,
+    0xFF2196F3L to R.string.accent_blue,
+    0xFF03A9F4L to R.string.accent_light_blue,
+    0xFF00BCD4L to R.string.accent_cyan,
+    0xFF009688L to R.string.accent_teal,
+    0xFF4CAF50L to R.string.accent_green,
+    0xFF8BC34AL to R.string.accent_light_green,
+    0xFFCDDC39L to R.string.accent_lime,
+    0xFFFFC107L to R.string.accent_amber,
+    0xFFFF9800L to R.string.accent_orange,
+    0xFFFF5722L to R.string.accent_deep_orange,
+    0xFF795548L to R.string.accent_brown,
+    0xFF607D8BL to R.string.accent_blue_grey,
+    0xFF4A8CFFL to R.string.accent_azure
 )
 
 private const val SWATCHES_PER_ROW = 6
@@ -120,13 +120,14 @@ fun AppThemeOptions(
         ) {
             Column {
                 Text(
-                    text = "Accent colour",
+                    text = stringResource(R.string.accent_title),
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = if (usingDynamic) "Not used while Material You is on." else "Pick a Material colour. The whole app palette is built from it.",
+                    text = if (usingDynamic) stringResource(R.string.accent_dynamic_note)
+                    else stringResource(R.string.accent_pick),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -134,10 +135,10 @@ fun AppThemeOptions(
             val selected = settings.accentColor
             MaterialAccentSwatches.chunked(SWATCHES_PER_ROW).forEach { row ->
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    row.forEach { (argb, name) ->
+                    row.forEach { (argb, nameRes) ->
                         AccentSwatch(
                             color = argb.toComposeColor(),
-                            name = name,
+                            nameRes = nameRes,
                             selected = selected == argb,
                             enabled = !usingDynamic,
                             onClick = { onAccentChange(argb) }
@@ -169,7 +170,7 @@ private fun ThemeToggleRow(title: String, subtitle: String, checked: Boolean, on
 }
 
 @Composable
-private fun AccentSwatch(color: Color, name: String, selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
+private fun AccentSwatch(color: Color, nameRes: Int, selected: Boolean, enabled: Boolean, onClick: () -> Unit) {
     val ring = MaterialTheme.colorScheme.onSurface
     Box(
         modifier = Modifier
@@ -183,7 +184,12 @@ private fun AccentSwatch(color: Color, name: String, selected: Boolean, enabled:
         contentAlignment = Alignment.Center
     ) {
         if (selected) {
-            Icon(Icons.Rounded.Check, contentDescription = "$name, selected", tint = Color.White, modifier = Modifier.size(20.dp))
+            Icon(
+                Icons.Rounded.Check,
+                contentDescription = stringResource(R.string.accent_swatch_selected, stringResource(nameRes)),
+                tint = Color.White,
+                modifier = Modifier.size(20.dp)
+            )
         }
     }
 }

@@ -1605,4 +1605,50 @@
     <string name="nav_turn_direction">Dirección del giro</string>
     <string name="nav_distance_preview">200 m</string>
     <string name="nav_distance_in_preview">A 200 m</string>
+
+    <!-- ===== Colores de acento ===== -->
+    <string name="accent_red">Rojo</string>
+    <string name="accent_pink">Rosa</string>
+    <string name="accent_purple">Morado</string>
+    <string name="accent_deep_purple">Morado oscuro</string>
+    <string name="accent_indigo">Índigo</string>
+    <string name="accent_blue">Azul</string>
+    <string name="accent_light_blue">Azul claro</string>
+    <string name="accent_cyan">Cian</string>
+    <string name="accent_teal">Verde azulado</string>
+    <string name="accent_green">Verde</string>
+    <string name="accent_light_green">Verde claro</string>
+    <string name="accent_lime">Lima</string>
+    <string name="accent_amber">Ámbar</string>
+    <string name="accent_orange">Naranja</string>
+    <string name="accent_deep_orange">Naranja oscuro</string>
+    <string name="accent_brown">Marrón</string>
+    <string name="accent_blue_grey">Gris azulado</string>
+    <string name="accent_azure">Azul celeste (predeterminado)</string>
+    <string name="accent_title">Color de acento</string>
+    <string name="accent_dynamic_note">No se usa mientras Material You está activado.</string>
+    <string name="accent_pick">Elige un color de Material. Toda la paleta de la app se genera a partir de él.</string>
+    <string name="accent_swatch_selected">%1$s, seleccionado</string>
+
+    <!-- ===== Face ID y diagnósticos ===== -->
+    <string name="faceid_lock_style">Estilo de animación en la pantalla de bloqueo</string>
+    <string name="faceid_fingerprint">Animación de huella</string>
+    <string name="faceid_fingerprint_desc">Reproduce el escaneo de huella cuando se desbloquea el teléfono o un aviso de bloqueo de una app con el dedo. Desactivado: un desbloqueo con huella termina el escaneo facial sin reproducirlo.</string>
+    <string name="faceid_app">Face ID en apps</string>
+    <string name="faceid_app_desc">Reproduce el mismo escaneo cuando un aviso de bloqueo de una app (el bloqueo de apps del teléfono) se desbloquea con la cara mientras el teléfono ya está desbloqueado. Se lee del registro del sistema, así que necesita Shizuku. No depende del interruptor de Face ID de la pantalla de bloqueo.</string>
+    <string name="faceid_app_style">Estilo de animación en apps</string>
+    <string name="diagnostics_exported">Registro exportado</string>
+    <string name="diagnostics_export_failed">Error al exportar: %1$s</string>
+    <string name="diagnostics_io_error">error de E/S</string>
+    <string name="diagnostics_record">Grabar registro de diagnóstico</string>
+    <string name="diagnostics_record_desc">Actívalo y reproduce la llamada de WhatsApp o VoIP perdida. El registro sigue activo aunque la app se reinicie o se cierre.</string>
+    <string name="diagnostics_not_recording">Sin grabar</string>
+    <string name="diagnostics_export_or_clear">Exportar o borrar</string>
+    <string name="diagnostics_export_desc">El informe incluye datos del dispositivo, el estado de los permisos, tus ajustes, los eventos grabados y el logcat de la app. Puede contener títulos de notificaciones de las apps que se registran, así que revísalo antes de compartirlo.</string>
+    <string name="diagnostics_export_log">Exportar registro</string>
+    <string name="diagnostics_clear">Borrar</string>
+    <plurals name="diagnostics_entries">
+        <item quantity="one">%1$s • %2$d entrada</item>
+        <item quantity="other">%1$s • %2$d entradas</item>
+    </plurals>
 </resources>

@@ -1605,4 +1605,50 @@
     <string name="nav_turn_direction">Turn direction</string>
     <string name="nav_distance_preview">200 m</string>
     <string name="nav_distance_in_preview">In 200 m</string>
+
+    <!-- ===== Accent colours (EN) ===== -->
+    <string name="accent_red">Red</string>
+    <string name="accent_pink">Pink</string>
+    <string name="accent_purple">Purple</string>
+    <string name="accent_deep_purple">Deep purple</string>
+    <string name="accent_indigo">Indigo</string>
+    <string name="accent_blue">Blue</string>
+    <string name="accent_light_blue">Light blue</string>
+    <string name="accent_cyan">Cyan</string>
+    <string name="accent_teal">Teal</string>
+    <string name="accent_green">Green</string>
+    <string name="accent_light_green">Light green</string>
+    <string name="accent_lime">Lime</string>
+    <string name="accent_amber">Amber</string>
+    <string name="accent_orange">Orange</string>
+    <string name="accent_deep_orange">Deep orange</string>
+    <string name="accent_brown">Brown</string>
+    <string name="accent_blue_grey">Blue grey</string>
+    <string name="accent_azure">Azure (default)</string>
+    <string name="accent_title">Accent colour</string>
+    <string name="accent_dynamic_note">Not used while Material You is on.</string>
+    <string name="accent_pick">Pick a Material colour. The whole app palette is built from it.</string>
+    <string name="accent_swatch_selected">%1$s, selected</string>
+
+    <!-- ===== Face ID settings and diagnostics (EN) ===== -->
+    <string name="faceid_lock_style">Lock screen animation style</string>
+    <string name="faceid_fingerprint">Fingerprint animation</string>
+    <string name="faceid_fingerprint_desc">Plays the fingerprint scan when the phone or an app lock prompt is unlocked with a finger. Off: a fingerprint unlock ends the face scan without it.</string>
+    <string name="faceid_app">App Face ID</string>
+    <string name="faceid_app_desc">Plays the same scan when an app\'s lock prompt (the phone\'s app lock) unlocks with your face while the phone is already unlocked. Read from the system log, so it needs Shizuku. It does not depend on the lock screen Face ID switch.</string>
+    <string name="faceid_app_style">App animation style</string>
+    <string name="diagnostics_exported">Log exported</string>
+    <string name="diagnostics_export_failed">Export failed: %1$s</string>
+    <string name="diagnostics_io_error">IO error</string>
+    <string name="diagnostics_record">Record diagnostic log</string>
+    <string name="diagnostics_record_desc">Turn this on, then reproduce the missed WhatsApp or VoIP call. The log keeps going after the app is restarted or killed.</string>
+    <string name="diagnostics_not_recording">Not recording</string>
+    <string name="diagnostics_export_or_clear">Export or clear</string>
+    <string name="diagnostics_export_desc">The report holds device details, permission status, your settings, the recorded events and the app\'s logcat. It can contain notification titles from the apps being logged, so check it before sharing.</string>
+    <string name="diagnostics_export_log">Export log</string>
+    <string name="diagnostics_clear">Clear</string>
+    <plurals name="diagnostics_entries">
+        <item quantity="one">%1$s • %2$d entry</item>
+        <item quantity="other">%1$s • %2$d entries</item>
+    </plurals>
 </resources>

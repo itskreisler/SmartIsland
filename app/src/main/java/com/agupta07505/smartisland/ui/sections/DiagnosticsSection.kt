@@ -31,6 +31,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.pluralStringResource
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.agupta07505.smartisland.data.SmartIslandSettings
@@ -73,7 +76,11 @@ fun DiagnosticsSection(
             val result = AppLogRecorder.exportLogsToUri(context, uri, settings)
             Toast.makeText(
                 context,
-                if (result.isSuccess) "Log exported" else "Export failed: ${result.exceptionOrNull()?.localizedMessage ?: "IO error"}",
+                if (result.isSuccess) context.getString(R.string.diagnostics_exported)
+                else context.getString(
+                    R.string.diagnostics_export_failed,
+                    result.exceptionOrNull()?.localizedMessage ?: context.getString(R.string.diagnostics_io_error)
+                ),
                 Toast.LENGTH_LONG
             ).show()
         }
@@ -96,13 +103,12 @@ fun DiagnosticsSection(
                 ) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Record diagnostic log",
+                            text = stringResource(R.string.diagnostics_record),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.SemiBold
                         )
                         Text(
-                            text = "Turn this on, then reproduce the missed WhatsApp or VoIP call. " +
-                                "The log keeps going after the app is restarted or killed.",
+                            text = stringResource(R.string.diagnostics_record_desc),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -117,7 +123,13 @@ fun DiagnosticsSection(
                     )
                 }
                 Text(
-                    text = "${if (settings.recordLogs) "Recording" else "Not recording"} • $entryCount entries",
+                    text = pluralStringResource(
+                        R.plurals.diagnostics_entries,
+                        entryCount,
+                        if (settings.recordLogs) stringResource(R.string.status_recording)
+                        else stringResource(R.string.diagnostics_not_recording),
+                        entryCount
+                    ),
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -133,14 +145,12 @@ fun DiagnosticsSection(
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 Text(
-                    text = "Export or clear",
+                    text = stringResource(R.string.diagnostics_export_or_clear),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    text = "The report holds device details, permission status, your settings, the recorded " +
-                        "events and the app's logcat. It can contain notification titles from the apps being " +
-                        "logged, so check it before sharing.",
+                    text = stringResource(R.string.diagnostics_export_desc),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -148,11 +158,11 @@ fun DiagnosticsSection(
                     Button(onClick = {
                         val stamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
                         exportLauncher.launch("smartisland_log_$stamp.txt")
-                    }) { Text("Export log") }
+                    }) { Text(stringResource(R.string.diagnostics_export_log)) }
                     OutlinedButton(onClick = {
                         AppLogRecorder.clear(context)
                         entryCount = AppLogRecorder.getLogCount()
-                    }) { Text("Clear") }
+                    }) { Text(stringResource(R.string.diagnostics_clear)) }
                 }
             }
         }

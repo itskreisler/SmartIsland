@@ -18,6 +18,8 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -43,7 +45,7 @@ fun FaceIdSettingsSection(
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Text(
-                text = "Lock screen animation style",
+                text = stringResource(R.string.faceid_lock_style),
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.SemiBold
             )
@@ -58,7 +60,7 @@ fun FaceIdSettingsSection(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Fingerprint animation",
+                    text = stringResource(R.string.faceid_fingerprint),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -68,8 +70,7 @@ fun FaceIdSettingsSection(
                 )
             }
             Text(
-                text = "Plays the fingerprint scan when the phone or an app lock prompt is unlocked with a finger. " +
-                    "Off: a fingerprint unlock ends the face scan without it.",
+                text = stringResource(R.string.faceid_fingerprint_desc),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -80,7 +81,7 @@ fun FaceIdSettingsSection(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "App Face ID",
+                    text = stringResource(R.string.faceid_app),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -90,14 +91,13 @@ fun FaceIdSettingsSection(
                 )
             }
             Text(
-                text = "Plays the same scan when an app's lock prompt (the phone's app lock) unlocks with your face while the phone is " +
-                    "already unlocked. Read from the system log, so it needs Shizuku. It does not depend on the lock screen Face ID switch.",
+                text = stringResource(R.string.faceid_app_desc),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             if (settings.appFaceIdEnabled) {
                 Text(
-                    text = "App animation style",
+                    text = stringResource(R.string.faceid_app_style),
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.SemiBold
                 )
