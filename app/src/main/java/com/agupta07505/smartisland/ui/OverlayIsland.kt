@@ -14,6 +14,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import com.agupta07505.smartisland.data.AppShortcutProvider
 import com.agupta07505.smartisland.data.LaunchableApp
 import com.agupta07505.smartisland.model.IslandNotification
@@ -103,7 +105,7 @@ fun OverlayIsland(
                 if (notif.mode == com.agupta07505.smartisland.model.IslandMode.Notification) {
                     notif.copy(
                         title = notif.appName,
-                        text = "Contents hidden",
+                        text = context.getString(R.string.overlay_contents_hidden),
                         actionIntents = emptyList(),
                         media = emptyList()
                     )

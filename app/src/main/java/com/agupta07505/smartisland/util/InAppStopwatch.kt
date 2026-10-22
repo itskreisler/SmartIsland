@@ -6,6 +6,7 @@
  */
 
 package com.agupta07505.smartisland.util
+import com.agupta07505.smartisland.R
 
 import android.app.PendingIntent
 import android.content.Context
@@ -33,10 +34,6 @@ object InAppStopwatch {
     private const val PREF_STATE = "state"
 
     // The labels stay English on purpose: the expanded card tells Lap, Pause, Resume and Reset apart by these words.
-    private const val LABEL_LAP = "Lap"
-    private const val LABEL_PAUSE = "Pause"
-    private const val LABEL_RESUME = "Resume"
-    private const val LABEL_RESET = "Reset"
 
     @Volatile var state: StopwatchState = StopwatchState()
         private set
@@ -88,16 +85,21 @@ object InAppStopwatch {
         val now = System.currentTimeMillis()
         val elapsed = s.elapsedMs(now)
         val actions = buildList {
-            if (s.running) add(IslandNotificationAction(LABEL_LAP, broadcast(app, ACTION_LAP)))
-            add(IslandNotificationAction(if (s.running) LABEL_PAUSE else LABEL_RESUME, broadcast(app, ACTION_TOGGLE)))
-            add(IslandNotificationAction(LABEL_RESET, broadcast(app, ACTION_RESET)))
+            if (s.running) add(IslandNotificationAction(app.getString(R.string.action_lap), broadcast(app, ACTION_LAP)))
+            add(
+                IslandNotificationAction(
+                    if (s.running) app.getString(R.string.action_pause) else app.getString(R.string.action_resume),
+                    broadcast(app, ACTION_TOGGLE)
+                )
+            )
+            add(IslandNotificationAction(app.getString(R.string.action_reset), broadcast(app, ACTION_RESET)))
         }
         val card = IslandNotification(
             key = KEY,
             packageName = app.packageName,
-            appName = "Stopwatch",
-            title = "Stopwatch",
-            text = if (s.laps > 0) "Lap ${s.laps}" else "Running",
+            appName = app.getString(R.string.utility_stopwatch),
+            title = app.getString(R.string.utility_stopwatch),
+            text = if (s.laps > 0) app.getString(R.string.stopwatch_lap, s.laps) else app.getString(R.string.status_running),
             timeMillis = now - elapsed,
             actionIntents = actions,
             // A tap on the card does nothing; without this it would open this app.

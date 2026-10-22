@@ -457,7 +457,7 @@ fun NotificationExpanded(
                         decorationBox = { innerTextField ->
                             if (replyText.isEmpty()) {
                                 Text(
-                                    text = "Reply to ${notification.title.ifBlank { notification.appName }}...",
+                                    text = stringResource(R.string.notif_reply_to, notification.title.ifBlank { notification.appName }),
                                     color = LocalIslandPalette.current.placeholder,
                                     fontSize = 12.sp
                                 )

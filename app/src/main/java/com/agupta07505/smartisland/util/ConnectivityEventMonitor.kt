@@ -6,6 +6,7 @@
  */
 
 package com.agupta07505.smartisland.util
+import com.agupta07505.smartisland.R
 
 import android.Manifest
 import android.content.Context
@@ -158,7 +159,7 @@ class ConnectivityEventMonitor(
                     packageName = "com.android.systemui",
                     appName = "Wi-Fi",
                     title = lostSsid ?: "Wi-Fi",
-                    text = "Disconnected",
+                    text = context.getString(R.string.connectivity_disconnected),
                     category = "wifi_disconnected",
                     mode = IslandMode.Bluetooth,
                     timeMillis = System.currentTimeMillis()
@@ -274,8 +275,8 @@ class ConnectivityEventMonitor(
                     key = KEY_VPN_OFF,
                     packageName = "com.android.systemui",
                     appName = "VPN",
-                    title = "VPN disconnected",
-                    text = "Traffic is not protected",
+                    title = context.getString(R.string.vpn_disconnected_title),
+                    text = context.getString(R.string.vpn_traffic_not_protected),
                     category = "vpn_disconnected",
                     mode = IslandMode.Bluetooth,
                     timeMillis = System.currentTimeMillis()

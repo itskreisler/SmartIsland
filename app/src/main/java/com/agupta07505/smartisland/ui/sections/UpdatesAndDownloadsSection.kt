@@ -359,7 +359,7 @@ private fun AppUpdateCheckerCard(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Text(
-                                    text = "Update Available: ${updateStatus.release.tagName}",
+                                    text = stringResource(R.string.updates_available, updateStatus.release.tagName),
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.Bold,
                                     color = MaterialTheme.colorScheme.primary
@@ -453,14 +453,14 @@ private fun AppUpdateCheckerCard(
                     ) {
                         Column(modifier = Modifier.weight(1f)) {
                             Text(
-                                text = "New Version ${updateStatus.release.tagName}",
+                                text = stringResource(R.string.updates_new_version, updateStatus.release.tagName),
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.primary
                             )
                             if (updateStatus.release.publishedAt.isNotBlank()) {
                                 Text(
-                                    text = "Released ${updateStatus.release.publishedAt.take(10)}",
+                                    text = stringResource(R.string.updates_released, updateStatus.release.publishedAt.take(10)),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )

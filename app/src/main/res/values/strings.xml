@@ -1753,4 +1753,22 @@
         <item quantity="one">%1$d connected</item>
         <item quantity="other">%1$d connected</item>
     </plurals>
+
+    <!-- ===== Updates, network and in-app cards (EN) ===== -->
+    <string name="updates_available">Update Available: %1$s</string>
+    <string name="updates_new_version">New Version %1$s</string>
+    <string name="updates_released">Released %1$s</string>
+    <string name="pos_active_cd">Active</string>
+    <string name="overlay_contents_hidden">Contents hidden</string>
+    <string name="notif_reply_to">Reply to %1$s...</string>
+    <string name="music_artwork_background_cd">Album artwork background</string>
+    <string name="color_custom_cd">Custom</string>
+    <string name="app_logo_cd">App logo</string>
+    <string name="timer_time_up">Time\'s up</string>
+    <string name="status_running">Running</string>
+    <string name="stopwatch_lap">Lap %1$d</string>
+    <string name="transfer_network_activity">Network activity</string>
+    <string name="connectivity_disconnected">Disconnected</string>
+    <string name="vpn_disconnected_title">VPN disconnected</string>
+    <string name="vpn_traffic_not_protected">Traffic is not protected</string>
 </resources>

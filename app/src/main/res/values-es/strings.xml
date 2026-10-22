@@ -1753,4 +1753,22 @@
         <item quantity="one">%1$d conectado</item>
         <item quantity="other">%1$d conectados</item>
     </plurals>
+
+    <!-- ===== Actualizaciones, red y tarjetas internas ===== -->
+    <string name="updates_available">Actualización disponible: %1$s</string>
+    <string name="updates_new_version">Nueva versión %1$s</string>
+    <string name="updates_released">Publicada el %1$s</string>
+    <string name="pos_active_cd">Activo</string>
+    <string name="overlay_contents_hidden">Contenido oculto</string>
+    <string name="notif_reply_to">Responder a %1$s...</string>
+    <string name="music_artwork_background_cd">Fondo de la portada del álbum</string>
+    <string name="color_custom_cd">Personalizado</string>
+    <string name="app_logo_cd">Logotipo de la app</string>
+    <string name="timer_time_up">Se acabó el tiempo</string>
+    <string name="status_running">En marcha</string>
+    <string name="stopwatch_lap">Vuelta %1$d</string>
+    <string name="transfer_network_activity">Actividad de red</string>
+    <string name="connectivity_disconnected">Desconectado</string>
+    <string name="vpn_disconnected_title">VPN desconectada</string>
+    <string name="vpn_traffic_not_protected">El tráfico no está protegido</string>
 </resources>

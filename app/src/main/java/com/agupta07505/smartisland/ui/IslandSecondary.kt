@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
@@ -373,7 +375,7 @@ internal fun SecondaryBubbleContent(
             ) {
                 Icon(
                     Icons.Rounded.FlashlightOn,
-                    contentDescription = "Flashlight",
+                    contentDescription = stringResource(R.string.utility_flashlight),
                     tint = Color(0xFFFACC15),
                     modifier = Modifier.size(12.dp)
                 )

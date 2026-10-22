@@ -807,7 +807,7 @@ internal fun PresetChipItem(
             if (isSelected) {
                 Icon(
                     imageVector = Icons.Rounded.CheckCircle,
-                    contentDescription = "Active",
+                    contentDescription = stringResource(R.string.pos_active_cd),
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier.size(16.dp)
                 )

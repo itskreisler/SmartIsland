@@ -6,6 +6,7 @@
  */
 
 package com.agupta07505.smartisland.util
+import com.agupta07505.smartisland.R
 
 import android.content.Context
 import android.media.AudioManager
@@ -202,8 +203,8 @@ class TransferSpeedMonitor(
                 key = key,
                 packageName = "com.android.systemui",
                 appName = "Network",
-                title = if (upload) "Uploading" else "Downloading",
-                text = "Network activity",
+                title = context.getString(if (upload) R.string.transfer_badge_uploading else R.string.transfer_badge_downloading),
+                text = context.getString(R.string.transfer_network_activity),
                 timeMillis = cardStartedAt,
                 category = "progress",
                 mode = IslandMode.DownloadUpload,

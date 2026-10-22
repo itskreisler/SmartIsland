@@ -169,7 +169,7 @@ fun AppPickerDialog(
                     trailingIcon = {
                         if (query.isNotEmpty()) {
                             IconButton(onClick = { query = "" }) {
-                                Icon(Icons.Rounded.Close, contentDescription = "Clear search", modifier = Modifier.size(18.dp))
+                                Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.settings_search_clear), modifier = Modifier.size(18.dp))
                             }
                         }
                     },

@@ -195,7 +195,7 @@ fun MusicExpanded(
         if (settings.enableMusicArtworkBackground && artworkImage != null) {
             Image(
                 bitmap = artworkImage,
-                contentDescription = "Album artwork background",
+                contentDescription = stringResource(R.string.music_artwork_background_cd),
                 contentScale = ContentScale.Crop,
                 // Bicubic / mipmapped drawing; the default (low) filter shows hard pixels when a picture is scaled.
                 filterQuality = androidx.compose.ui.graphics.FilterQuality.High,

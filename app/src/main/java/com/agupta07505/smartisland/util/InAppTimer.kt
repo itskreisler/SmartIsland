@@ -6,6 +6,7 @@
  */
 
 package com.agupta07505.smartisland.util
+import com.agupta07505.smartisland.R
 
 import android.app.AlarmManager
 import android.app.PendingIntent
@@ -44,10 +45,6 @@ object InAppTimer {
     private const val RING_MS = 8_000L
 
     // The labels stay English on purpose: the expanded card tells Pause, Resume, +1 min and Stop apart by these words.
-    private const val LABEL_PAUSE = "Pause"
-    private const val LABEL_RESUME = "Resume"
-    private const val LABEL_ADD_MINUTE = "+1 min"
-    private const val LABEL_STOP = "Stop"
 
     private val main = Handler(Looper.getMainLooper())
     private var ringtone: Ringtone? = null
@@ -188,21 +185,26 @@ object InAppTimer {
         val now = System.currentTimeMillis()
         val actions = buildList {
             if (!s.finished) {
-                add(IslandNotificationAction(if (s.running) LABEL_PAUSE else LABEL_RESUME, broadcast(app, ACTION_TOGGLE)))
-                add(IslandNotificationAction(LABEL_ADD_MINUTE, broadcast(app, ACTION_ADD_MINUTE)))
+                add(
+                    IslandNotificationAction(
+                        if (s.running) app.getString(R.string.action_pause) else app.getString(R.string.action_resume),
+                        broadcast(app, ACTION_TOGGLE)
+                    )
+                )
+                add(IslandNotificationAction(app.getString(R.string.timer_add_minute), broadcast(app, ACTION_ADD_MINUTE)))
             }
-            add(IslandNotificationAction(LABEL_STOP, broadcast(app, ACTION_STOP)))
+            add(IslandNotificationAction(app.getString(R.string.btn_stop), broadcast(app, ACTION_STOP)))
         }
         val remaining = s.remainingAt(now)
         val card = IslandNotification(
             key = KEY,
             packageName = app.packageName,
-            appName = "Timer",
-            title = "Timer",
+            appName = app.getString(R.string.utility_timer),
+            title = app.getString(R.string.utility_timer),
             text = when {
-                s.finished -> "Time's up"
-                s.running -> "Running"
-                else -> "Paused"
+                s.finished -> app.getString(R.string.timer_time_up)
+                s.running -> app.getString(R.string.status_running)
+                else -> app.getString(R.string.status_paused)
             },
             // A running timer counts down to its end; a paused or finished one does not move.
             timeMillis = if (s.running) s.endMs else now + remaining,
