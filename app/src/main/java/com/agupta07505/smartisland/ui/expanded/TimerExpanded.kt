@@ -26,6 +26,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
+// PATCH-UI: marquesina para desplazar subtítulos largos sin "..." cuando la isla está expandida
+import androidx.compose.foundation.basicMarquee
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.HourglassBottom
 import androidx.compose.foundation.layout.defaultMinSize
@@ -570,13 +572,19 @@ private fun TimerExpandedCurrent(
                         stringResource(R.string.timer_active)
                     }
                 }
+                // PATCH-UI: marquesina en subtítulo largo (Google/AOSP) para leer "se detendrá a las ..." sin truncar con "..." al expandir
                 Text(
                     text = timerSubtitle,
                     color = if (finished && !isPaused) LocalIslandPalette.current.danger else timerColor,
                     fontSize = 12.sp,
                     fontWeight = FontWeight.SemiBold,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis
+                    softWrap = false,
+                    overflow = TextOverflow.Clip,
+                    modifier = Modifier.basicMarquee(
+                        iterations = Int.MAX_VALUE,
+                        velocity = 30.dp
+                    )
                 )
             }
         }
