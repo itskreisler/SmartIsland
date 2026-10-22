@@ -676,7 +676,8 @@ fun NotificationHistorySection(
                         }
 
                         if (!selectedFilterPackage.isNullOrBlank()) {
-                            val activeAppName = appSummaries.find { it.packageName == selectedFilterPackage }?.appName ?: selectedFilterPackage
+                            val activeAppName = appSummaries.find { it.packageName == selectedFilterPackage }?.appName
+                                ?: selectedFilterPackage.orEmpty()
                             Surface(
                                 shape = RoundedCornerShape(8.dp),
                                 color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f),
