@@ -62,6 +62,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -128,7 +130,7 @@ fun NotificationExpanded(
     val textScrollState = rememberScrollState()
     // The reader's scrolling is reported so a finger that only stops a fling is not taken for a tap (island gestures).
     if (!frozen) ReportReaderScroll(textScrollState)
-    val shortText = notification?.text?.takeIf { it.isNotBlank() } ?: "New activity"
+    val shortText = notification?.text?.takeIf { it.isNotBlank() } ?: stringResource(R.string.notif_new_activity)
     val fullText = expandableNotificationText(shortText, notification?.bigText.orEmpty())
     val mediaList = notification?.media.orEmpty()
     val hasMedia = mediaList.isNotEmpty()
@@ -273,7 +275,7 @@ fun NotificationExpanded(
                     )
             ) {
                 Text(
-                    text = notification?.title?.takeIf { it.isNotBlank() } ?: notification?.appName ?: "Notification",
+                    text = notification?.title?.takeIf { it.isNotBlank() } ?: notification?.appName ?: stringResource(R.string.notif_fallback_title),
                     color = LocalIslandPalette.current.text,
                     maxLines = if (textExpanded) Int.MAX_VALUE else 1,
                     overflow = TextOverflow.Ellipsis,
@@ -482,7 +484,7 @@ fun NotificationExpanded(
                 ) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Rounded.Send,
-                        contentDescription = "Send Reply",
+                        contentDescription = stringResource(R.string.notif_send_reply),
                         tint = if (replyText.isNotBlank()) Color.White else LocalIslandPalette.current.textTertiary,
                         modifier = Modifier.size(16.dp)
                     )
@@ -502,7 +504,7 @@ fun NotificationExpanded(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Close,
-                        contentDescription = "Cancel",
+                        contentDescription = stringResource(R.string.btn_cancel),
                         tint = LocalIslandPalette.current.textTertiary,
                         modifier = Modifier.size(16.dp)
                     )
@@ -576,7 +578,8 @@ fun NotificationExpanded(
                     ) {
                         Icon(
                             imageVector = if (textExpanded) Icons.Rounded.KeyboardArrowUp else Icons.Rounded.KeyboardArrowDown,
-                            contentDescription = if (textExpanded) "Show less" else "Show more",
+                            contentDescription = if (textExpanded) stringResource(R.string.history_show_less)
+                            else stringResource(R.string.history_show_more),
                             tint = LocalIslandPalette.current.text,
                             modifier = Modifier.size(16.dp)
                         )
@@ -647,7 +650,7 @@ internal fun ExpandedMediaViewer(
         ) {
             Icon(
                 imageVector = Icons.Rounded.KeyboardArrowUp,
-                contentDescription = "Close picture",
+                contentDescription = stringResource(R.string.notif_close_picture),
                 tint = Color.White,
                 modifier = Modifier.size(22.dp)
             )

@@ -46,6 +46,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -223,7 +225,7 @@ private fun TimerExpandedMiui(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.HourglassBottom,
-                    contentDescription = "Timer",
+                    contentDescription = stringResource(R.string.utility_timer),
                     tint = timerColor,
                     modifier = Modifier
                         .size(22.dp)
@@ -246,9 +248,9 @@ private fun TimerExpandedMiui(
                 )
                 Spacer(Modifier.height(2.dp))
                 val timerSubtitle = if (remainingSec == 0L && !isPaused) {
-                    "Time's up!"
+                    stringResource(R.string.timer_times_up)
                 } else if (isPaused) {
-                    "Paused"
+                    stringResource(R.string.status_paused)
                 } else {
                     val notifTitle = notification?.title.orEmpty()
                     val notifText = notification?.text.orEmpty()
@@ -257,7 +259,7 @@ private fun TimerExpandedMiui(
                     } else if (notifText.isNotBlank() && !notifText.equals("Timer", ignoreCase = true) && !notifText.matches(ClockOnlyRegex)) {
                         notifText
                     } else {
-                        "Timer Active"
+                        stringResource(R.string.timer_active)
                     }
                 }
                 Text(
@@ -338,7 +340,8 @@ private fun TimerExpandedMiui(
                     } else {
                         Icons.Rounded.Pause
                     },
-                    contentDescription = if (isPaused) "Resume" else "Pause",
+                    contentDescription = if (isPaused) stringResource(R.string.action_resume)
+                        else stringResource(R.string.action_pause),
                     tint = Color.Black,
                     modifier = Modifier.size(20.dp)
                 )
@@ -365,7 +368,7 @@ private fun TimerExpandedMiui(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Stop,
-                    contentDescription = "Stop",
+                    contentDescription = stringResource(R.string.btn_stop),
                     tint = Color(0xFFEF4444),
                     modifier = Modifier.size(18.dp)
                 )
@@ -515,7 +518,7 @@ private fun TimerExpandedCurrent(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.HourglassBottom,
-                    contentDescription = "Timer",
+                    contentDescription = stringResource(R.string.utility_timer),
                     tint = timerColor,
                     modifier = Modifier
                         .size(22.dp)
@@ -538,9 +541,9 @@ private fun TimerExpandedCurrent(
                 )
                 Spacer(Modifier.height(2.dp))
                 val timerSubtitle = if (finished && !isPaused) {
-                    "Time's up!"
+                    stringResource(R.string.timer_times_up)
                 } else if (isPaused) {
-                    "Paused"
+                    stringResource(R.string.status_paused)
                 } else {
                     val notifTitle = notification?.title.orEmpty()
                     val notifText = notification?.text.orEmpty()
@@ -549,7 +552,7 @@ private fun TimerExpandedCurrent(
                     } else if (notifText.isNotBlank() && !notifText.equals("Timer", ignoreCase = true) && !notifText.matches(ClockOnlyRegex)) {
                         notifText
                     } else {
-                        "Timer Active"
+                        stringResource(R.string.timer_active)
                     }
                 }
                 Text(

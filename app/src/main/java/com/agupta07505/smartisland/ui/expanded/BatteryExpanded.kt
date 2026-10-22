@@ -41,6 +41,8 @@ import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -88,15 +90,15 @@ fun BatteryExpanded(
 
     val timeText = remember(pct, visual) {
         if (visual == BatteryVisual.PluggedIn) {
-            "Charger connected"
+            context.getString(R.string.battery_charger_connected)
         } else if (visual == BatteryVisual.PluggedOut) {
-            "Running on battery"
+            context.getString(R.string.battery_running_on_battery)
         } else if (visual == BatteryVisual.Full) {
-            "Battery full"
+            context.getString(R.string.battery_full_status)
         } else if (visual == BatteryVisual.Saver) {
-            "Power Saver active"
+            context.getString(R.string.expanded_power_saver_active)
         } else if (visual == BatteryVisual.Low) {
-            "Connect charger"
+            context.getString(R.string.expanded_connect_charger)
         } else {
             val batteryManager = context.getSystemService(Context.BATTERY_SERVICE) as? android.os.BatteryManager
             val remainingMs = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
@@ -110,12 +112,14 @@ fun BatteryExpanded(
                 val totalMins = remainingMs / 60000L
                 val h = totalMins / 60L
                 val m = totalMins % 60L
-                if (h > 0) "${h} h ${m} m until full" else "${m} m until full"
+                if (h > 0) context.getString(R.string.battery_until_full_hm, h, m)
+                else context.getString(R.string.battery_until_full_m, m)
             } else {
                 val totalMins = ((100f - pct) * 1.5f).toInt()
                 val h = totalMins / 60
                 val m = totalMins % 60
-                if (h > 0) "${h} h ${m} m until full" else "${m} m until full"
+                if (h > 0) context.getString(R.string.battery_until_full_hm, h, m)
+                else context.getString(R.string.battery_until_full_m, m)
             }
         }
     }
@@ -147,11 +151,11 @@ fun BatteryExpanded(
             Column {
                 Text(
                     text = notification.title.takeIf { it.isNotBlank() } ?: when (visual) {
-                        BatteryVisual.Saver -> "Battery Saver ON"
-                        BatteryVisual.Low -> "Low Battery"
-                        BatteryVisual.PluggedIn -> "Plugged in"
-                        BatteryVisual.PluggedOut -> "Unplugged"
-                        BatteryVisual.Full -> "Fully Charged"
+                        BatteryVisual.Saver -> stringResource(R.string.expanded_battery_saver)
+                        BatteryVisual.Low -> stringResource(R.string.expanded_battery_low)
+                        BatteryVisual.PluggedIn -> stringResource(R.string.battery_plugged_in)
+                        BatteryVisual.PluggedOut -> stringResource(R.string.battery_unplugged)
+                        BatteryVisual.Full -> stringResource(R.string.battery_fully_charged)
                     },
                     color = LocalIslandPalette.current.text,
                     fontWeight = FontWeight.SemiBold,

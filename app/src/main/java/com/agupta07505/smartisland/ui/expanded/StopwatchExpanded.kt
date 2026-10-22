@@ -43,6 +43,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -221,7 +223,7 @@ private fun StopwatchExpandedMiui(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.AvTimer,
-                    contentDescription = "Stopwatch",
+                    contentDescription = stringResource(R.string.utility_stopwatch),
                     tint = stopwatchColor,
                     modifier = Modifier
                         .size(22.dp)
@@ -241,15 +243,15 @@ private fun StopwatchExpandedMiui(
                 val notifText = notification?.text.orEmpty()
                 val notifTitle = notification?.title.orEmpty()
                 val subtitle = if (isPaused) {
-                    "Paused"
+                    stringResource(R.string.status_paused)
                 } else if (lapCount > 1) {
-                    "Lap $lapCount"
+                    stringResource(R.string.stopwatch_lap_count, lapCount)
                 } else if (notifText.isNotBlank() && !notifText.equals("Stopwatch", ignoreCase = true) && !notifText.contains("00:")) {
                     notifText
                 } else if (notifTitle.isNotBlank() && !notifTitle.equals("Stopwatch", ignoreCase = true) && !notifTitle.contains("00:")) {
                     notifTitle
                 } else {
-                    "Stopwatch Active"
+                    stringResource(R.string.stopwatch_active)
                 }
                 Text(
                     text = subtitle,
@@ -292,7 +294,7 @@ private fun StopwatchExpandedMiui(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Flag,
-                    contentDescription = "Lap",
+                    contentDescription = stringResource(R.string.action_lap),
                     tint = Color(0xFFE4E4E7),
                     modifier = Modifier.size(16.dp)
                 )
@@ -337,7 +339,8 @@ private fun StopwatchExpandedMiui(
             ) {
                 Icon(
                     imageVector = if (isPaused) Icons.Rounded.PlayArrow else Icons.Rounded.Pause,
-                    contentDescription = if (isPaused) "Resume" else "Pause",
+                    contentDescription = if (isPaused) stringResource(R.string.action_resume)
+                        else stringResource(R.string.action_pause),
                     tint = Color.Black,
                     modifier = Modifier.size(18.dp)
                 )
@@ -364,7 +367,7 @@ private fun StopwatchExpandedMiui(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Refresh,
-                    contentDescription = "Reset",
+                    contentDescription = stringResource(R.string.action_reset),
                     tint = Color(0xFFE4E4E7),
                     modifier = Modifier.size(16.dp)
                 )
@@ -435,7 +438,7 @@ private fun StopwatchExpandedCurrent(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.AvTimer,
-                    contentDescription = "Stopwatch",
+                    contentDescription = stringResource(R.string.utility_stopwatch),
                     tint = stopwatchColor,
                     modifier = Modifier
                         .size(22.dp)
@@ -455,13 +458,13 @@ private fun StopwatchExpandedCurrent(
                 val notifText = notification?.text.orEmpty()
                 val notifTitle = notification?.title.orEmpty()
                 val subtitle = if (isPaused) {
-                    "Paused"
+                    stringResource(R.string.status_paused)
                 } else if (notifText.isNotBlank() && !notifText.equals("Stopwatch", ignoreCase = true) && !notifText.contains("00:")) {
                     notifText
                 } else if (notifTitle.isNotBlank() && !notifTitle.equals("Stopwatch", ignoreCase = true) && !notifTitle.contains("00:")) {
                     notifTitle
                 } else {
-                    "Stopwatch Active"
+                    stringResource(R.string.stopwatch_active)
                 }
                 Text(
                     text = subtitle,

@@ -1546,4 +1546,27 @@
     <string name="updates_contributors">Colaboradores</string>
     <string name="updates_commits">Commits</string>
     <string name="updates_latest_main">Última actividad en la rama main</string>
+
+    <!-- ===== Vistas expandidas ===== -->
+    <string name="battery_charger_connected">Cargador conectado</string>
+    <string name="battery_running_on_battery">Funcionando con batería</string>
+    <string name="battery_full_status">Batería llena</string>
+    <string name="battery_until_full_hm">quedan %1$d h %2$d min</string>
+    <string name="battery_until_full_m">quedan %1$d min</string>
+    <string name="status_paused">En pausa</string>
+    <string name="timer_times_up">¡Se acabó el tiempo!</string>
+    <string name="timer_active">Temporizador activo</string>
+    <string name="action_resume">Reanudar</string>
+    <string name="action_pause">Pausar</string>
+    <string name="action_reset">Restablecer</string>
+    <string name="action_lap">Vuelta</string>
+    <string name="stopwatch_lap_count">Vuelta %1$d</string>
+    <string name="stopwatch_active">Cronómetro activo</string>
+    <string name="hotspot_sharing_data">Compartiendo datos móviles</string>
+    <string name="hotspot_devices">Dispositivos</string>
+    <string name="hotspot_connected_devices">Dispositivos conectados</string>
+    <string name="notif_new_activity">Actividad nueva</string>
+    <string name="notif_fallback_title">Notificación</string>
+    <string name="notif_send_reply">Enviar respuesta</string>
+    <string name="notif_close_picture">Cerrar imagen</string>
 </resources>

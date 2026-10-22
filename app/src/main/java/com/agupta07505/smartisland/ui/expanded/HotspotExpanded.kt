@@ -31,6 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -65,7 +67,7 @@ fun HotspotExpanded(
             .replace(Regex("""(?i)active\s*[•·.-]?\s*\d+\s*device.*"""), "")
             .replace(Regex("""(?i)\d+\s*device\s*connected"""), "")
             .trim()
-            .ifBlank { "Sharing mobile data" }
+            .ifBlank { context.getString(R.string.hotspot_sharing_data) }
     }
 
     // Only the buttons the hotspot notification itself has in the shade (e.g. "Turn off hotspot").
@@ -98,7 +100,7 @@ fun HotspotExpanded(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.WifiTethering,
-                    contentDescription = "Hotspot",
+                    contentDescription = stringResource(R.string.utility_hotspot),
                     tint = Color.White,
                     modifier = Modifier.size(24.dp)
                 )
@@ -106,7 +108,7 @@ fun HotspotExpanded(
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Mobile Hotspot",
+                    text = stringResource(R.string.expanded_hotspot_title),
                     color = LocalIslandPalette.current.text,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -145,7 +147,7 @@ fun HotspotExpanded(
                             modifier = Modifier.size(12.dp)
                         )
                         Text(
-                            text = "Active",
+                            text = stringResource(R.string.status_active),
                             color = accentColor,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold
@@ -179,12 +181,12 @@ fun HotspotExpanded(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Devices,
-                        contentDescription = "Devices",
+                        contentDescription = stringResource(R.string.hotspot_devices),
                         tint = accentColor,
                         modifier = Modifier.size(18.dp)
                     )
                     Text(
-                        text = "Connected Devices",
+                        text = stringResource(R.string.hotspot_connected_devices),
                         color = LocalIslandPalette.current.text,
                         fontSize = 13.sp,
                         fontWeight = FontWeight.Medium
