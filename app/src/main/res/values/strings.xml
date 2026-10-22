@@ -175,10 +175,10 @@
     <string name="toast_reset_position">Position reset to factory defaults</string>
     <string name="opacity_card_title">Island Opacity &amp; Transparency</string>
     <string name="opacity_card_desc">Adjust background translucency for a sleek glassmorphic look</string>
-    <string name="opacity_solid">100%% Solid</string>
-    <string name="opacity_dark">85%% Dark</string>
-    <string name="opacity_glass">70%% Glass</string>
-    <string name="opacity_clear">50%% Clear</string>
+    <string name="opacity_solid">100% Solid</string>
+    <string name="opacity_dark">85% Dark</string>
+    <string name="opacity_glass">70% Glass</string>
+    <string name="opacity_clear">50% Clear</string>
     <string name="slider_precision_opacity">Precision Opacity</string>
     <string name="media_player_title">Music &amp; Media Player</string>
     <string name="media_player_desc">Configure ambient backdrop artwork and visualizer animations</string>

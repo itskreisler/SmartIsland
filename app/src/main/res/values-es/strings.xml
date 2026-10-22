@@ -175,10 +175,10 @@
     <string name="toast_reset_position">Posición restablecida a los valores de fábrica</string>
     <string name="opacity_card_title">Opacidad y transparencia de la isla</string>
     <string name="opacity_card_desc">Ajusta la translucidez del fondo para conseguir un aspecto elegante de cristal</string>
-    <string name="opacity_solid">100%% opaco</string>
-    <string name="opacity_dark">85%% oscuro</string>
-    <string name="opacity_glass">70%% cristal</string>
-    <string name="opacity_clear">50%% transparente</string>
+    <string name="opacity_solid">100% opaco</string>
+    <string name="opacity_dark">85% oscuro</string>
+    <string name="opacity_glass">70% cristal</string>
+    <string name="opacity_clear">50% transparente</string>
     <string name="slider_precision_opacity">Opacidad precisa</string>
     <string name="media_player_title">Música y reproductor multimedia</string>
     <string name="media_player_desc">Configura la portada ambiental y las animaciones del visualizador</string>
