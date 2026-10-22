@@ -1431,4 +1431,34 @@
     <!-- ===== Historial de notificaciones: días ===== -->
     <string name="history_today">Hoy</string>
     <string name="history_yesterday">Ayer</string>
+
+    <!-- ===== Horizontal / landscape ===== -->
+    <string name="landscape_idle_cutout">Recorte en reposo</string>
+    <string name="landscape_idle_cutout_summary">El pequeño círculo que se muestra cuando no hay nada en la isla</string>
+    <string name="landscape_position">Posición</string>
+    <string name="landscape_left">Izquierda</string>
+    <string name="landscape_middle">Centro</string>
+    <string name="landscape_right">Derecha</string>
+    <string name="landscape_top_middle">Centro arriba</string>
+    <string name="landscape_camera_hint">La opción Cámara se sitúa sobre el recorte de la cámara, o en la esquina superior del lado de la cámara si no se detecta ninguno.</string>
+    <string name="landscape_size_and_look">Tamaño y aspecto</string>
+    <string name="landscape_size">Tamaño</string>
+    <string name="landscape_opacity">Opacidad</string>
+    <string name="landscape_fine_tuning">Ajuste fino</string>
+    <string name="landscape_horizontal_offset">Desplazamiento horizontal</string>
+    <string name="landscape_vertical_offset">Desplazamiento vertical</string>
+    <string name="landscape_vertical_tune_camera">Ajuste vertical fino (desde la cámara)</string>
+    <string name="landscape_centre_side_edge">Centrar en el borde lateral</string>
+    <string name="landscape_cutout_with_content">Recorte con contenido</string>
+    <string name="landscape_bar_summary">La barra que se muestra mientras hay una notificación o un evento en la isla</string>
+    <string name="landscape_corner_hint">En una esquina, la tarjeta abierta sube cerca del borde de la pantalla; en el centro, baja justo debajo de la barra.</string>
+    <string name="landscape_width">Ancho</string>
+    <string name="landscape_height">Alto</string>
+    <string name="landscape_size_with_card">Tamaño con tarjeta</string>
+    <string name="landscape_size_with_card_hint">La isla que solo lleva los widgets en reposo tiene el ancho de arriba. Con una tarjeta encima, puede estirarse más y se encoge de nuevo cuando se aparta la tarjeta.</string>
+    <string name="landscape_same_as_idle">Mismo tamaño que el recorte en reposo</string>
+    <string name="landscape_cutout_width_with_content">Ancho del recorte con contenido</string>
+    <string name="landscape_look">Aspecto</string>
+    <string name="landscape_exempt_apps">Apps excluidas</string>
+    <string name="landscape_exempt_apps_summary">Apps que desactivan por completo la isla en horizontal</string>
 </resources>

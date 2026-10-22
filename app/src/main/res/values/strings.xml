@@ -1431,4 +1431,34 @@
     <!-- ===== Historial de notificaciones: días (EN) ===== -->
     <string name="history_today">Today</string>
     <string name="history_yesterday">Yesterday</string>
+
+    <!-- ===== Horizontal / landscape (EN) ===== -->
+    <string name="landscape_idle_cutout">Idle cutout</string>
+    <string name="landscape_idle_cutout_summary">The small circle shown when nothing is on the island</string>
+    <string name="landscape_position">Position</string>
+    <string name="landscape_left">Left</string>
+    <string name="landscape_middle">Middle</string>
+    <string name="landscape_right">Right</string>
+    <string name="landscape_top_middle">Top middle</string>
+    <string name="landscape_camera_hint">Camera sits on the camera cutout, or the top corner on the camera\'s side if none is reported.</string>
+    <string name="landscape_size_and_look">Size and look</string>
+    <string name="landscape_size">Size</string>
+    <string name="landscape_opacity">Opacity</string>
+    <string name="landscape_fine_tuning">Fine tuning</string>
+    <string name="landscape_horizontal_offset">Horizontal offset</string>
+    <string name="landscape_vertical_offset">Vertical offset</string>
+    <string name="landscape_vertical_tune_camera">Vertical fine-tune (from camera)</string>
+    <string name="landscape_centre_side_edge">Centre on the side edge</string>
+    <string name="landscape_cutout_with_content">Cutout with content</string>
+    <string name="landscape_bar_summary">The bar shown while a notification or event is on the island</string>
+    <string name="landscape_corner_hint">In a corner the opened card moves up near the screen edge; in the middle it drops just below the bar.</string>
+    <string name="landscape_width">Width</string>
+    <string name="landscape_height">Height</string>
+    <string name="landscape_size_with_card">Size with a card</string>
+    <string name="landscape_size_with_card_hint">The pill that only carries the idle widgets has the width above. With a card on it, it can stretch wider and shrinks back when the card is put away.</string>
+    <string name="landscape_same_as_idle">Same size as idle cutout</string>
+    <string name="landscape_cutout_width_with_content">Cutout width with content</string>
+    <string name="landscape_look">Look</string>
+    <string name="landscape_exempt_apps">Exempt apps</string>
+    <string name="landscape_exempt_apps_summary">Apps that switch the island totally off in landscape</string>
 </resources>
