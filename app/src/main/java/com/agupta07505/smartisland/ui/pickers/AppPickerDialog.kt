@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.pickers
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import android.util.LruCache
 import androidx.compose.foundation.Image
@@ -53,12 +55,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-import com.agupta07505.smartisland.R
 import com.agupta07505.smartisland.data.AppShortcutProvider
 import com.agupta07505.smartisland.data.LaunchableApp
 import com.agupta07505.smartisland.data.PinnedApps
@@ -135,7 +135,7 @@ fun AppPickerDialog(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Select Pinned Apps",
+                    text = stringResource(R.string.select_pinned_apps),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -288,7 +288,7 @@ fun AppPickerDialog(
             TextButton(
                 onClick = onDismiss
             ) {
-                Text("Done", fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.idle_select_done), fontWeight = FontWeight.Bold)
             }
         }
     )

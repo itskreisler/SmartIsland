@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.sections
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import android.net.Uri
 import android.os.Build
@@ -72,7 +74,7 @@ fun FaceUnlockSection(
                     context.contentResolver.openOutputStream(uri, "wt")?.use { it.write(text.toByteArray(Charsets.UTF_8)) } != null
                 }.getOrDefault(false)
             }
-            Toast.makeText(context, if (ok) "Capture saved" else "Saving failed", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, if (ok) context.getString(R.string.toast_capture_saved) else context.getString(R.string.toast_saving_failed), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -107,12 +109,12 @@ fun FaceUnlockSection(
                 FilterChip(
                     selected = mode == FaceUnlockMode.FaceOnly,
                     onClick = { scope.launch { repository.setFaceUnlockMode(FaceUnlockMode.FaceOnly.id) } },
-                    label = { Text("Face unlock only") }
+                    label = { Text(stringResource(R.string.face_unlock_only)) }
                 )
                 FilterChip(
                     selected = mode == FaceUnlockMode.Any,
                     onClick = { scope.launch { repository.setFaceUnlockMode(FaceUnlockMode.Any.id) } },
-                    label = { Text("Any unlock") }
+                    label = { Text(stringResource(R.string.any_unlock)) }
                 )
             }
             Text(
@@ -151,7 +153,7 @@ fun FaceUnlockSection(
                                 }
                             }
                         }
-                    ) { Text("Start") }
+                    ) { Text(stringResource(R.string.btn_start)) }
                 } else {
                     Button(
                         enabled = !busy,
@@ -196,12 +198,12 @@ fun FaceUnlockSection(
                                     "Unlocks: $unlockSummary."
                             }
                         }
-                    ) { Text("Stop") }
+                    ) { Text(stringResource(R.string.btn_stop)) }
                 }
                 OutlinedButton(
                     enabled = captureText != null && !capturing,
                     onClick = { saveLauncher.launch("smartisland_face_unlock_capture.txt") }
-                ) { Text("Save capture") }
+                ) { Text(stringResource(R.string.btn_save_capture)) }
             }
             status?.let {
                 Text(
@@ -220,17 +222,17 @@ internal fun FaceStyleChips(selected: String, onSelect: (String) -> Unit) {
         FilterChip(
             selected = selected == "square_tick",
             onClick = { onSelect("square_tick") },
-            label = { Text("Expanded") }
+            label = { Text(stringResource(R.string.face_unlock_mode_expanded)) }
         )
         FilterChip(
             selected = selected != "cutout" && selected != "square_tick",
             onClick = { onSelect("square") },
-            label = { Text("Mix") }
+            label = { Text(stringResource(R.string.face_unlock_mode_mix)) }
         )
         FilterChip(
             selected = selected == "cutout",
             onClick = { onSelect("cutout") },
-            label = { Text("Cutout") }
+            label = { Text(stringResource(R.string.face_unlock_mode_cutout)) }
         )
     }
 }

@@ -6,6 +6,7 @@
  */
 
 package com.agupta07505.smartisland.service
+import com.agupta07505.smartisland.R
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothClass
@@ -245,7 +246,7 @@ class SystemEventReceiver(
                 key = "system_battery",
                 packageName = "com.android.systemui",
                 appName = "System",
-                title = "Unplugged",
+                title = context.getString(R.string.battery_unplugged),
                 text = "$pct%",
                 category = "battery_plugged_out",
                 mode = IslandMode.Battery,
@@ -282,7 +283,7 @@ class SystemEventReceiver(
         }
 
         if (isPowerSave) {
-            val title = "Battery Saver ON"
+            val title = context.getString(R.string.expanded_battery_saver)
             // A short warning: announced once per state, not again for every percent that follows.
             if (!autoExpand && title == lastBatteryTitle) return
             lastBatteryPct = batteryPct
@@ -303,7 +304,7 @@ class SystemEventReceiver(
                 autoExpand = mayExpand(IslandEvent.BATTERY_SAVER, autoExpand)
             )
         } else if (isLowBattery) {
-            val title = "Low Battery"
+            val title = context.getString(R.string.expanded_battery_low)
             // A short warning: announced once per state, not again for every percent that follows.
             if (!autoExpand && title == lastBatteryTitle) return
             lastBatteryPct = batteryPct
@@ -352,7 +353,7 @@ class SystemEventReceiver(
             notificationRepository.removeNotification("system_battery")
             return
         }
-        val title = if (isFull) "Fully Charged" else "Plugged in"
+        val title = if (isFull) context.getString(R.string.battery_fully_charged) else context.getString(R.string.battery_plugged_in)
         val category = if (isFull) "battery_full" else "battery_plugged_in"
         val cooldownEvent = if (isFull) IslandEvent.FULLY_CHARGED else IslandEvent.PLUGGED_IN
 

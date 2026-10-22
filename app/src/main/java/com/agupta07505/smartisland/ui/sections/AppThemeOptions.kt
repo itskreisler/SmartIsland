@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.sections
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import android.os.Build
 import androidx.compose.foundation.BorderStroke
@@ -94,16 +96,16 @@ fun AppThemeOptions(
     val usingDynamic = settings.materialYou && dynamicAvailable
     Column {
         ThemeToggleRow(
-            title = "Vibrant colors",
-            subtitle = "Translucent glass panels with a lit rim over a soft colour backdrop. Off gives the flat Material look.",
+            title = stringResource(R.string.vibrant_colors_title),
+            subtitle = stringResource(R.string.vibrant_colors_desc),
             checked = settings.liquidGlassTheme,
             onChange = onLiquidGlassChange
         )
         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f))
         if (dynamicAvailable) {
             ThemeToggleRow(
-                title = "Material You colours",
-                subtitle = "Take the colours from your wallpaper instead of the accent colour below.",
+                title = stringResource(R.string.material_you_title),
+                subtitle = stringResource(R.string.material_you_desc),
                 checked = settings.materialYou,
                 onChange = onMaterialYouChange
             )
@@ -191,7 +193,7 @@ private fun CustomHueSlider(accent: Long, enabled: Boolean, onAccentChange: (Lon
     var hue by remember(accent) { mutableFloatStateOf(hueOf(accent)) }
     val rainbow = remember { (0..12).map { Color.hsv(it * 30f, 0.80f, 0.95f) } }
     Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-        Text("Custom hue", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Text(stringResource(R.string.custom_hue_label), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
         Box(modifier = Modifier.fillMaxWidth().height(36.dp), contentAlignment = Alignment.Center) {
             Box(
                 modifier = Modifier

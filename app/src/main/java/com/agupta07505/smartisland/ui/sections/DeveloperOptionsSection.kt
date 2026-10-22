@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.sections
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -72,13 +74,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.agupta07505.smartisland.BuildConfig
-import com.agupta07505.smartisland.R
 import com.agupta07505.smartisland.data.SmartIslandSettings
 import com.agupta07505.smartisland.data.SmartIslandSettingsRepository
 import com.agupta07505.smartisland.util.AppLogRecorder
@@ -319,7 +319,7 @@ fun DeveloperOptionsSection(
                                 val report = AppLogRecorder.generateDiagnosticReport(context, settings)
                                 withContext(Dispatchers.Main) {
                                     val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                    val clip = ClipData.newPlainText("Smart Island Diagnostic Logs", report)
+                                    val clip = ClipData.newPlainText(context.getString(R.string.dev_logs_clip_label), report)
                                     clipboard.setPrimaryClip(clip)
                                     Toast.makeText(context, context.getString(R.string.toast_logs_copied), Toast.LENGTH_SHORT).show()
                                 }
@@ -394,27 +394,27 @@ fun DeveloperOptionsSection(
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f))
 
                 DiagnosticItem(
-                    label = "Device",
+                    label = stringResource(R.string.dev_label_device),
                     value = "${Build.MANUFACTURER.replaceFirstChar { it.uppercase() }} ${Build.MODEL} (Android ${Build.VERSION.RELEASE}, API ${Build.VERSION.SDK_INT})"
                 )
                 DiagnosticItem(
-                    label = "App Build",
+                    label = stringResource(R.string.dev_label_app_build),
                     value = "v${BuildConfig.VERSION_NAME} (${BuildConfig.BUILD_TYPE})"
                 )
                 DiagnosticItem(
-                    label = "OEM Rules",
+                    label = stringResource(R.string.dev_label_oem_rules),
                     value = OemDeviceRules.detectCurrentDevice().name
                 )
                 DiagnosticItem(
-                    label = "Overlay Permission",
+                    label = stringResource(R.string.dev_label_overlay_permission),
                     value = if (Settings.canDrawOverlays(context)) "Granted" else "Denied"
                 )
                 DiagnosticItem(
-                    label = "Shizuku Status",
+                    label = stringResource(R.string.dev_label_shizuku_status),
                     value = if (ShizukuManager.isBinderAvailable() && ShizukuManager.hasPermission()) "Authorized" else "Not Connected"
                 )
                 DiagnosticItem(
-                    label = "Island Geometry",
+                    label = stringResource(R.string.dev_label_island_geometry),
                     value = "${settings.width.toInt()}x${settings.height.toInt()}dp (Y: ${settings.yOffset.toInt()}dp, R: ${settings.cornerRadius.toInt()}dp, Opacity: ${(settings.opacity * 100).toInt()}%)"
                 )
             }

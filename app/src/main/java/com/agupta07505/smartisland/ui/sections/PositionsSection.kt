@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.sections
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
@@ -51,11 +53,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.agupta07505.smartisland.R
 import com.agupta07505.smartisland.data.SmartIslandSettings
 import com.agupta07505.smartisland.data.SmartIslandSettingsRepository
 import com.agupta07505.smartisland.ui.SliderSettingItem
@@ -199,7 +199,7 @@ fun PositionsSection(
         }
 
         CollapsibleCard(
-            title = "Quick presets",
+            title = stringResource(R.string.presets_title),
             stateKey = "pos_presets_${if (settings.enableNotchMode) "notch" else "pill"}",
             summary = "One-tap layouts for common camera cutouts",
             initiallyExpanded = false,
@@ -402,7 +402,7 @@ fun PositionsSection(
         }
 
         CollapsibleCard(
-            title = "Exempt apps",
+            title = stringResource(R.string.cooldown_excluded_apps_title),
             stateKey = "pos_exempt_apps",
             summary = "Apps that switch the island totally off in portrait",
             initiallyExpanded = false
@@ -411,7 +411,7 @@ fun PositionsSection(
         }
 
         CollapsibleCard(
-            title = "Size and position",
+            title = stringResource(R.string.precision_tuning_title),
             stateKey = "pos_tuning_${if (settings.enableNotchMode) "notch" else "pill"}",
             summary = "Width, height, offsets and corner radius",
             initiallyExpanded = false,
@@ -641,7 +641,7 @@ fun PositionsSection(
         }
 
         CollapsibleCard(
-            title = "Shadow",
+            title = stringResource(R.string.toggle_drop_shadow_title),
             stateKey = "pos_look_${if (settings.enableNotchMode) "notch" else "pill"}",
             summary = "Drop shadow under the island (opacity and colour are in Colors)",
             initiallyExpanded = false,

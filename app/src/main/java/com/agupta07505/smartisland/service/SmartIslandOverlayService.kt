@@ -1810,7 +1810,7 @@ class SmartIslandOverlayService : AccessibilityService() {
                             launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(launchIntent)
                         } else {
-                            Toast.makeText(this, "Can't open ${notification.appName}", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, getString(R.string.toast_cant_open_app, notification.appName), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
@@ -1824,7 +1824,7 @@ class SmartIslandOverlayService : AccessibilityService() {
     private fun launchApp(packageName: String) {
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         if (launchIntent == null) {
-            Toast.makeText(this, "App is no longer available", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.utility_app_missing), Toast.LENGTH_SHORT).show()
             return
         }
         launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -1915,7 +1915,7 @@ class SmartIslandOverlayService : AccessibilityService() {
     private fun openPackageInSystemFreeform(packageName: String): Boolean {
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         if (launchIntent == null) {
-            Toast.makeText(this, "App is no longer available", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.utility_app_missing), Toast.LENGTH_SHORT).show()
             return false
         }
         launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
@@ -1928,12 +1928,12 @@ class SmartIslandOverlayService : AccessibilityService() {
     private fun openPackageInLmoFreeform(packageName: String): Boolean {
         val lmo = com.agupta07505.smartisland.util.LmoFreeform
         if (!lmo.isInstalled(this)) {
-            Toast.makeText(this, "LMO Freeform is not installed on this device.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_lmo_not_installed), Toast.LENGTH_SHORT).show()
             return false
         }
         val component = lmo.launcherComponent(packageManager, packageName)
         if (component == null) {
-            Toast.makeText(this, "App is no longer available", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.utility_app_missing), Toast.LENGTH_SHORT).show()
             return false
         }
         val sent = runCatchingLogged(TAG, "Failed to ask LMO Freeform for a window") {
@@ -1945,7 +1945,7 @@ class SmartIslandOverlayService : AccessibilityService() {
     private fun openAppInSplitScreen(packageName: String) {
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         if (launchIntent == null) {
-            Toast.makeText(this, "App is no longer available", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.utility_app_missing), Toast.LENGTH_SHORT).show()
             viewModel.collapse()
             return
         }
@@ -2031,7 +2031,7 @@ class SmartIslandOverlayService : AccessibilityService() {
 
     private fun openInSystemFreeform(notification: IslandNotification): Boolean {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            Toast.makeText(this, "Floating window requires Android 7+.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_floating_window_android7), Toast.LENGTH_SHORT).show()
             return false
         }
         val bundle = systemFreeformBundle()
@@ -2053,7 +2053,7 @@ class SmartIslandOverlayService : AccessibilityService() {
                     startActivity(launchIntent, bundle)
                     started = true
                 } else {
-                    Toast.makeText(this, "Can't open ${notification.appName}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.toast_cant_open_app, notification.appName), Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -2063,7 +2063,7 @@ class SmartIslandOverlayService : AccessibilityService() {
     private fun openInLmoFreeform(notification: IslandNotification): Boolean {
         val lmo = com.agupta07505.smartisland.util.LmoFreeform
         if (!lmo.isInstalled(this)) {
-            Toast.makeText(this, "LMO Freeform is not installed on this device.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_lmo_not_installed), Toast.LENGTH_SHORT).show()
             return false
         }
         val pending = notification.contentIntent
@@ -2176,7 +2176,7 @@ class SmartIslandOverlayService : AccessibilityService() {
         val component = notification.contentIntent?.let { lmo.pendingIntentActivity(it) }
             ?: lmo.launcherComponent(packageManager, notification.packageName)
         if (component == null) {
-            Toast.makeText(this, "Can't open ${notification.appName}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.toast_cant_open_app, notification.appName), Toast.LENGTH_SHORT).show()
             return false
         }
         return runCatchingLogged(TAG, "Failed to ask LMO Freeform for a window") {
@@ -2199,7 +2199,7 @@ class SmartIslandOverlayService : AccessibilityService() {
                 OVERLAY_CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                description = "Keeps the Smart Island overlay running"
+                description = getString(R.string.overlay_service_description)
                 setShowBadge(false)
             }
             val nm = getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
@@ -2219,7 +2219,7 @@ class SmartIslandOverlayService : AccessibilityService() {
         )
         return NotificationCompat.Builder(this, OVERLAY_CHANNEL_ID)
             .setContentTitle("Smart Island is active")
-            .setContentText("Tap to open Smart Island")
+            .setContentText(getString(R.string.overlay_service_tap_open))
             .setSmallIcon(R.drawable.ic_stat_smart_island)
             .setContentIntent(contentIntent)
             .setOngoing(true)

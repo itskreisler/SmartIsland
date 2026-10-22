@@ -26,7 +26,7 @@ class SystemEventReceiverTest {
         val repo = mockk<SmartIslandNotificationRepository>(relaxed = true)
         val receiver = SystemEventReceiver(repo)
 
-        val context = mockk<Context>()
+        val context = mockk<Context>().also { every { it.getString(com.agupta07505.smartisland.R.string.battery_unplugged) } returns "Unplugged"; every { it.getString(com.agupta07505.smartisland.R.string.battery_plugged_in) } returns "Plugged in"; every { it.getString(com.agupta07505.smartisland.R.string.battery_fully_charged) } returns "Fully Charged"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_saver) } returns "Battery Saver ON"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_low) } returns "Low Battery" }
         val pm = mockk<PowerManager>(relaxed = true)
         every { pm.isPowerSaveMode } returns false
         every { context.getSystemService(Context.POWER_SERVICE) } returns pm
@@ -55,7 +55,7 @@ class SystemEventReceiverTest {
     fun testPowerConnectedPostsPluggedInCardThenNothingElseImmediately() {
         val repo = mockk<SmartIslandNotificationRepository>(relaxed = true)
         val receiver = SystemEventReceiver(repo)
-        val context = mockk<Context>()
+        val context = mockk<Context>().also { every { it.getString(com.agupta07505.smartisland.R.string.battery_unplugged) } returns "Unplugged"; every { it.getString(com.agupta07505.smartisland.R.string.battery_plugged_in) } returns "Plugged in"; every { it.getString(com.agupta07505.smartisland.R.string.battery_fully_charged) } returns "Fully Charged"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_saver) } returns "Battery Saver ON"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_low) } returns "Low Battery" }
 
         fun plugIntent(action: String) = mockk<Intent>().also {
             every { it.action } returns action
@@ -85,7 +85,7 @@ class SystemEventReceiverTest {
     fun testChargeLimitPauseDoesNotCountAsUnplugged() {
         val repo = mockk<SmartIslandNotificationRepository>(relaxed = true)
         val receiver = SystemEventReceiver(repo)
-        val context = mockk<Context>()
+        val context = mockk<Context>().also { every { it.getString(com.agupta07505.smartisland.R.string.battery_unplugged) } returns "Unplugged"; every { it.getString(com.agupta07505.smartisland.R.string.battery_plugged_in) } returns "Plugged in"; every { it.getString(com.agupta07505.smartisland.R.string.battery_fully_charged) } returns "Fully Charged"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_saver) } returns "Battery Saver ON"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_low) } returns "Low Battery" }
 
         fun batteryIntent(plugged: Int, status: Int) = mockk<Intent>().also {
             every { it.action } returns Intent.ACTION_BATTERY_CHANGED
@@ -114,7 +114,7 @@ class SystemEventReceiverTest {
         val repo = mockk<SmartIslandNotificationRepository>(relaxed = true)
         val receiver = SystemEventReceiver(repo)
         
-        val context = mockk<Context>()
+        val context = mockk<Context>().also { every { it.getString(com.agupta07505.smartisland.R.string.battery_unplugged) } returns "Unplugged"; every { it.getString(com.agupta07505.smartisland.R.string.battery_plugged_in) } returns "Plugged in"; every { it.getString(com.agupta07505.smartisland.R.string.battery_fully_charged) } returns "Fully Charged"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_saver) } returns "Battery Saver ON"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_low) } returns "Low Battery" }
         val pm = mockk<PowerManager>(relaxed = true)
         every { pm.isPowerSaveMode } returns false
         every { context.getSystemService(Context.POWER_SERVICE) } returns pm
@@ -139,7 +139,7 @@ class SystemEventReceiverTest {
     fun testSmartwatchConnectionIgnored() {
         val repo = mockk<SmartIslandNotificationRepository>(relaxed = true)
         val receiver = SystemEventReceiver(repo)
-        val context = mockk<Context>()
+        val context = mockk<Context>().also { every { it.getString(com.agupta07505.smartisland.R.string.battery_unplugged) } returns "Unplugged"; every { it.getString(com.agupta07505.smartisland.R.string.battery_plugged_in) } returns "Plugged in"; every { it.getString(com.agupta07505.smartisland.R.string.battery_fully_charged) } returns "Fully Charged"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_saver) } returns "Battery Saver ON"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_low) } returns "Low Battery" }
 
         val watchDevice = mockk<BluetoothDevice>()
         val bluetoothClass = mockk<BluetoothClass>()
@@ -166,7 +166,7 @@ class SystemEventReceiverTest {
     fun testAudioDeviceConnectionAllowedAndDebounced() {
         val repo = mockk<SmartIslandNotificationRepository>(relaxed = true)
         val receiver = SystemEventReceiver(repo)
-        val context = mockk<Context>()
+        val context = mockk<Context>().also { every { it.getString(com.agupta07505.smartisland.R.string.battery_unplugged) } returns "Unplugged"; every { it.getString(com.agupta07505.smartisland.R.string.battery_plugged_in) } returns "Plugged in"; every { it.getString(com.agupta07505.smartisland.R.string.battery_fully_charged) } returns "Fully Charged"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_saver) } returns "Battery Saver ON"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_low) } returns "Low Battery" }
 
         val audioDevice = mockk<BluetoothDevice>()
         val bluetoothClass = mockk<BluetoothClass>()
@@ -206,7 +206,7 @@ class SystemEventReceiverTest {
     fun testWearableDisconnectDoesNotDismissActiveAudioDeviceNotification() {
         val repo = mockk<SmartIslandNotificationRepository>(relaxed = true)
         val receiver = SystemEventReceiver(repo)
-        val context = mockk<Context>()
+        val context = mockk<Context>().also { every { it.getString(com.agupta07505.smartisland.R.string.battery_unplugged) } returns "Unplugged"; every { it.getString(com.agupta07505.smartisland.R.string.battery_plugged_in) } returns "Plugged in"; every { it.getString(com.agupta07505.smartisland.R.string.battery_fully_charged) } returns "Fully Charged"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_saver) } returns "Battery Saver ON"; every { it.getString(com.agupta07505.smartisland.R.string.expanded_battery_low) } returns "Low Battery" }
 
         val audioDevice = mockk<BluetoothDevice>()
         val audioBtClass = mockk<BluetoothClass>()

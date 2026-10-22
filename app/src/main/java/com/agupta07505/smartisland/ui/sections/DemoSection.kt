@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.sections
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -78,7 +80,7 @@ fun DemoSection(
         ) {
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(
-                    text = "Sample cards",
+                    text = stringResource(R.string.sample_cards_label),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -99,7 +101,7 @@ fun DemoSection(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = "Open the card expanded",
+                        text = stringResource(R.string.open_card_expanded_label),
                         style = MaterialTheme.typography.bodyMedium,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.onSurface,
@@ -159,7 +161,7 @@ fun DemoSection(
                     if (event == IslandEvent.FACE_UNLOCK) {
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f))
                         DemoRow(
-                            title = "Face ID expanded (face accepted)",
+                            title = stringResource(R.string.demo_face_id_expanded_accepted),
                             subtitle = if (off) "Switched off on the Home tab" else null,
                             event = event,
                             showing = faceIdState.active,
@@ -171,7 +173,7 @@ fun DemoSection(
                         )
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f))
                         DemoRow(
-                            title = "Face ID mix (face accepted)",
+                            title = stringResource(R.string.demo_face_id_mix_accepted),
                             subtitle = if (off) "Switched off on the Home tab" else null,
                             event = event,
                             showing = faceIdState.active,
@@ -183,7 +185,7 @@ fun DemoSection(
                         )
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f))
                         DemoRow(
-                            title = "Face ID cutout mode (no face found)",
+                            title = stringResource(R.string.demo_face_id_cutout_no_face),
                             subtitle = if (off) "Switched off on the Home tab" else null,
                             event = event,
                             showing = faceIdState.active,
@@ -195,7 +197,7 @@ fun DemoSection(
                         )
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f))
                         DemoRow(
-                            title = "Face ID cutout mode (face accepted)",
+                            title = stringResource(R.string.demo_face_id_cutout_accepted),
                             subtitle = if (off) "Switched off on the Home tab" else null,
                             event = event,
                             showing = faceIdState.active,
@@ -276,7 +278,7 @@ private fun DemoRow(
             FilledTonalButton(onClick = onShow, enabled = enabled) {
                 Icon(Icons.Rounded.PlayArrow, contentDescription = null, modifier = Modifier.size(16.dp))
                 Spacer(Modifier.width(4.dp))
-                Text("Show")
+                Text(stringResource(R.string.btn_show))
             }
         }
     }

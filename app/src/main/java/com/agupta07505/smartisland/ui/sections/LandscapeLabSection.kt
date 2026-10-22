@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.sections
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.horizontalScroll
@@ -79,7 +81,7 @@ fun LandscapeLabSection(notificationRepository: INotificationRepository?) {
     ) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(
-                text = "Landscape Lab",
+                text = stringResource(R.string.landscape_lab_title),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface
@@ -142,7 +144,7 @@ fun LandscapeLabSection(notificationRepository: INotificationRepository?) {
                     )
                 }
                 OutlinedButton(onClick = { LandscapeDemo.stop(notificationRepository) }, modifier = Modifier.fillMaxWidth()) {
-                    Text("Stop")
+                    Text(stringResource(R.string.btn_stop))
                 }
             } else {
                 Text(
@@ -187,7 +189,7 @@ private fun ChipRow(
             modifier = Modifier.horizontalScroll(rememberScrollState()),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            FilterChip(selected = allSelected, onClick = onAll, label = { Text("All") })
+            FilterChip(selected = allSelected, onClick = onAll, label = { Text(stringResource(R.string.filter_tab_all_short)) })
             options.forEach { (name, label) ->
                 FilterChip(selected = !allSelected && selected == name, onClick = { onPick(name) }, label = { Text(label) })
             }
