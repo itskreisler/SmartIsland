@@ -273,7 +273,7 @@ fun MusicExpanded(
             ) {
                 Column(Modifier.weight(1f)) {
                     Text(
-                        notification?.title?.takeIf { it.isNotBlank() } ?: "Song",
+                        notification?.title?.takeIf { it.isNotBlank() } ?: stringResource(R.string.music_song),
                         color = palette.text,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -286,7 +286,8 @@ fun MusicExpanded(
                     ) {
                         if (isExplicit) ExplicitBadge(palette.textSecondary)
                         Text(
-                            notification?.text?.takeIf { it.isNotBlank() } ?: notification?.appName ?: "Artist",
+                            notification?.text?.takeIf { it.isNotBlank() } ?: notification?.appName
+                                ?: stringResource(R.string.music_artist),
                             color = palette.textSecondary,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
@@ -321,7 +322,7 @@ fun MusicExpanded(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 if (controls.hasPrevious) {
-                    MediaShadeIconButton(Icons.Rounded.SkipPrevious, "Previous", onClick = {
+                    MediaShadeIconButton(Icons.Rounded.SkipPrevious, stringResource(R.string.music_previous), onClick = {
                         resetTimer()
                         if (controller != null) {
                             runCatchingLogged("MusicExpanded", "Failed to skipToPrevious") {
@@ -383,7 +384,7 @@ fun MusicExpanded(
                     }
                 }
                 if (controls.hasNext) {
-                    MediaShadeIconButton(Icons.Rounded.SkipNext, "Next", onClick = {
+                    MediaShadeIconButton(Icons.Rounded.SkipNext, stringResource(R.string.music_next), onClick = {
                         resetTimer()
                         if (controller != null) {
                             runCatchingLogged("MusicExpanded", "Failed to skipToNext") {

@@ -1813,4 +1813,23 @@
     <string name="weather_aqi_unhealthy">Unhealthy</string>
     <string name="weather_aqi_very_bad">Very bad</string>
     <string name="weather_aqi_hazardous">Hazardous</string>
+
+    <!-- ===== Media and reply labels (EN) ===== -->
+    <string name="reply_you">You: </string>
+    <string name="action_play">Play</string>
+    <string name="music_song">Song</string>
+    <string name="music_artist">Artist</string>
+    <string name="music_previous">Previous</string>
+    <string name="music_next">Next</string>
+    <string name="weather_short_sunny">Sunny</string>
+    <string name="weather_short_clear">Clear</string>
+    <string name="weather_short_fair">Fair</string>
+    <string name="weather_short_cloud">Cloud</string>
+    <string name="weather_short_fog">Fog</string>
+    <string name="weather_short_rain">Rain</string>
+    <string name="weather_short_snow">Snow</string>
+    <string name="weather_short_storm">Storm</string>
+
+    <!-- ===== Reply toasts (EN) ===== -->
+    <string name="reply_sent">Reply sent: %1$s</string>
 </resources>

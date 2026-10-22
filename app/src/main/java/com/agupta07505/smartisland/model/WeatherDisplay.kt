@@ -210,7 +210,12 @@ object WeatherDisplay {
     const val ISLAND_MAX_DP = 220f
     const val HOURLY_SHOWN = 4
 
-    fun slots(mode: String, s: WeatherSnapshot, fahrenheit: Boolean): WeatherSlots {
+    fun slots(
+        mode: String,
+        s: WeatherSnapshot,
+        fahrenheit: Boolean,
+        nameOf: (WeatherLook, Boolean) -> String = { look, isDay -> shortName(look, isDay) }
+    ): WeatherSlots {
         val temp = IdleWidgets.displayTemp(s.temperatureC, fahrenheit)
         val look = weatherLook(s.weatherCode)
         return when (WeatherPill.normalize(mode)) {
@@ -219,7 +224,10 @@ object WeatherDisplay {
                 WeatherSlotFace.Text(temp),
                 feelsText(s, fahrenheit)?.let { WeatherSlotFace.Text(it) } ?: WeatherSlotFace.Empty
             )
-            WeatherPill.TEXT -> WeatherSlots(WeatherSlotFace.Empty, WeatherSlotFace.Text(shortName(look, s.isDay)))
+            WeatherPill.TEXT -> WeatherSlots(
+                WeatherSlotFace.Empty,
+                WeatherSlotFace.Text(nameOf(look, s.isDay))
+            )
             else -> WeatherSlots(WeatherSlotFace.Icon(look, s.isDay), WeatherSlotFace.Text(temp))
         }
     }
@@ -235,7 +243,7 @@ object WeatherDisplay {
             IdleWidgets.displayTemp(s.temperatureC, fahrenheit)
         }
 
-    /** At most five letters: the pill's value slot is narrow. */
+    /** At most five letters: the pill's value slot is narrow. English fallback for callers without a context. */
     fun shortName(look: WeatherLook, isDay: Boolean): String = when (look) {
         WeatherLook.Clear -> if (isDay) "Sunny" else "Clear"
         WeatherLook.PartlyCloudy -> "Fair"
@@ -244,6 +252,18 @@ object WeatherDisplay {
         WeatherLook.Rain -> "Rain"
         WeatherLook.Snow -> "Snow"
         WeatherLook.Storm -> "Storm"
+    }
+
+    /** Short word for the island's value slot, resolved to the pinned string resource. */
+    @StringRes
+    fun shortNameRes(look: WeatherLook, isDay: Boolean): Int = when (look) {
+        WeatherLook.Clear -> if (isDay) R.string.weather_short_sunny else R.string.weather_short_clear
+        WeatherLook.PartlyCloudy -> R.string.weather_short_fair
+        WeatherLook.Cloudy -> R.string.weather_short_cloud
+        WeatherLook.Fog -> R.string.weather_short_fog
+        WeatherLook.Rain -> R.string.weather_short_rain
+        WeatherLook.Snow -> R.string.weather_short_snow
+        WeatherLook.Storm -> R.string.weather_short_storm
     }
 
     /** True when the lookup has to ask again to get what the choices need. */

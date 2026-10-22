@@ -127,7 +127,9 @@ internal fun WeatherTickLayer(
         }
     }
 
-    fun faceOf(s: WeatherSnapshot, f: Boolean, mode: String): TickFace = WeatherDisplay.slots(mode, s, f)
+    fun faceOf(s: WeatherSnapshot, f: Boolean, mode: String): TickFace = WeatherDisplay.slots(mode, s, f) { look, isDay ->
+        context.getString(WeatherDisplay.shortNameRes(look, isDay))
+    }
 
     var lastFace by remember { mutableStateOf<TickFace?>(null) }
     var lastMode by remember { mutableStateOf(pillMode) }

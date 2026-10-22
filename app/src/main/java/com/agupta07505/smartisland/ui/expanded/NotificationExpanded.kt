@@ -398,7 +398,7 @@ fun NotificationExpanded(
                             }
                         }
                     } else {
-                        Toast.makeText(context, "Reply sent: $replyText", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.reply_sent, replyText), Toast.LENGTH_SHORT).show()
                     }
                     val repo = SmartIslandRepositories.notificationRepository(context)
                     replyDrafts.clear(notification.key)
@@ -409,7 +409,9 @@ fun NotificationExpanded(
                         // The island stays open on the same card: the typed message is added to it, and the app's
                         // own re-post of that key (or its removal) no longer closes or reopens anything.
                         repo.sendCommand(com.agupta07505.smartisland.data.SmartIslandCommand.ReplySent(notification.key))
-                        repo.updateNotification(notification.key) { it.withSentReply(sentText) }
+                        repo.updateNotification(notification.key) {
+                            it.withSentReply(sentText, context.getString(R.string.reply_you))
+                        }
                         replyText = ""
                     } else {
                         // Nothing was really sent (no reply action).

@@ -7,6 +7,9 @@
 
 package com.agupta07505.smartisland.ui.expanded
 
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
+
 import kotlinx.coroutines.launch
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
@@ -303,7 +306,7 @@ internal fun MediaPlayPauseButton(
     ) {
         Icon(
             imageVector = if (isPlaying) Icons.Rounded.Pause else Icons.Rounded.PlayArrow,
-            contentDescription = if (isPlaying) "Pause" else "Play",
+            contentDescription = if (isPlaying) stringResource(R.string.action_pause) else stringResource(R.string.action_play),
             tint = shade.onContainer,
             modifier = Modifier.size(28.dp)
         )

@@ -1128,6 +1128,7 @@ private fun SideTickBox(
 
 @Composable
 private fun IdleWidgetSlotBody(kind: IdleWidgetKind, frame: IdleWidgetFrame, right: Boolean, ownTick: androidx.compose.runtime.MutableState<Boolean>) {
+    val context = LocalContext.current
     val data = frame.data
     when (kind) {
         IdleWidgetKind.Date -> {
@@ -1143,7 +1144,9 @@ private fun IdleWidgetSlotBody(kind: IdleWidgetKind, frame: IdleWidgetFrame, rig
                 if (right) IdleWidgetValue(kind, frame, compact = false, monochrome = true) else IdleWidgetIcon(kind, frame)
             } else {
                 // The target carries what is drawn, so the old face keeps its own values while it ticks away.
-                val slots = WeatherDisplay.slots(frame.weatherMode, snapshot, frame.fahrenheit)
+                val slots = WeatherDisplay.slots(frame.weatherMode, snapshot, frame.fahrenheit) { look, isDay ->
+                    context.getString(WeatherDisplay.shortNameRes(look, isDay))
+                }
                 LaunchedEffect(slots) {
                     ownTick.value = true
                     delay(TICK_MS + IdleSlots.SETTLE_MS + IdleSlots.STAGGER_MS + 80L)

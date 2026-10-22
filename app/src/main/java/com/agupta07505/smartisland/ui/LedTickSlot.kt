@@ -152,7 +152,9 @@ internal fun LedSlot(kind: IdleWidgetKind, frame: IdleWidgetFrame, right: Boolea
                 if (right) LedFace.Text("--°") else LedFace.Icon(LedIcon.Cloud)
             } else {
                 // The same slots as the smooth pill, so both tick styles always show the same thing.
-                val slots = WeatherDisplay.slots(frame.weatherMode, snapshot, frame.fahrenheit)
+                val slots = WeatherDisplay.slots(frame.weatherMode, snapshot, frame.fahrenheit) { look, isDay ->
+                    context.getString(WeatherDisplay.shortNameRes(look, isDay))
+                }
                 ledWeatherFace(if (right) slots.right else slots.left)
             }
         }

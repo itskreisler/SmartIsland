@@ -1813,4 +1813,23 @@
     <string name="weather_aqi_unhealthy">Insalubre</string>
     <string name="weather_aqi_very_bad">Muy mala</string>
     <string name="weather_aqi_hazardous">Peligrosa</string>
+
+    <!-- ===== Etiquetas de medios y respuesta ===== -->
+    <string name="reply_you">Tú: </string>
+    <string name="action_play">Reproducir</string>
+    <string name="music_song">Canción</string>
+    <string name="music_artist">Artista</string>
+    <string name="music_previous">Anterior</string>
+    <string name="music_next">Siguiente</string>
+    <string name="weather_short_sunny">Soleado</string>
+    <string name="weather_short_clear">Despejado</string>
+    <string name="weather_short_fair">Parcial</string>
+    <string name="weather_short_cloud">Nubes</string>
+    <string name="weather_short_fog">Niebla</string>
+    <string name="weather_short_rain">Lluvia</string>
+    <string name="weather_short_snow">Nieve</string>
+    <string name="weather_short_storm">Tormenta</string>
+
+    <!-- ===== Avisos de respuesta ===== -->
+    <string name="reply_sent">Respuesta enviada: %1$s</string>
 </resources>
