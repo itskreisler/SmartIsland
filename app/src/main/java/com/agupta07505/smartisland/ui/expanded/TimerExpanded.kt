@@ -411,12 +411,20 @@ private fun TimerExpandedCurrent(
         mutableStateOf(isNotificationPaused)
     }
 
-    var targetTime by remember(notification?.key, notification?.timeMillis) {
+    var targetTime by remember(notification?.key) {
         mutableLongStateOf(notification?.timeMillis ?: (System.currentTimeMillis() + 300000L))
     }
 
     // Exact cards truncate to whole seconds like the shade.
     val exact = notification?.exactClock == true
+
+    // Keep in sync with the system clock's deadline on re-posts to avoid drift.
+    LaunchedEffect(notification?.key, notification?.timeMillis, isPaused, exact) {
+        val t = notification?.timeMillis ?: return@LaunchedEffect
+        if (!isPaused && t > System.currentTimeMillis()) {
+            targetTime = t
+        }
+    }
 
     var remainingSec by remember(notification?.key) {
         val parsed = notification?.let { TimerStopwatchParser.parseTimerRemainingSeconds(it) }
@@ -592,7 +600,9 @@ private fun TimerExpandedCurrent(
                             if (notification.fireAction(context, toggleAction)) {
                                 val newPaused = !isPaused
                                 isPaused = newPaused
-                                targetTime = System.currentTimeMillis() + remainingSec * 1000L
+                                if (!notification.exactClock) {
+                                    targetTime = System.currentTimeMillis() + remainingSec * 1000L
+                                }
                             }
                         },
                     contentAlignment = Alignment.Center
