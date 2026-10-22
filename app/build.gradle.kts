@@ -31,8 +31,8 @@ android {
         applicationId = "com.agupta07505.smartisland"
         minSdk = 26
         targetSdk = 36
-        versionCode = 15
-        versionName = "7.7.5"
+        versionCode = 16
+        versionName = "7.7.6"
     }
 
     buildFeatures {
