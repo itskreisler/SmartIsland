@@ -1569,4 +1569,40 @@
     <string name="notif_fallback_title">Notificación</string>
     <string name="notif_send_reply">Enviar respuesta</string>
     <string name="notif_close_picture">Cerrar imagen</string>
+
+    <!-- ===== Nombres del tiempo ===== -->
+    <string name="weather_sunny">Soleado</string>
+    <string name="weather_clear">Despejado</string>
+    <string name="weather_mostly_sunny">Mayormente soleado</string>
+    <string name="weather_mostly_clear">Mayormente despejado</string>
+    <string name="weather_partly_cloudy">Parcialmente nublado</string>
+    <string name="weather_overcast">Cubierto</string>
+    <string name="weather_foggy">Niebla</string>
+    <string name="weather_drizzle">Llovizna</string>
+    <string name="weather_freezing_drizzle">Llovizna helada</string>
+    <string name="weather_light_rain">Lluvia ligera</string>
+    <string name="weather_rainy">Lluvia</string>
+    <string name="weather_heavy_rain">Lluvia intensa</string>
+    <string name="weather_freezing_rain">Lluvia helada</string>
+    <string name="weather_light_snow">Nieve ligera</string>
+    <string name="weather_snowy">Nieve</string>
+    <string name="weather_heavy_snow">Nieve intensa</string>
+    <string name="weather_snow_grains">Granos de nieve</string>
+    <string name="weather_light_showers">Chubascos ligeros</string>
+    <string name="weather_showers">Chubascos</string>
+    <string name="weather_heavy_showers">Chubascos intensos</string>
+    <string name="weather_snow_showers">Chubascos de nieve</string>
+    <string name="weather_thunderstorm">Tormenta</string>
+    <string name="weather_thunderstorm_hail">Tormenta con granizo</string>
+    <string name="weather_cloudy">Nublado</string>
+
+    <!-- ===== Isla contraída ===== -->
+    <string name="island_connection">Conexión</string>
+    <string name="island_calling_ringing">Sonando...</string>
+    <string name="island_flashlight_on">ACTIVADA</string>
+    <string name="live_arrived">Llegado</string>
+    <string name="live_minutes">%1$s min</string>
+    <string name="nav_turn_direction">Dirección del giro</string>
+    <string name="nav_distance_preview">200 m</string>
+    <string name="nav_distance_in_preview">A 200 m</string>
 </resources>

@@ -7,6 +7,9 @@
 
 package com.agupta07505.smartisland.model
 
+import androidx.annotation.StringRes
+import com.agupta07505.smartisland.R
+
 import java.util.Locale
 
 /**
@@ -131,28 +134,29 @@ object WidgetIslandContent {
     }
 
     /** Name of a WMO weather code. Open-Meteo reports only the code, so these are the standard WMO names. */
-    fun weatherName(code: Int, isDay: Boolean): String = when (code) {
-        0 -> if (isDay) "Sunny" else "Clear"
-        1 -> if (isDay) "Mostly sunny" else "Mostly clear"
-        2 -> "Partly cloudy"
-        3 -> "Overcast"
-        45, 48 -> "Foggy"
-        51, 53, 55 -> "Drizzle"
-        56, 57 -> "Freezing drizzle"
-        61 -> "Light rain"
-        63 -> "Rainy"
-        65 -> "Heavy rain"
-        66, 67 -> "Freezing rain"
-        71 -> "Light snow"
-        73 -> "Snowy"
-        75 -> "Heavy snow"
-        77 -> "Snow grains"
-        80 -> "Light showers"
-        81 -> "Showers"
-        82 -> "Heavy showers"
-        85, 86 -> "Snow showers"
-        95 -> "Thunderstorm"
-        96, 99 -> "Thunderstorm, hail"
-        else -> "Cloudy"
+    @StringRes
+    fun weatherNameRes(code: Int, isDay: Boolean): Int = when (code) {
+        0 -> if (isDay) R.string.weather_sunny else R.string.weather_clear
+        1 -> if (isDay) R.string.weather_mostly_sunny else R.string.weather_mostly_clear
+        2 -> R.string.weather_partly_cloudy
+        3 -> R.string.weather_overcast
+        45, 48 -> R.string.weather_foggy
+        51, 53, 55 -> R.string.weather_drizzle
+        56, 57 -> R.string.weather_freezing_drizzle
+        61 -> R.string.weather_light_rain
+        63 -> R.string.weather_rainy
+        65 -> R.string.weather_heavy_rain
+        66, 67 -> R.string.weather_freezing_rain
+        71 -> R.string.weather_light_snow
+        73 -> R.string.weather_snowy
+        75 -> R.string.weather_heavy_snow
+        77 -> R.string.weather_snow_grains
+        80 -> R.string.weather_light_showers
+        81 -> R.string.weather_showers
+        82 -> R.string.weather_heavy_showers
+        85, 86 -> R.string.weather_snow_showers
+        95 -> R.string.weather_thunderstorm
+        96, 99 -> R.string.weather_thunderstorm_hail
+        else -> R.string.weather_cloudy
     }
 }

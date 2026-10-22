@@ -34,6 +34,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Navigation
 import androidx.compose.material.icons.rounded.LocationOn
@@ -184,7 +187,7 @@ fun IslandCollapsedContent(
                     ) {
                         Icon(
                             com.agupta07505.smartisland.ui.expanded.connectivityLeadingIcon(notification?.category),
-                            contentDescription = "Connection",
+                            contentDescription = stringResource(R.string.island_connection),
                             tint = connectionAccent,
                             modifier = Modifier.size(14.dp)
                         )
@@ -200,7 +203,7 @@ fun IslandCollapsedContent(
                     ) {
                         Icon(
                             Icons.Rounded.FlashlightOn,
-                            contentDescription = "Flashlight",
+                            contentDescription = stringResource(R.string.utility_flashlight),
                             tint = Color(settings.flashlightColor),
                             modifier = Modifier.size(14.dp)
                         )
@@ -244,7 +247,7 @@ fun IslandCollapsedContent(
                 IslandMode.IncomingCall -> {
                     if (notification?.isCallRinging == true || notification?.isCallConnecting == true) {
                         Text(
-                            text = notification?.callStatusText?.takeIf { it.isNotBlank() } ?: "Ringing...",
+                            text = notification?.callStatusText?.takeIf { it.isNotBlank() } ?: stringResource(R.string.island_calling_ringing),
                             color = Color(settings.callColor),
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold
@@ -294,7 +297,7 @@ fun IslandCollapsedContent(
                 }
                 IslandMode.Flashlight -> {
                     Text(
-                        text = "ON",
+                        text = stringResource(R.string.island_flashlight_on),
                         color = Color(0xFFFACC15),
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold
@@ -333,7 +336,7 @@ internal fun HotspotCollapsedGlyph(notification: IslandNotification?, settings: 
     ) {
         Icon(
             imageVector = Icons.Rounded.WifiTethering,
-            contentDescription = "Hotspot",
+            contentDescription = stringResource(R.string.utility_hotspot),
             tint = hotspotColor,
             modifier = Modifier.size(15.dp)
         )
@@ -558,6 +561,7 @@ private fun SmoothCircularRingProgress(
 
 @Composable
 private fun LiveActivityCollapsedRight(notification: IslandNotification?, settings: SmartIslandSettings = SmartIslandSettings.Default) {
+    val context = LocalContext.current
     val brandColor = remember(notification?.packageName, settings.liveActivityColor) {
         if (notification != null) {
             Color(com.agupta07505.smartisland.util.LiveActivityParser.getBrandColor(notification.packageName))
@@ -566,15 +570,15 @@ private fun LiveActivityCollapsedRight(notification: IslandNotification?, settin
         }
     }
     val etaText = remember(notification) {
-        if (notification == null) return@remember "Active"
+        if (notification == null) return@remember context.getString(R.string.status_active)
         val text = "${notification.title} ${notification.text}"
         val matcher = java.util.regex.Pattern.compile("(\\d+)\\s*(?:mins?|minutes?|min|m)\\b", java.util.regex.Pattern.CASE_INSENSITIVE).matcher(text)
         if (matcher.find()) {
-            "${matcher.group(1)} min"
+            context.getString(R.string.live_minutes, matcher.group(1))
         } else if (text.lowercase().contains("arrived")) {
-            "Arrived"
+            context.getString(R.string.live_arrived)
         } else {
-            "Active"
+            context.getString(R.string.status_active)
         }
     }
 
@@ -607,14 +611,14 @@ internal fun NavigationCollapsedGlyph(notification: IslandNotification?, setting
     if (turnDirection == com.agupta07505.smartisland.util.TurnDirection.DESTINATION) {
         Icon(
             imageVector = Icons.Rounded.LocationOn,
-            contentDescription = "Destination",
+            contentDescription = stringResource(R.string.live_act_destination),
             tint = navColor,
             modifier = Modifier.size(18.dp)
         )
     } else {
         Icon(
             imageVector = Icons.Rounded.Navigation,
-            contentDescription = "Turn direction",
+            contentDescription = stringResource(R.string.nav_turn_direction),
             tint = navColor,
             modifier = Modifier
                 .size(18.dp)
@@ -625,13 +629,14 @@ internal fun NavigationCollapsedGlyph(notification: IslandNotification?, setting
 
 @Composable
 private fun NavigationCollapsedRight(notification: IslandNotification?, settings: SmartIslandSettings = SmartIslandSettings.Default) {
+    val context = LocalContext.current
     val distanceText = remember(notification) {
-        if (notification == null) return@remember "200 m"
+        if (notification == null) return@remember context.getString(R.string.nav_distance_preview)
         val title = notification.title
         val text = notification.text
         val pattern = java.util.regex.Pattern.compile("(\\d+(?:\\.\\d+)?)\\s*(?:m|km|ft|mi|miles?|meters?)\\b", java.util.regex.Pattern.CASE_INSENSITIVE)
         val matcher = pattern.matcher("$title $text")
-        if (matcher.find()) matcher.group(0) else "In 200 m"
+        if (matcher.find()) matcher.group(0) else context.getString(R.string.nav_distance_in_preview)
     }
 
     Text(
@@ -861,7 +866,7 @@ internal fun TimerCollapsedGlyph(notification: IslandNotification?, settings: Sm
     ) {
         Icon(
             imageVector = Icons.Rounded.HourglassBottom,
-            contentDescription = "Timer",
+            contentDescription = stringResource(R.string.utility_timer),
             tint = timerColor,
             modifier = Modifier
                 .size(13.dp)
@@ -898,7 +903,7 @@ internal fun StopwatchCollapsedGlyph(notification: IslandNotification?, settings
     ) {
         Icon(
             imageVector = Icons.Rounded.AvTimer,
-            contentDescription = "Stopwatch",
+            contentDescription = stringResource(R.string.utility_stopwatch),
             tint = stopwatchColor,
             modifier = Modifier
                 .size(14.dp)
@@ -1153,7 +1158,7 @@ fun BluetoothCollapsedRight(
     ) {
         com.agupta07505.smartisland.ui.expanded.SlashableIcon(
             imageVector = com.agupta07505.smartisland.ui.expanded.connectivityIcon(notification?.category),
-            contentDescription = "Connection",
+            contentDescription = stringResource(R.string.island_connection),
             tint = com.agupta07505.smartisland.ui.expanded.connectivityAccent(notification?.category, settings.bluetoothColor),
             slashed = com.agupta07505.smartisland.ui.expanded.isUnpluggedWired(notification?.category),
             modifier = Modifier.size(20.dp)

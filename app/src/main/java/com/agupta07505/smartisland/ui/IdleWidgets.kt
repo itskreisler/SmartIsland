@@ -404,7 +404,7 @@ private fun WeatherIslandBody(frame: IdleWidgetFrame) {
                     softWrap = false
                 )
                 Text(
-                    text = WidgetIslandContent.weatherName(snapshot.weatherCode, snapshot.isDay),
+                    text = stringResource(WidgetIslandContent.weatherNameRes(snapshot.weatherCode, snapshot.isDay)),
                     color = SOFT_WHITE,
                     fontSize = 11.sp,
                     maxLines = 2
