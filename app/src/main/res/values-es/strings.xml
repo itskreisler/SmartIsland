@@ -1771,4 +1771,15 @@
     <string name="connectivity_disconnected">Desconectado</string>
     <string name="vpn_disconnected_title">VPN desconectada</string>
     <string name="vpn_traffic_not_protected">El tráfico no está protegido</string>
+
+    <!-- ===== Dispositivos con cable ===== -->
+    <string name="computer">Ordenador</string>
+    <string name="usb_device">Dispositivo USB</string>
+    <string name="wired_headphone">Auriculares con cable</string>
+    <string name="headphone_app_name">Auriculares</string>
+    <string name="network_app_name">Red</string>
+
+    <!-- ===== Tiempo relativo ===== -->
+    <string name="idle_in_relative">en %1$s</string>
+    <string name="updates_by">por %1$s</string>
 </resources>

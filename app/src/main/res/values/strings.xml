@@ -1771,4 +1771,15 @@
     <string name="connectivity_disconnected">Disconnected</string>
     <string name="vpn_disconnected_title">VPN disconnected</string>
     <string name="vpn_traffic_not_protected">Traffic is not protected</string>
+
+    <!-- ===== Wired devices (EN) ===== -->
+    <string name="computer">Computer</string>
+    <string name="usb_device">USB device</string>
+    <string name="wired_headphone">Wired Headphone</string>
+    <string name="headphone_app_name">Headphone</string>
+    <string name="network_app_name">Network</string>
+
+    <!-- ===== Relative time (EN) ===== -->
+    <string name="idle_in_relative">in %1$s</string>
+    <string name="updates_by">by %1$s</string>
 </resources>

@@ -202,7 +202,7 @@ class TransferSpeedMonitor(
             IslandNotification(
                 key = key,
                 packageName = "com.android.systemui",
-                appName = "Network",
+                appName = context.getString(R.string.network_app_name),
                 title = context.getString(if (upload) R.string.transfer_badge_uploading else R.string.transfer_badge_downloading),
                 text = context.getString(R.string.transfer_network_activity),
                 timeMillis = cardStartedAt,

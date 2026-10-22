@@ -364,7 +364,7 @@ private fun DateIslandBody(frame: IdleWidgetFrame) {
                     )
                 }
                 Text(
-                    text = "in " + WidgetIslandContent.durationText(at - frame.data.nowMs),
+                    text = stringResource(R.string.idle_in_relative, WidgetIslandContent.durationText(at - frame.data.nowMs)),
                     color = SOFT_WHITE,
                     fontSize = 10.sp,
                     maxLines = 1,
@@ -564,7 +564,7 @@ private fun AlarmIslandBody(frame: IdleWidgetFrame) {
                 softWrap = false
             )
             Text(
-                text = "in " + WidgetIslandContent.durationText(at - data.nowMs),
+                text = stringResource(R.string.idle_in_relative, WidgetIslandContent.durationText(at - data.nowMs)),
                 color = SOFT_WHITE,
                 fontSize = 11.sp,
                 maxLines = 1,

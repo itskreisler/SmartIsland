@@ -855,7 +855,7 @@ private fun CommitRow(
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
-                    text = "by ${commit.authorName}",
+                    text = stringResource(R.string.updates_by, commit.authorName),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

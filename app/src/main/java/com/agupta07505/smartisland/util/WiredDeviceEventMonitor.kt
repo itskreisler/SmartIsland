@@ -6,6 +6,7 @@
  */
 
 package com.agupta07505.smartisland.util
+import com.agupta07505.smartisland.R
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -128,7 +129,7 @@ class WiredDeviceEventMonitor(
         post(
             key = KEY_USB,
             appName = "USB",
-            title = "Computer",
+            title = context.getString(R.string.computer),
             plugged = connected,
             category = if (connected) "usb_connected" else "usb_disconnected",
             event = event,
@@ -159,7 +160,7 @@ class WiredDeviceEventMonitor(
         if (isStartupReplay()) return
         val event = if (attached) IslandEvent.USB_CONNECTED else IslandEvent.USB_DISCONNECTED
         if (!settingsProvider().isEventEnabled(event.id)) return
-        val name = runCatching { device?.productName }.getOrNull()?.takeIf { it.isNotBlank() } ?: "USB device"
+        val name = runCatching { device?.productName }.getOrNull()?.takeIf { it.isNotBlank() } ?: context.getString(R.string.usb_device)
         post(
             key = KEY_USB,
             appName = "USB",
@@ -180,10 +181,10 @@ class WiredDeviceEventMonitor(
         if (isStartupReplay()) return
         val event = if (plugged) IslandEvent.HEADPHONES_CONNECTED else IslandEvent.HEADPHONES_DISCONNECTED
         if (!settingsProvider().isEventEnabled(event.id)) return
-        val name = device.productName?.toString()?.takeIf { it.isNotBlank() && !isGenericName(it) } ?: "Wired Headphone"
+        val name = device.productName?.toString()?.takeIf { it.isNotBlank() && !isGenericName(it) } ?: context.getString(R.string.wired_headphone)
         post(
             key = KEY_HEADPHONES,
-            appName = "Headphone",
+            appName = context.getString(R.string.headphone_app_name),
             title = name,
             plugged = plugged,
             category = if (plugged) "headphones_connected" else "headphones_disconnected",
@@ -213,7 +214,7 @@ class WiredDeviceEventMonitor(
                     packageName = "com.android.systemui",
                     appName = appName,
                     title = title,
-                    text = if (plugged) "Connected" else "Disconnected",
+                    text = context.getString(if (plugged) R.string.expanded_bluetooth_connected else R.string.connectivity_disconnected),
                     category = category,
                     mode = IslandMode.Bluetooth,
                     timeMillis = System.currentTimeMillis()
