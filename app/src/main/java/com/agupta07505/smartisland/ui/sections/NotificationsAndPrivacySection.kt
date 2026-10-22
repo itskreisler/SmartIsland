@@ -592,7 +592,7 @@ fun NotificationsAndPrivacySection(
                                     onClick = {
                                         scope.launch { repository.setAutoHideTimeoutSeconds(sec) }
                                     },
-                                    label = { Text("${sec}s", fontSize = 12.sp) },
+                                    label = { Text(stringResource(R.string.chip_seconds, sec), fontSize = 12.sp) },
                                     colors = FilterChipDefaults.filterChipColors(
                                         selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                                         selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -641,7 +641,7 @@ fun NotificationsAndPrivacySection(
                     val label = runCatching {
                         val pm = context.packageManager
                         pm.getApplicationLabel(pm.getApplicationInfo(dmPackage, 0)).toString()
-                    }.getOrNull()?.takeIf { it.isNotBlank() } ?: "Download Manager"
+                    }.getOrNull()?.takeIf { it.isNotBlank() } ?: stringResource(R.string.dm_app_name)
                     (apps + LaunchableApp(packageName = dmPackage, label = label))
                         .sortedBy { it.label.lowercase() }
                 }
@@ -722,7 +722,7 @@ fun NotificationsAndPrivacySection(
                                         onClick = {
                                             scope.launch { repository.setNotificationCooldownDurationMinutes(min) }
                                         },
-                                        label = { Text("${min}m", fontSize = 12.sp) },
+                                        label = { Text(stringResource(R.string.chip_minutes, min), fontSize = 12.sp) },
                                         colors = FilterChipDefaults.filterChipColors(
                                             selectedContainerColor = MaterialTheme.colorScheme.primaryContainer,
                                             selectedLabelColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -1108,7 +1108,7 @@ fun NotificationsAndPrivacySection(
                                 color = MaterialTheme.colorScheme.primary
                             )
                             Text(
-                                text = "Active",
+                                text = stringResource(R.string.notif_app_active),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = MaterialTheme.colorScheme.onPrimaryContainer
                             )
@@ -1132,7 +1132,7 @@ fun NotificationsAndPrivacySection(
                                 color = if (excludedCount > 0) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(
-                                text = "Excluded",
+                                text = stringResource(R.string.history_excluded),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = if (excludedCount > 0) MaterialTheme.colorScheme.onErrorContainer else MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -1156,7 +1156,7 @@ fun NotificationsAndPrivacySection(
                                 color = if (mutedCount > 0) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(
-                                text = "Muted",
+                                text = stringResource(R.string.history_muted),
                                 style = MaterialTheme.typography.labelSmall,
                                 color = if (mutedCount > 0) MaterialTheme.colorScheme.onTertiaryContainer else MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -1257,7 +1257,7 @@ fun NotificationsAndPrivacySection(
 
                                 Icon(
                                     imageVector = Icons.Rounded.Tune,
-                                    contentDescription = "Configure",
+                                    contentDescription = stringResource(R.string.notif_configure),
                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                     modifier = Modifier.size(18.dp)
                                 )
@@ -1381,7 +1381,7 @@ fun NotificationsAndPrivacySection(
                             trailingIcon = {
                                 if (query.isNotEmpty()) {
                                     IconButton(onClick = { query = "" }) {
-                                        Icon(Icons.Rounded.Close, contentDescription = "Clear search", modifier = Modifier.size(18.dp))
+                                        Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.settings_search_clear), modifier = Modifier.size(18.dp))
                                     }
                                 }
                             },
@@ -1556,7 +1556,8 @@ fun NotificationsAndPrivacySection(
                                                         )
                                                     } else {
                                                         Text(
-                                                            text = if (isSoundMuted) "Active • Muted" else "Active",
+                                                            text = if (isSoundMuted) stringResource(R.string.notif_app_active_muted)
+                                                            else stringResource(R.string.notif_app_active),
                                                             style = MaterialTheme.typography.labelSmall,
                                                             color = if (isSoundMuted) MaterialTheme.colorScheme.tertiary else MaterialTheme.colorScheme.onSurfaceVariant
                                                         )
@@ -1587,7 +1588,7 @@ fun NotificationsAndPrivacySection(
                                             ) {
                                                 Icon(
                                                     imageVector = Icons.Rounded.Tune,
-                                                    contentDescription = "Options",
+                                                    contentDescription = stringResource(R.string.notif_options),
                                                     tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                                     modifier = Modifier.size(18.dp)
                                                 )
@@ -1601,7 +1602,7 @@ fun NotificationsAndPrivacySection(
                 },
                 confirmButton = {
                     TextButton(onClick = { showAppManagerDialog = false }) {
-                        Text("Done", fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.btn_done), fontWeight = FontWeight.Bold)
                     }
                 }
             )
@@ -1814,7 +1815,7 @@ fun NotificationsAndPrivacySection(
                 },
                 confirmButton = {
                     TextButton(onClick = { selectedAppForOptions = null }) {
-                        Text("Done", fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.btn_done), fontWeight = FontWeight.Bold)
                     }
                 },
                 dismissButton = {

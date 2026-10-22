@@ -1666,4 +1666,20 @@
     <!-- ===== Eventos del sistema ===== -->
     <string name="bluetooth_connected_level">Conectado • %1$d%%</string>
     <string name="system_app_name">Sistema</string>
+
+    <!-- ===== Widgets en reposo y gestor de apps ===== -->
+    <string name="idle_battery_to_full">%1$s para llenarse</string>
+    <string name="idle_wind">Viento</string>
+    <string name="idle_widgets_resume">Reanudar la rotación de widgets</string>
+    <string name="idle_widgets_pause">Pausar la rotación de widgets</string>
+    <string name="chip_seconds">%1$d s</string>
+    <string name="chip_minutes">%1$d min</string>
+    <string name="dm_app_name">Gestor de descargas</string>
+    <string name="notif_app_active">Activa</string>
+    <string name="history_excluded">Excluidas</string>
+    <string name="history_muted">Silenciadas</string>
+    <string name="notif_configure">Configurar</string>
+    <string name="notif_app_active_muted">Activa • Silenciada</string>
+    <string name="notif_options">Opciones</string>
+    <string name="btn_done">Listo</string>
 </resources>

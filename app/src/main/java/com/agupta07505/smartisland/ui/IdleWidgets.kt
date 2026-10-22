@@ -268,7 +268,8 @@ private fun PauseToggle(paused: Boolean, onClick: () -> Unit) {
     ) {
         Icon(
             imageVector = if (paused) Icons.Rounded.PlayArrow else Icons.Rounded.Pause,
-            contentDescription = if (paused) "Resume widget switching" else "Pause widget switching",
+            contentDescription = if (paused) stringResource(R.string.idle_widgets_resume)
+                        else stringResource(R.string.idle_widgets_pause),
             tint = Color.White,
             modifier = Modifier.size(18.dp)
         )
@@ -480,7 +481,7 @@ private fun WindIslandBody(frame: IdleWidgetFrame) {
                 softWrap = false
             )
             Text(
-                text = listOfNotNull("Wind", direction).joinToString(" \u00B7 "),
+                text = listOfNotNull(stringResource(R.string.idle_wind), direction).joinToString(" \u00B7 "),
                 color = SOFT_WHITE,
                 fontSize = 11.sp,
                 maxLines = 1
@@ -492,7 +493,10 @@ private fun WindIslandBody(frame: IdleWidgetFrame) {
 @Composable
 private fun BatteryIslandBody(frame: IdleWidgetFrame, metric: String) {
     val data = frame.data
-    val toFull = if (data.chargeTimeRemainingMs > 0L) WidgetIslandContent.durationText(data.chargeTimeRemainingMs) + " to full" else null
+    val toFull = if (data.chargeTimeRemainingMs > 0L) stringResource(
+        R.string.idle_battery_to_full,
+        WidgetIslandContent.durationText(data.chargeTimeRemainingMs)
+    ) else null
     val power = if (metric == WidgetIslandContent.BATTERY_VOLT) {
         data.batteryVoltageMv.takeIf { it > 0 }?.let { WidgetIslandContent.voltsText(it) }
     } else {
