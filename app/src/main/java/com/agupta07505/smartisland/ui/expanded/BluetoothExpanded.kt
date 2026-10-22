@@ -58,6 +58,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.agupta07505.smartisland.R
+import androidx.compose.ui.res.stringResource
 import com.agupta07505.smartisland.data.SmartIslandSettings
 import com.agupta07505.smartisland.model.IslandNotification
 import kotlinx.coroutines.delay
@@ -71,8 +72,8 @@ fun BluetoothExpanded(
     onCollapse: () -> Unit,
     settings: SmartIslandSettings = SmartIslandSettings.Default
 ) {
-    val deviceName = notification?.title?.ifBlank { null } ?: "Bluetooth Device"
-    val statusText = notification?.text?.ifBlank { null } ?: "Connected"
+    val deviceName = notification?.title?.ifBlank { null } ?: stringResource(R.string.expanded_bluetooth_device)
+    val statusText = notification?.text?.ifBlank { null } ?: stringResource(R.string.expanded_bluetooth_connected)
 
     val batteryLevel = remember(notification?.text, notification?.progress) {
         notification?.let { notif ->
@@ -116,7 +117,7 @@ fun BluetoothExpanded(
             ) {
                 Icon(
                     imageVector = connectivityLeadingIcon(notification?.category),
-                    contentDescription = "Connection",
+                    contentDescription = stringResource(R.string.island_connection),
                     tint = accent,
                     modifier = Modifier.size(24.dp)
                 )
@@ -144,7 +145,8 @@ fun BluetoothExpanded(
                         )
                         Spacer(Modifier.width(6.dp))
                         Text(
-                            text = if (settings.showBluetoothBattery && batteryLevel != null && !lost) "Connected" else statusText,
+                            text = if (settings.showBluetoothBattery && batteryLevel != null && !lost) stringResource(R.string.expanded_bluetooth_connected)
+                            else statusText,
                             color = if (lost) accent else LocalIslandPalette.current.success,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.SemiBold

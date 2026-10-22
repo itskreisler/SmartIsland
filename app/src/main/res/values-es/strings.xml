@@ -1682,4 +1682,45 @@
     <string name="notif_app_active_muted">Activa • Silenciada</string>
     <string name="notif_options">Opciones</string>
     <string name="btn_done">Listo</string>
+
+    <!-- ===== Transferencias, fuentes, actividad en directo y navegación ===== -->
+    <string name="transfer_badge_downloading">Descargando</string>
+    <string name="transfer_title_downloading">Descargando archivo</string>
+    <string name="transfer_badge_uploading">Subiendo</string>
+    <string name="transfer_title_uploading">Subiendo archivo</string>
+    <string name="transfer_badge_backing_up">Creando copia</string>
+    <string name="transfer_title_backing_up">Creando copia de seguridad</string>
+    <string name="transfer_badge_copying">Copiando</string>
+    <string name="transfer_title_copying">Copiando archivos</string>
+    <string name="transfer_badge_deleting">Borrando</string>
+    <string name="transfer_title_deleting">Borrando archivos</string>
+    <string name="transfer_badge_installing">Instalando</string>
+    <string name="transfer_title_installing">Instalando app</string>
+    <string name="font_name_system">Sistema</string>
+    <string name="font_note_system">La fuente de tu teléfono</string>
+    <string name="font_name_serif">Serif</string>
+    <string name="font_note_serif">La fuente serif del teléfono</string>
+    <string name="font_name_lora">Lora</string>
+    <string name="font_note_lora">Una serif cálida y legible</string>
+    <string name="font_name_inter_display">Inter Display</string>
+    <string name="font_note_inter_display">Una sans limpia y moderna</string>
+    <string name="font_name_poppins">Poppins</string>
+    <string name="font_note_poppins">Sans redonda y geométrica</string>
+    <string name="font_name_monospace">Monoespaciada</string>
+    <string name="font_note_monospace">Ancho fijo, como el código</string>
+    <string name="live_tracking">Seguimiento en directo</string>
+    <string name="live_tracking_realtime">Seguimiento en tiempo real</string>
+    <string name="live_activity_update">Actualización de actividad en directo</string>
+    <string name="live_open_app">Abrir app</string>
+    <string name="nav_preview_distance">A 300 m</string>
+    <string name="nav_preview_instruction">Gira a la izquierda en MG Road</string>
+    <string name="nav_preview_detail">Mantente en el carril izquierdo</string>
+    <string name="nav_preview_eta">Quedan 24 min • 8,5 km</string>
+    <string name="nav_guidance">Indicaciones giro a giro</string>
+    <string name="flashlight_active_cd">Linterna activada</string>
+    <string name="flashlight_expanded_title">Linterna encendida</string>
+    <string name="torch_active_status">Linterna activa</string>
+    <string name="action_save">Guardar</string>
+    <string name="backup_unknown_date">Desconocida</string>
+    <string name="timing_minutes">%1$d min</string>
 </resources>

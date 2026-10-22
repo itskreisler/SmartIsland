@@ -37,6 +37,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -64,10 +65,10 @@ fun NavigationExpanded(
     val card = remember(notification) {
         if (notification == null) {
             NavigationCardText(
-                distance = "In 300 m",
-                instruction = "Turn left onto MG Road",
-                detail = "Stay in the left lane",
-                eta = "24 min remaining \u2022 8.5 km"
+                distance = context.getString(R.string.nav_preview_distance),
+                instruction = context.getString(R.string.nav_preview_instruction),
+                detail = context.getString(R.string.nav_preview_detail),
+                eta = context.getString(R.string.nav_preview_eta)
             )
         } else {
             NavigationParser.cardText(notification.title, notification.text)
@@ -143,7 +144,7 @@ fun NavigationExpanded(
                     fontWeight = FontWeight.SemiBold
                 )
                 Text(
-                    text = card.eta.ifEmpty { "Turn-by-turn guidance" },
+                    text = card.eta.ifEmpty { stringResource(R.string.nav_guidance) },
                     color = LocalIslandPalette.current.textSecondary,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

@@ -70,14 +70,20 @@ fun LiveActivityExpanded(
 
     val (etaText, progressRatio, statusTitle, subStatusText) = remember(notification) {
         if (notification == null) {
-            Tuple4("Active", 0.65f, "Live Tracking", "Tracking in real-time")
+            Tuple4(
+                context.getString(R.string.status_active),
+                0.65f,
+                context.getString(R.string.live_tracking),
+                context.getString(R.string.live_tracking_realtime)
+            )
         } else {
             val text = "${notification.title} ${notification.text}"
             val matcher = java.util.regex.Pattern.compile("(\\d+)\\s*(?:mins?|minutes?|min|m)\\b", java.util.regex.Pattern.CASE_INSENSITIVE).matcher(text)
-            val eta = if (matcher.find()) "${matcher.group(1)} min" else "Active"
+            val eta = if (matcher.find()) context.getString(R.string.live_minutes, matcher.group(1))
+                else context.getString(R.string.status_active)
             val pct = if (notification.progressMax > 0) (notification.progress.toFloat() / notification.progressMax.toFloat()).coerceIn(0.15f, 0.95f) else 0.65f
             val title = if (notification.title.isNotBlank()) notification.title else notification.appName
-            val sub = if (notification.text.isNotBlank()) notification.text else "Live activity update"
+            val sub = if (notification.text.isNotBlank()) notification.text else context.getString(R.string.live_activity_update)
             Tuple4(eta, pct, title, sub)
         }
     }
@@ -283,7 +289,7 @@ fun LiveActivityExpanded(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.KeyboardArrowDown,
-                    contentDescription = "Open App",
+                    contentDescription = stringResource(R.string.live_open_app),
                     tint = LocalIslandPalette.current.text,
                     modifier = Modifier.size(16.dp)
                 )

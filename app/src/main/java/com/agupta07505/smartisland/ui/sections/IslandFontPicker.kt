@@ -123,8 +123,8 @@ internal fun IslandFontPicker(
         }
         IslandFontOptions.forEach { option ->
             FontRow(
-                label = option.label,
-                note = option.note,
+                label = stringResource(option.labelRes),
+                note = stringResource(option.noteRes),
                 family = option.family,
                 isSelected = selected.isNotEmpty() && option.id == selected,
                 onClick = { onSelected(option.id) }

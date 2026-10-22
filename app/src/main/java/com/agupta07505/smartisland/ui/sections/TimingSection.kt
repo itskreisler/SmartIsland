@@ -7,6 +7,8 @@
 
 package com.agupta07505.smartisland.ui.sections
 
+import android.content.Context
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -26,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.agupta07505.smartisland.R
+import androidx.compose.ui.platform.LocalContext
 import com.agupta07505.smartisland.data.SmartIslandSettings
 import com.agupta07505.smartisland.data.SmartIslandSettingsRepository
 import com.agupta07505.smartisland.ui.SliderSettingItem
@@ -43,9 +46,9 @@ internal fun formatSeconds(ms: Float): String {
     return if (frac == 0) "$whole s" else "$whole.$frac s"
 }
 
-internal fun formatMinutes(minutes: Float): String {
+internal fun formatMinutes(context: Context, minutes: Float): String {
     val m = minutes.roundToInt()
-    return if (m <= 0) "Never" else "$m min"
+    return if (m <= 0) context.getString(R.string.timing_never) else context.getString(R.string.timing_minutes, m)
 }
 
 /** Rounds [value] to the nearest multiple of [step] and keeps it inside [min]..[max]. */
@@ -62,6 +65,7 @@ fun TimingSection(
     repository: SmartIslandSettingsRepository
 ) {
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
     val neverText = stringResource(R.string.timing_never)
 
     Column(verticalArrangement = Arrangement.spacedBy(14.dp)) {
@@ -134,7 +138,7 @@ fun TimingSection(
                     min = 0,
                     max = SmartIslandSettings.MAX_TRANSFER_EXPIRY_MINUTES,
                     step = 5,
-                    valueText = ::formatMinutes,
+                    valueText = { formatMinutes(context, it) },
                     onCommit = { scope.launch { repository.setTransferExpiryMinutes(it) } }
                 )
             }

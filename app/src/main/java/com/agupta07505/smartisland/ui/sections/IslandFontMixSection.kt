@@ -180,6 +180,6 @@ private fun slotNote(slot: FontSlot): String = when (slot) {
 @Composable
 private fun fontName(id: String): String {
     if (id.isEmpty()) return stringResource(R.string.font_mix_same)
-    IslandFontOptions.firstOrNull { it.id == id }?.let { return it.label }
+    IslandFontOptions.firstOrNull { it.id == id }?.let { return stringResource(it.labelRes) }
     return CustomFonts.fileNameOf(id)?.let { CustomFonts.labelOf(it) } ?: stringResource(R.string.font_mix_same)
 }

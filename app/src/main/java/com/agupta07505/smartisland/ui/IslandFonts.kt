@@ -7,6 +7,9 @@
 
 package com.agupta07505.smartisland.ui
 
+import androidx.annotation.StringRes
+import com.agupta07505.smartisland.R
+
 import android.content.Context
 import androidx.compose.ui.text.font.DeviceFontFamilyName
 import androidx.compose.ui.text.font.Font
@@ -20,7 +23,12 @@ import com.agupta07505.smartisland.util.CustomFonts
 import java.util.concurrent.ConcurrentHashMap
 
 /** One built-in choice in the font picker. [family] is what the island text uses. */
-internal data class IslandFontOption(val id: String, val label: String, val note: String, val family: FontFamily)
+internal data class IslandFontOption(
+    val id: String,
+    @StringRes val labelRes: Int,
+    @StringRes val noteRes: Int,
+    val family: FontFamily
+)
 
 private val LoraFamily = FontFamily(
     Font(R.font.lora_400, FontWeight.Normal),
@@ -45,12 +53,12 @@ private val PoppinsFamily = FontFamily(
  * THIRD_PARTY_FONTS.md). Any other font is added by the user from a .ttf or .otf file.
  */
 internal val IslandFontOptions: List<IslandFontOption> = listOf(
-    IslandFontOption(SmartIslandSettings.FONT_SYSTEM, "System", "Your phone's own font", FontFamily.Default),
-    IslandFontOption(SmartIslandSettings.FONT_SERIF, "Serif", "The phone's serif font", FontFamily.Serif),
-    IslandFontOption(SmartIslandSettings.FONT_LORA, "Lora", "A warm, readable serif", LoraFamily),
-    IslandFontOption(SmartIslandSettings.FONT_INTER_DISPLAY, "Inter Display", "A clean, modern sans", InterDisplayFamily),
-    IslandFontOption(SmartIslandSettings.FONT_POPPINS, "Poppins", "Round, geometric sans", PoppinsFamily),
-    IslandFontOption(SmartIslandSettings.FONT_MONOSPACE, "Monospace", "Fixed width, like code", FontFamily.Monospace)
+    IslandFontOption(SmartIslandSettings.FONT_SYSTEM, R.string.font_name_system, R.string.font_note_system, FontFamily.Default),
+    IslandFontOption(SmartIslandSettings.FONT_SERIF, R.string.font_name_serif, R.string.font_note_serif, FontFamily.Serif),
+    IslandFontOption(SmartIslandSettings.FONT_LORA, R.string.font_name_lora, R.string.font_note_lora, LoraFamily),
+    IslandFontOption(SmartIslandSettings.FONT_INTER_DISPLAY, R.string.font_name_inter_display, R.string.font_note_inter_display, InterDisplayFamily),
+    IslandFontOption(SmartIslandSettings.FONT_POPPINS, R.string.font_name_poppins, R.string.font_note_poppins, PoppinsFamily),
+    IslandFontOption(SmartIslandSettings.FONT_MONOSPACE, R.string.font_name_monospace, R.string.font_note_monospace, FontFamily.Monospace)
 )
 
 internal fun islandFontFamily(id: String): FontFamily =

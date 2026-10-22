@@ -455,7 +455,7 @@ fun BackupRestoreSection(
         val metadata = pendingRestoreMetadata
         val dateStr = metadata?.let {
             SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).format(Date(it.timestamp))
-        } ?: "Unknown"
+        } ?: stringResource(R.string.backup_unknown_date)
 
         AlertDialog(
             onDismissRequest = {

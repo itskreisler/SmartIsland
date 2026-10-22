@@ -43,6 +43,8 @@ import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -170,7 +172,7 @@ fun RecorderCard(
                 Spacer(Modifier.height(2.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = if (isPaused) "Paused • " else "$statusLabel • ",
+                        text = if (isPaused) stringResource(R.string.status_paused) + " • " else "$statusLabel • ",
                         color = LocalIslandPalette.current.textMuted,
                         fontSize = 12.sp
                     )
@@ -202,7 +204,10 @@ fun RecorderCard(
                 ) {
                     Icon(
                         imageVector = if (isPaused) Icons.Rounded.PlayArrow else Icons.Rounded.Pause,
-                        contentDescription = toggleAction.title.ifBlank { if (isPaused) "Resume" else "Pause" },
+                        contentDescription = toggleAction.title.ifBlank {
+                            if (isPaused) stringResource(R.string.action_resume)
+                            else stringResource(R.string.action_pause)
+                        },
                         tint = LocalIslandPalette.current.text,
                         modifier = Modifier.size(20.dp)
                     )
@@ -227,7 +232,8 @@ fun RecorderCard(
                         horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
                         Icon(
-                            imageVector = if (recorderSaveLabel(stopAction.title) == "Save") Icons.Rounded.Check else Icons.Rounded.Stop,
+                            imageVector = if (stopAction.title.lowercase().contains("save")) Icons.Rounded.Check
+                            else Icons.Rounded.Stop,
                             contentDescription = stopAction.title,
                             tint = Color.White,
                             modifier = Modifier.size(16.dp)
@@ -276,13 +282,14 @@ internal fun recorderButtons(notification: IslandNotification?, paused: Boolean)
 }
 
 /** "Save recording" -> "Save", "Stop" -> "Stop"; anything else keeps its own (short) label. */
+@Composable
 internal fun recorderSaveLabel(title: String): String {
     val t = title.trim()
     val lower = t.lowercase()
     return when {
-        t.isBlank() -> "Stop"
-        lower.contains("save") -> "Save"
-        lower.contains("stop") -> "Stop"
+        t.isBlank() -> stringResource(R.string.btn_stop)
+        lower.contains("save") -> stringResource(R.string.action_save)
+        lower.contains("stop") -> stringResource(R.string.btn_stop)
         t.length > 12 -> t.take(12).trimEnd() + "…"
         else -> t
     }

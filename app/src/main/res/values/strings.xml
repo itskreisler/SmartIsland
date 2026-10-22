@@ -1682,4 +1682,45 @@
     <string name="notif_app_active_muted">Active • Muted</string>
     <string name="notif_options">Options</string>
     <string name="btn_done">Done</string>
+
+    <!-- ===== Transfers, fonts, live activity and navigation (EN) ===== -->
+    <string name="transfer_badge_downloading">Downloading</string>
+    <string name="transfer_title_downloading">Downloading file</string>
+    <string name="transfer_badge_uploading">Uploading</string>
+    <string name="transfer_title_uploading">Uploading file</string>
+    <string name="transfer_badge_backing_up">Backing up</string>
+    <string name="transfer_title_backing_up">Backing up</string>
+    <string name="transfer_badge_copying">Copying</string>
+    <string name="transfer_title_copying">Copying files</string>
+    <string name="transfer_badge_deleting">Deleting</string>
+    <string name="transfer_title_deleting">Deleting files</string>
+    <string name="transfer_badge_installing">Installing</string>
+    <string name="transfer_title_installing">Installing app</string>
+    <string name="font_name_system">System</string>
+    <string name="font_note_system">Your phone\'s own font</string>
+    <string name="font_name_serif">Serif</string>
+    <string name="font_note_serif">The phone\'s serif font</string>
+    <string name="font_name_lora">Lora</string>
+    <string name="font_note_lora">A warm, readable serif</string>
+    <string name="font_name_inter_display">Inter Display</string>
+    <string name="font_note_inter_display">A clean, modern sans</string>
+    <string name="font_name_poppins">Poppins</string>
+    <string name="font_note_poppins">Round, geometric sans</string>
+    <string name="font_name_monospace">Monospace</string>
+    <string name="font_note_monospace">Fixed width, like code</string>
+    <string name="live_tracking">Live Tracking</string>
+    <string name="live_tracking_realtime">Tracking in real-time</string>
+    <string name="live_activity_update">Live activity update</string>
+    <string name="live_open_app">Open App</string>
+    <string name="nav_preview_distance">In 300 m</string>
+    <string name="nav_preview_instruction">Turn left onto MG Road</string>
+    <string name="nav_preview_detail">Stay in the left lane</string>
+    <string name="nav_preview_eta">24 min remaining • 8.5 km</string>
+    <string name="nav_guidance">Turn-by-turn guidance</string>
+    <string name="flashlight_active_cd">Flashlight Active</string>
+    <string name="flashlight_expanded_title">Flashlight ON</string>
+    <string name="torch_active_status">Torch Active</string>
+    <string name="action_save">Save</string>
+    <string name="backup_unknown_date">Unknown</string>
+    <string name="timing_minutes">%1$d min</string>
 </resources>

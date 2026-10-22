@@ -36,6 +36,7 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -69,7 +70,7 @@ fun DownloadExpanded(
         com.agupta07505.smartisland.model.TransferState.WAITING -> LocalIslandPalette.current.warning
         else -> baseAccent
     }
-    val badgeLabel = state.badge ?: kind.badge
+    val badgeLabel = state.badge ?: stringResource(kind.badgeRes)
     val containerBadgeBg = accentColor.copy(alpha = 0.2f)
 
     val progressFraction = remember(notification.progress, notification.progressMax) {
@@ -94,7 +95,7 @@ fun DownloadExpanded(
             .replace(Regex("""\s*[•·-]?\s*\d+%\s*"""), "")
             .replace(Regex("""\s*\d+%\s*[•·-]?\s*"""), "")
             .trim()
-            .ifBlank { "${kind.badge}..." }
+            .ifBlank { context.getString(kind.badgeRes) + "..." }
     }
 
     Column(
@@ -165,7 +166,7 @@ fun DownloadExpanded(
 
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = notification.title.ifBlank { kind.fallbackTitle },
+                    text = notification.title.ifBlank { stringResource(kind.fallbackTitleRes) },
                     color = LocalIslandPalette.current.text,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

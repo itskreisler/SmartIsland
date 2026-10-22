@@ -35,6 +35,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -73,7 +75,7 @@ fun FlashlightExpanded(
             ) {
                 Icon(
                     imageVector = Icons.Rounded.FlashlightOn,
-                    contentDescription = "Flashlight Active",
+                    contentDescription = stringResource(R.string.flashlight_active_cd),
                     tint = torchColor,
                     modifier = Modifier.size(24.dp)
                 )
@@ -81,7 +83,7 @@ fun FlashlightExpanded(
 
             Column {
                 Text(
-                    text = "Flashlight ON",
+                    text = stringResource(R.string.flashlight_expanded_title),
                     color = LocalIslandPalette.current.text,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
@@ -96,7 +98,7 @@ fun FlashlightExpanded(
                     )
                     Spacer(Modifier.width(6.dp))
                     Text(
-                        text = "Torch Active",
+                        text = stringResource(R.string.torch_active_status),
                         color = torchColor,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.SemiBold
@@ -117,7 +119,7 @@ fun FlashlightExpanded(
             )
         ) {
             Text(
-                text = "Turn Off",
+                text = stringResource(R.string.action_turn_off),
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold
             )
