@@ -1461,4 +1461,44 @@
     <string name="landscape_look">Look</string>
     <string name="landscape_exempt_apps">Exempt apps</string>
     <string name="landscape_exempt_apps_summary">Apps that switch the island totally off in landscape</string>
+
+    <!-- ===== Landscape Lab (EN) ===== -->
+    <string name="lab_rotation_normal">Normal landscape (camera left)</string>
+    <string name="lab_rotation_reverse">Reverse landscape (camera right)</string>
+    <string name="lab_idle_camera">Idle: camera cutout</string>
+    <string name="lab_idle_no_camera">Idle: no cutout reported</string>
+    <string name="lab_idle_left">Idle: left corner</string>
+    <string name="lab_idle_right">Idle: right corner</string>
+    <string name="lab_idle_middle">Idle: top middle</string>
+    <string name="lab_pill_left">Pill: left</string>
+    <string name="lab_pill_middle">Pill: middle</string>
+    <string name="lab_pill_right">Pill: right</string>
+    <string name="lab_step_idle">Idle circle</string>
+    <string name="lab_step_enter">Card arrives: circle gives way, pill slides in</string>
+    <string name="lab_step_expand">Expand</string>
+    <string name="lab_step_collapse">Collapse</string>
+    <string name="lab_step_second_slide">Second app: secondary cutout, slide merge</string>
+    <string name="lab_step_second_bubble">Second app again: bubble merge</string>
+    <string name="lab_step_third">Third app: tertiary cutout</string>
+    <string name="lab_step_expand_many">Expand with three apps: corner pill shows the other card</string>
+    <string name="lab_step_siblings">Same-app siblings: picker opens away from the camera</string>
+    <string name="lab_step_picker_close">Picker closes, island collapses</string>
+    <string name="lab_step_call">Incoming call opens expanded</string>
+    <string name="lab_step_popup">Short event waits behind a live card (no popup)</string>
+    <string name="lab_step_exit">Last card goes: pill slides out, circle opens</string>
+    <string name="lab_step_interrupt">Card returns in the middle of the exit (reverses in place)</string>
+    <string name="lab_step_dot_tap">Expanded, then tap the idle circle: island and secondary merge first, then the pill leaves (as long as the opening)</string>
+    <string name="lab_step_end">Clear</string>
+    <string name="lab_filter_rotation">Rotation</string>
+    <string name="lab_filter_pill">Pill with a card</string>
+    <string name="lab_quick_run">Quick run (entry, expand, exit only)</string>
+    <string name="lab_waiting_landscape">Waiting for landscape. Turn the phone.</string>
+    <string name="lab_starting">Starting</string>
+    <string name="lab_not_ready">The island is not ready yet. Open the app again.</string>
+    <string name="lab_nothing_selected">Nothing selected.</string>
+    <string name="lab_done">Done. Layouts played: %1$d.</string>
+    <string name="lab_duration">%1$d layouts, about %2$d min %3$d s.</string>
+    <string name="lab_play">Play</string>
+    <string name="lab_play_wait">Play (starts when you turn to landscape)</string>
+    <string name="lab_section_description">Plays every landscape animation on the real island: card arrives, expand, second and third app (both merge styles), sibling picker, call, popup, exit, interrupted exit and the idle circle tap. Rotation, camera and positions are simulated, so you can watch normal and reverse landscape without turning the phone. Turn the phone to landscape and keep this tab open. Your settings are not changed.</string>
 </resources>

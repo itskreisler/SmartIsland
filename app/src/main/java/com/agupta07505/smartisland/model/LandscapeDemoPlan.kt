@@ -7,28 +7,30 @@
 
 package com.agupta07505.smartisland.model
 
+import androidx.annotation.StringRes
+import com.agupta07505.smartisland.R
 import com.agupta07505.smartisland.data.LandscapeCamera
 import com.agupta07505.smartisland.data.OrientationState
 import com.agupta07505.smartisland.data.SmartIslandSettings
 
 /** Landscape Lab: the matrix of landscape situations and the script played in each. */
-enum class LabRotation(val label: String, val reversed: Boolean) {
-    NORMAL("Normal landscape (camera left)", false),
-    REVERSE("Reverse landscape (camera right)", true)
+enum class LabRotation(@StringRes val labelRes: Int, val reversed: Boolean) {
+    NORMAL(R.string.lab_rotation_normal, false),
+    REVERSE(R.string.lab_rotation_reverse, true)
 }
 
-enum class LabIdle(val label: String, val position: String, val cameraReported: Boolean) {
-    AUTO_CAMERA("Idle: camera cutout", SmartIslandSettings.LANDSCAPE_POSITION_AUTO, true),
-    AUTO_NO_CAMERA("Idle: no cutout reported", SmartIslandSettings.LANDSCAPE_POSITION_AUTO, false),
-    LEFT("Idle: left corner", SmartIslandSettings.LANDSCAPE_POSITION_LEFT, false),
-    RIGHT("Idle: right corner", SmartIslandSettings.LANDSCAPE_POSITION_RIGHT, false),
-    MIDDLE("Idle: top middle", SmartIslandSettings.LANDSCAPE_POSITION_MIDDLE, false)
+enum class LabIdle(@StringRes val labelRes: Int, val position: String, val cameraReported: Boolean) {
+    AUTO_CAMERA(R.string.lab_idle_camera, SmartIslandSettings.LANDSCAPE_POSITION_AUTO, true),
+    AUTO_NO_CAMERA(R.string.lab_idle_no_camera, SmartIslandSettings.LANDSCAPE_POSITION_AUTO, false),
+    LEFT(R.string.lab_idle_left, SmartIslandSettings.LANDSCAPE_POSITION_LEFT, false),
+    RIGHT(R.string.lab_idle_right, SmartIslandSettings.LANDSCAPE_POSITION_RIGHT, false),
+    MIDDLE(R.string.lab_idle_middle, SmartIslandSettings.LANDSCAPE_POSITION_MIDDLE, false)
 }
 
-enum class LabPill(val label: String, val position: String) {
-    LEFT("Pill: left", SmartIslandSettings.LANDSCAPE_POSITION_LEFT),
-    MIDDLE("Pill: middle", SmartIslandSettings.LANDSCAPE_POSITION_MIDDLE),
-    RIGHT("Pill: right", SmartIslandSettings.LANDSCAPE_POSITION_RIGHT)
+enum class LabPill(@StringRes val labelRes: Int, val position: String) {
+    LEFT(R.string.lab_pill_left, SmartIslandSettings.LANDSCAPE_POSITION_LEFT),
+    MIDDLE(R.string.lab_pill_middle, SmartIslandSettings.LANDSCAPE_POSITION_MIDDLE),
+    RIGHT(R.string.lab_pill_right, SmartIslandSettings.LANDSCAPE_POSITION_RIGHT)
 }
 
 data class LabStage(val rotation: LabRotation, val idle: LabIdle, val pill: LabPill) {
@@ -115,7 +117,7 @@ enum class LabCard {
     CALL, PLUG
 }
 
-data class LabStep(val id: String, val title: String, val actions: List<LabAction>, val holdMs: Long, val quick: Boolean)
+data class LabStep(val id: String, @StringRes val titleRes: Int, val actions: List<LabAction>, val holdMs: Long, val quick: Boolean)
 
 private const val BUBBLE = com.agupta07505.smartisland.util.MergeStyle.ID_BUBBLE
 private const val SLIDE = com.agupta07505.smartisland.util.MergeStyle.ID_SLIDE
@@ -128,28 +130,28 @@ const val LAB_INTERRUPT_AFTER_MS = 170L
  * island. [quick] steps are the short run: entry, expand, exit.
  */
 fun labSteps(): List<LabStep> = listOf(
-    LabStep("idle", "Idle circle", listOf(LabAction.RemoveAll), 1400, quick = true),
-    LabStep("enter", "Card arrives: circle gives way, pill slides in", listOf(LabAction.Post(LabCard.MUSIC)), 2000, quick = true),
-    LabStep("expand", "Expand", listOf(LabAction.Expand), 2400, quick = true),
-    LabStep("collapse", "Collapse", listOf(LabAction.Collapse), 1400, quick = false),
+    LabStep("idle", R.string.lab_step_idle, listOf(LabAction.RemoveAll), 1400, quick = true),
+    LabStep("enter", R.string.lab_step_enter, listOf(LabAction.Post(LabCard.MUSIC)), 2000, quick = true),
+    LabStep("expand", R.string.lab_step_expand, listOf(LabAction.Expand), 2400, quick = true),
+    LabStep("collapse", R.string.lab_step_collapse, listOf(LabAction.Collapse), 1400, quick = false),
     LabStep(
-        "second_slide", "Second app: secondary cutout, slide merge",
+        "second_slide", R.string.lab_step_second_slide,
         listOf(LabAction.SetMerge(SLIDE), LabAction.Post(LabCard.MESSAGE)), 2400, quick = false
     ),
     LabStep(
-        "second_bubble", "Second app again: bubble merge",
+        "second_bubble", R.string.lab_step_second_bubble,
         listOf(
             LabAction.Remove(LabCard.MESSAGE), LabAction.Wait(900), LabAction.SetMerge(BUBBLE),
             LabAction.Post(LabCard.MESSAGE)
         ), 2800, quick = false
     ),
-    LabStep("third", "Third app: tertiary cutout", listOf(LabAction.Post(LabCard.DOWNLOAD)), 2400, quick = false),
+    LabStep("third", R.string.lab_step_third, listOf(LabAction.Post(LabCard.DOWNLOAD)), 2400, quick = false),
     LabStep(
-        "expand_many", "Expand with three apps: corner pill shows the other card",
+        "expand_many", R.string.lab_step_expand_many,
         listOf(LabAction.Expand), 2600, quick = false
     ),
     LabStep(
-        "siblings", "Same-app siblings: picker opens away from the camera",
+        "siblings", R.string.lab_step_siblings,
         listOf(
             LabAction.Collapse, LabAction.Wait(500), LabAction.RemoveAll, LabAction.Wait(900),
             LabAction.Post(LabCard.SIBLING_A), LabAction.Post(LabCard.SIBLING_B), LabAction.Post(LabCard.SIBLING_C),
@@ -157,33 +159,33 @@ fun labSteps(): List<LabStep> = listOf(
         ), 2800, quick = false
     ),
     LabStep(
-        "picker_close", "Picker closes, island collapses",
+        "picker_close", R.string.lab_step_picker_close,
         listOf(LabAction.ClosePicker, LabAction.Wait(500), LabAction.Collapse), 1400, quick = false
     ),
     LabStep(
-        "call", "Incoming call opens expanded",
+        "call", R.string.lab_step_call,
         listOf(LabAction.RemoveAll, LabAction.Wait(900), LabAction.Post(LabCard.CALL, autoExpand = true)), 2800, quick = false
     ),
     LabStep(
-        "popup", "Short event waits behind a live card (no popup)",
+        "popup", R.string.lab_step_popup,
         listOf(
             LabAction.Collapse, LabAction.Wait(500), LabAction.RemoveAll, LabAction.Wait(900),
             LabAction.Post(LabCard.MUSIC), LabAction.Wait(1400), LabAction.Post(LabCard.PLUG)
         ), 3200, quick = false
     ),
-    LabStep("exit", "Last card goes: pill slides out, circle opens", listOf(LabAction.RemoveAll), 2200, quick = true),
+    LabStep("exit", R.string.lab_step_exit, listOf(LabAction.RemoveAll), 2200, quick = true),
     LabStep(
-        "interrupt", "Card returns in the middle of the exit (reverses in place)",
+        "interrupt", R.string.lab_step_interrupt,
         listOf(
             LabAction.Post(LabCard.MUSIC), LabAction.Wait(1600), LabAction.RemoveAll,
             LabAction.Wait(LAB_INTERRUPT_AFTER_MS), LabAction.Post(LabCard.MUSIC)
         ), 2400, quick = false
     ),
     LabStep(
-        "dot_tap", "Expanded, then tap the idle circle: island and secondary merge first, then the pill leaves (as long as the opening)",
+        "dot_tap", R.string.lab_step_dot_tap,
         listOf(LabAction.Expand, LabAction.Wait(1500), LabAction.TapIdleDot), 3000, quick = false
     ),
-    LabStep("end", "Clear", listOf(LabAction.RemoveAll), 600, quick = true)
+    LabStep("end", R.string.lab_step_end, listOf(LabAction.RemoveAll), 600, quick = true)
 )
 
 fun labStepsFor(quick: Boolean): List<LabStep> = labSteps().filter { !quick || it.quick }

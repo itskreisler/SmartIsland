@@ -87,19 +87,16 @@ fun LandscapeLabSection(notificationRepository: INotificationRepository?) {
                 color = MaterialTheme.colorScheme.onSurface
             )
             Text(
-                text = "Plays every landscape animation on the real island: card arrives, expand, second and third app " +
-                    "(both merge styles), sibling picker, call, popup, exit, interrupted exit and the idle circle tap. " +
-                    "Rotation, camera and positions are simulated, so you can watch normal and reverse landscape without " +
-                    "turning the phone. Turn the phone to landscape and keep this tab open. Your settings are not changed.",
+                text = stringResource(R.string.lab_section_description),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
-            ChipRow("Rotation", rotationName == "ALL", { rotationName = "ALL" }, LabRotation.entries.map { it.name to it.label },
+            ChipRow(stringResource(R.string.lab_filter_rotation), rotationName == "ALL", { rotationName = "ALL" }, LabRotation.entries.map { it.name to stringResource(it.labelRes) },
                 rotationName) { rotationName = it }
-            ChipRow("Idle circle", idleName == "ALL", { idleName = "ALL" }, LabIdle.entries.map { it.name to it.label },
+            ChipRow(stringResource(R.string.guide_idle_circle), idleName == "ALL", { idleName = "ALL" }, LabIdle.entries.map { it.name to stringResource(it.labelRes) },
                 idleName) { idleName = it }
-            ChipRow("Pill with a card", pillName == "ALL", { pillName = "ALL" }, LabPill.entries.map { it.name to it.label },
+            ChipRow(stringResource(R.string.lab_filter_pill), pillName == "ALL", { pillName = "ALL" }, LabPill.entries.map { it.name to stringResource(it.labelRes) },
                 pillName) { pillName = it }
 
             Row(
@@ -108,7 +105,7 @@ fun LandscapeLabSection(notificationRepository: INotificationRepository?) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Quick run (entry, expand, exit only)",
+                    text = stringResource(R.string.lab_quick_run),
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSurface,
@@ -121,10 +118,15 @@ fun LandscapeLabSection(notificationRepository: INotificationRepository?) {
                 val shown = progress.stage
                 Text(
                     text = when {
-                        progress.waitingForLandscape || !landscape -> "Waiting for landscape. Turn the phone."
-                        shown != null -> "${progress.stageIndex + 1} / ${progress.stageCount}: ${shown.rotation.label}, " +
-                            "${shown.idle.label.lowercase()}, ${shown.pill.label.lowercase()}"
-                        else -> "Starting"
+                        progress.waitingForLandscape || !landscape -> stringResource(R.string.lab_waiting_landscape)
+                        shown != null -> {
+                            val rotationLabel = stringResource(shown.rotation.labelRes)
+                            val idleLabel = stringResource(shown.idle.labelRes)
+                            val pillLabel = stringResource(shown.pill.labelRes)
+                            "${progress.stageIndex + 1} / ${progress.stageCount}: $rotationLabel, " +
+                                "${idleLabel.lowercase()}, ${pillLabel.lowercase()}"
+                        }
+                        else -> stringResource(R.string.lab_starting)
                     },
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.SemiBold,
@@ -149,11 +151,12 @@ fun LandscapeLabSection(notificationRepository: INotificationRepository?) {
             } else {
                 Text(
                     text = when {
-                        notificationRepository == null -> "The island is not ready yet. Open the app again."
-                        stages.isEmpty() -> "Nothing selected."
-                        progress.finished -> "Done. ${stages.size} layouts played."
-                        else -> "${stages.size} layout${if (stages.size == 1) "" else "s"}, about " +
-                            "${totalSeconds / 60} min ${totalSeconds % 60} s."
+                        notificationRepository == null -> stringResource(R.string.lab_not_ready)
+                        stages.isEmpty() -> stringResource(R.string.lab_nothing_selected)
+                        progress.finished -> stringResource(R.string.lab_done, stages.size)
+                        else -> stringResource(
+                            R.string.lab_duration, stages.size, totalSeconds / 60, totalSeconds % 60
+                        )
                     },
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -163,7 +166,7 @@ fun LandscapeLabSection(notificationRepository: INotificationRepository?) {
                     enabled = notificationRepository != null && stages.isNotEmpty(),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text(if (landscape) "Play" else "Play (starts when you turn to landscape)")
+                    Text(if (landscape) stringResource(R.string.lab_play) else stringResource(R.string.lab_play_wait))
                 }
             }
         }

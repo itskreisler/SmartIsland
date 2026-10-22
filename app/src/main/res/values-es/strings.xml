@@ -1461,4 +1461,44 @@
     <string name="landscape_look">Aspecto</string>
     <string name="landscape_exempt_apps">Apps excluidas</string>
     <string name="landscape_exempt_apps_summary">Apps que desactivan por completo la isla en horizontal</string>
+
+    <!-- ===== Landscape Lab ===== -->
+    <string name="lab_rotation_normal">Horizontal normal (cámara a la izquierda)</string>
+    <string name="lab_rotation_reverse">Horizontal invertido (cámara a la derecha)</string>
+    <string name="lab_idle_camera">Reposo: recorte de la cámara</string>
+    <string name="lab_idle_no_camera">Reposo: sin recorte detectado</string>
+    <string name="lab_idle_left">Reposo: esquina izquierda</string>
+    <string name="lab_idle_right">Reposo: esquina derecha</string>
+    <string name="lab_idle_middle">Reposo: centro arriba</string>
+    <string name="lab_pill_left">Isla: izquierda</string>
+    <string name="lab_pill_middle">Isla: centro</string>
+    <string name="lab_pill_right">Isla: derecha</string>
+    <string name="lab_step_idle">Círculo en reposo</string>
+    <string name="lab_step_enter">Llega la tarjeta: el círculo cede el paso y la isla se desliza</string>
+    <string name="lab_step_expand">Expandir</string>
+    <string name="lab_step_collapse">Contraer</string>
+    <string name="lab_step_second_slide">Segunda app: recorte secundario, fusión deslizante</string>
+    <string name="lab_step_second_bubble">Segunda app otra vez: fusión en burbuja</string>
+    <string name="lab_step_third">Tercera app: recorte terciario</string>
+    <string name="lab_step_expand_many">Expandir con tres apps: la isla de la esquina muestra la otra tarjeta</string>
+    <string name="lab_step_siblings">Hermanos de la misma app: el selector se abre lejos de la cámara</string>
+    <string name="lab_step_picker_close">El selector se cierra y la isla se contrae</string>
+    <string name="lab_step_call">La llamada entrante se abre expandida</string>
+    <string name="lab_step_popup">El evento corto espera detrás de una tarjeta activa (sin ventana emergente)</string>
+    <string name="lab_step_exit">Se va la última tarjeta: la isla se desliza fuera y el círculo se abre</string>
+    <string name="lab_step_interrupt">La tarjeta vuelve a mitad de la salida (se invierte en el sitio)</string>
+    <string name="lab_step_dot_tap">Expandida; luego toca el círculo en reposo: la isla y el secundario se fusionan primero y después la isla se va (tarda lo mismo que la apertura)</string>
+    <string name="lab_step_end">Limpiar</string>
+    <string name="lab_filter_rotation">Rotación</string>
+    <string name="lab_filter_pill">Isla con tarjeta</string>
+    <string name="lab_quick_run">Recorrido rápido (solo entrada, expandir y salida)</string>
+    <string name="lab_waiting_landscape">Esperando horizontal. Gira el teléfono.</string>
+    <string name="lab_starting">Iniciando</string>
+    <string name="lab_not_ready">La isla aún no está lista. Vuelve a abrir la app.</string>
+    <string name="lab_nothing_selected">No hay nada seleccionado.</string>
+    <string name="lab_done">Listo. Combinaciones jugadas: %1$d.</string>
+    <string name="lab_duration">Combinaciones: %1$d, unos %2$d min %3$d s.</string>
+    <string name="lab_play">Iniciar</string>
+    <string name="lab_play_wait">Iniciar (empieza al girar a horizontal)</string>
+    <string name="lab_section_description">Reproduce todas las animaciones de horizontal en la isla real: llega la tarjeta, expandir, segunda y tercera app (ambos estilos de fusión), selector de hermanos, llamada, ventana emergente, salida, salida interrumpida y toque del círculo en reposo. La rotación, la cámara y las posiciones se simulan, así que puedes ver el horizontal normal y el invertido sin girar el teléfono. Gira el teléfono a horizontal y mantén esta pestaña abierta. Tus ajustes no cambian.</string>
 </resources>
