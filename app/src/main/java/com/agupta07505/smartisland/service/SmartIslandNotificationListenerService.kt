@@ -7,6 +7,8 @@
 
 package com.agupta07505.smartisland.service
 
+import com.agupta07505.smartisland.R
+
 import com.agupta07505.smartisland.util.AppEventRules
 import com.agupta07505.smartisland.util.CallActionRole
 import com.agupta07505.smartisland.util.CallStyleExtras
@@ -313,8 +315,8 @@ class SmartIslandNotificationListenerService : NotificationListenerService() {
                         IslandNotification(
                             key = VOIP_CARD_KEY,
                             packageName = packageName,
-                            appName = "Voice call",
-                            title = "Call in progress",
+                            appName = getString(R.string.caller_app_name),
+                            title = getString(R.string.call_in_progress),
                             text = "",
                             timeMillis = com.agupta07505.smartisland.util.VoipCallSignal.sinceMillis
                                 .takeIf { it > 0 } ?: System.currentTimeMillis(),

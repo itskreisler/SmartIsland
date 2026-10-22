@@ -76,9 +76,9 @@ class SystemEventReceiver(
                         intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
                     }
                     val deviceName = try {
-                        device?.name?.takeIf { it.isNotBlank() } ?: "Bluetooth Device"
+                        device?.name?.takeIf { it.isNotBlank() } ?: context.getString(R.string.expanded_bluetooth_device)
                     } catch (e: SecurityException) {
-                        "Bluetooth Device"
+                        context.getString(R.string.expanded_bluetooth_device)
                     }
 
                     // Smartwatches, trackers and peripherals must not hijack the island with connection alerts.
@@ -108,15 +108,15 @@ class SystemEventReceiver(
                         }.getOrDefault(-1)
                     }
                     val statusText = if (batteryLevel in 0..100) {
-                        "Connected • $batteryLevel%"
+                        context.getString(R.string.bluetooth_connected_level, batteryLevel)
                     } else {
-                        "Connected"
+                        context.getString(R.string.expanded_bluetooth_connected)
                     }
                     notificationRepository.postNotification(
                         IslandNotification(
                             key = "system_bluetooth",
                             packageName = "com.android.bluetooth",
-                            appName = "Bluetooth",
+                            appName = context.getString(R.string.utility_bluetooth),
                             title = deviceName,
                             text = statusText,
                             mode = IslandMode.Bluetooth,
@@ -134,7 +134,7 @@ class SystemEventReceiver(
                         if (existing != null) {
                             notificationRepository.postNotification(
                                 existing.copy(
-                                    text = "Connected • $batteryLevel%",
+                                    text = context.getString(R.string.bluetooth_connected_level, batteryLevel),
                                     progress = batteryLevel,
                                     progressMax = 100
                                 ),
@@ -245,7 +245,7 @@ class SystemEventReceiver(
             IslandNotification(
                 key = "system_battery",
                 packageName = "com.android.systemui",
-                appName = "System",
+                appName = context.getString(R.string.system_app_name),
                 title = context.getString(R.string.battery_unplugged),
                 text = "$pct%",
                 category = "battery_plugged_out",
@@ -294,7 +294,7 @@ class SystemEventReceiver(
                 IslandNotification(
                     key = "system_battery",
                     packageName = "com.android.systemui",
-                    appName = "System",
+                    appName = context.getString(R.string.system_app_name),
                     title = title,
                     text = "$batteryPct%",
                     category = "battery_saver",
@@ -315,7 +315,7 @@ class SystemEventReceiver(
                 IslandNotification(
                     key = "system_battery",
                     packageName = "com.android.systemui",
-                    appName = "System",
+                    appName = context.getString(R.string.system_app_name),
                     title = title,
                     text = "$batteryPct%",
                     category = "battery_low",
@@ -366,7 +366,7 @@ class SystemEventReceiver(
             IslandNotification(
                 key = "system_battery",
                 packageName = "com.android.systemui",
-                appName = "System",
+                appName = context.getString(R.string.system_app_name),
                 title = title,
                 text = "$batteryPct%",
                 category = category,

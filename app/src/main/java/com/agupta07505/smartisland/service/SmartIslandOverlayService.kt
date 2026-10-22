@@ -97,13 +97,13 @@ class SmartIslandOverlayService : AccessibilityService() {
                     IslandNotification(
                         key = "system_flashlight",
                         packageName = "com.android.systemui",
-                        appName = "Flashlight",
-                        title = "Flashlight ON",
-                        text = "Tap to turn off",
+                        appName = getString(R.string.utility_flashlight),
+                        title = getString(R.string.expanded_torch_on),
+                        text = getString(R.string.flashlight_tap_to_turn_off),
                         mode = com.agupta07505.smartisland.model.IslandMode.Flashlight,
                         timeMillis = System.currentTimeMillis(),
                         actionIntents = listOf(
-                            com.agupta07505.smartisland.model.IslandNotificationAction("Turn Off", null)
+                            com.agupta07505.smartisland.model.IslandNotificationAction(getString(R.string.action_turn_off), null)
                         )
                     ),
                     autoExpand = !com.agupta07505.smartisland.util.NotificationCooldownManager.shouldThrottleSystemEvent(
@@ -2196,7 +2196,7 @@ class SmartIslandOverlayService : AccessibilityService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 OVERLAY_CHANNEL_ID,
-                OVERLAY_CHANNEL_NAME,
+                getString(R.string.overlay_channel_name),
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
                 description = getString(R.string.overlay_service_description)
@@ -2218,7 +2218,7 @@ class SmartIslandOverlayService : AccessibilityService() {
                 PendingIntent.FLAG_UPDATE_CURRENT
         )
         return NotificationCompat.Builder(this, OVERLAY_CHANNEL_ID)
-            .setContentTitle("Smart Island is active")
+            .setContentTitle(getString(R.string.overlay_active))
             .setContentText(getString(R.string.overlay_service_tap_open))
             .setSmallIcon(R.drawable.ic_stat_smart_island)
             .setContentIntent(contentIntent)
@@ -2244,7 +2244,6 @@ class SmartIslandOverlayService : AccessibilityService() {
         private const val SPLIT_LAUNCH_DELAY_MS = 450L
         private const val SPLIT_PICKER_DELAY_MS = 600L
         private const val OVERLAY_CHANNEL_ID = "smart_island_overlay"
-        private const val OVERLAY_CHANNEL_NAME = "Smart Island overlay"
         private const val AUTO_COLLAPSE_DELAY_MS = 750L
         private const val WIDGET_WINDOW_LINGER_MS = 700L
         private const val WIDGET_ISLAND_EVENT_GRACE_MS = 500L

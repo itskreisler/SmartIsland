@@ -248,6 +248,7 @@ fun MusicExpanded(
                     label = com.agupta07505.smartisland.util.MediaOutputRules.label(
                         mediaOutput,
                         phoneLabel = stringResource(R.string.media_output_this_phone),
+                        bluetoothLabel = stringResource(R.string.utility_bluetooth),
                         castLabel = stringResource(R.string.media_output_cast),
                         wiredLabel = stringResource(R.string.media_output_wired),
                         headphonesLabel = stringResource(R.string.media_output_wired_headphones)

@@ -15,7 +15,7 @@ import android.widget.Toast
 /** Swallows a missing or OEM-restricted destination instead of crashing. */
 fun Context.safeStartActivity(
     intent: Intent,
-    errorMessage: String? = "This setting is not available on your device.",
+    errorMessage: String? = null,
     fallbackIntent: Intent? = null
 ): Boolean {
     fun launch(candidate: Intent): Boolean {

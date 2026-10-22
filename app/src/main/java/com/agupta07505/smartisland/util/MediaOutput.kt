@@ -84,6 +84,7 @@ object MediaOutputRules {
     fun label(
         output: MediaOutput,
         phoneLabel: String,
+        bluetoothLabel: String,
         castLabel: String,
         wiredLabel: String,
         headphonesLabel: String = wiredLabel
@@ -91,7 +92,7 @@ object MediaOutputRules {
         val fallback = when (output.kind) {
             MediaOutputKind.Phone -> phoneLabel
             MediaOutputKind.Cast -> castLabel
-            MediaOutputKind.Bluetooth -> "Bluetooth"
+            MediaOutputKind.Bluetooth -> bluetoothLabel
             MediaOutputKind.Headphones -> headphonesLabel
             MediaOutputKind.Usb, MediaOutputKind.Hdmi -> wiredLabel
         }

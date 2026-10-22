@@ -1651,4 +1651,19 @@
         <item quantity="one">%1$s • %2$d entrada</item>
         <item quantity="other">%1$s • %2$d entradas</item>
     </plurals>
+
+    <!-- ===== Mensajes genéricos ===== -->
+    <string name="setting_not_available">Este ajuste no está disponible en tu dispositivo.</string>
+
+    <!-- ===== Servicios ===== -->
+    <string name="flashlight_tap_to_turn_off">Toca para apagar</string>
+    <string name="action_turn_off">Apagar</string>
+    <string name="overlay_active">Smart Island está activo</string>
+    <string name="overlay_channel_name">Superposición de Smart Island</string>
+    <string name="caller_app_name">Llamada de voz</string>
+    <string name="call_in_progress">Llamada en curso</string>
+
+    <!-- ===== Eventos del sistema ===== -->
+    <string name="bluetooth_connected_level">Conectado • %1$d%%</string>
+    <string name="system_app_name">Sistema</string>
 </resources>

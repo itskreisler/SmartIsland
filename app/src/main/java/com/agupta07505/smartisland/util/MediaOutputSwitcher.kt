@@ -69,7 +69,10 @@ object MediaOutputSwitcher {
         val panel = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) Intent(Settings.Panel.ACTION_VOLUME) else null
         val bluetooth = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
         return if (panel != null) context.safeStartActivity(panel, errorMessage = null, fallbackIntent = bluetooth)
-        else context.safeStartActivity(bluetooth)
+        else context.safeStartActivity(
+            bluetooth,
+            context.getString(com.agupta07505.smartisland.R.string.setting_not_available)
+        )
     }
 
     enum class Used { SystemDialog, Panel, Nothing }
