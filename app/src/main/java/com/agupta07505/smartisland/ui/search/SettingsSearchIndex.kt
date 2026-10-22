@@ -104,11 +104,15 @@ internal fun buildSettingsSearchIndex(str: (Int) -> String): List<SettingsSearch
     IslandEvent.entries.forEach { event ->
         add(
             id = "event.${event.id}",
-            title = event.label,
+            title = str(event.labelRes),
             target = SearchTarget.Tab(StudioTab.Studio),
             screen = home,
             icon = iconFor(event),
-            keywords = listOf(event.shortLabel, event.group, "event", "switch", "toggle", "show"),
+            keywords = listOf(
+                str(event.shortLabelRes), str(event.groupRes),
+                // Kept in English too: the settings search should answer both spellings.
+                event.shortLabel, event.group, "event", "switch", "toggle", "show"
+            ),
             rowKey = eventSearchKey(event)
         )
     }

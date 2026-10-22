@@ -71,7 +71,7 @@ private data class GestureGroup(val title: String, val note: String?, val lines:
 
 @Composable
 private fun actionText(id: String, default: SwipeAction, enabled: Boolean): String =
-    if (!enabled) "Off (switched off above)" else getSwipeActionTitle(SwipeAction.fromId(id, default))
+    if (!enabled) stringResource(R.string.guide_off_switched_off) else getSwipeActionTitle(SwipeAction.fromId(id, default))
 
 @Composable
 private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
@@ -80,127 +80,238 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
     val longPress = SwipeAction.fromId(settings.longPressAction, SwipeAction.TogglePill)
     val longPressTitle = getSwipeActionTitle(longPress)
     val longPressText = if (settings.enableAppShortcuts) {
-        "On a glyph: opens your quick-launch apps (see Quick-launch window below). In the middle band: $longPressTitle. " +
-            "If the middle band is clear of the camera hole, a long press anywhere on the pill opens the apps. In landscape the pill always opens them."
+        stringResource(R.string.guide_long_press_apps, longPressTitle)
     } else {
-        "$longPressTitle, anywhere on the pill."
+        stringResource(R.string.guide_long_press_plain, longPressTitle)
     }
     return listOf(
         GestureGroup(
             title = stringResource(R.string.guide_collapsed_island),
-            note = "Three touch areas: the glyph on the left, the glyph-free middle band over the camera spot, and the glyph or value on the right. Swipes follow your finger. Pull back before letting go to cancel.",
+            note = stringResource(R.string.guide_collapsed_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap a glyph (left or right)", "Expands that event. On an auto-hidden pill it brings the pill back."),
                 GestureLine(
-                    Icons.Rounded.TouchApp, "Tap the middle band",
-                    "Portrait, with cards on the island: puts every card away at once (the close with its first step skipped). " +
-                        "With only an idle widget or nothing on the pill: brings back cards the idle timeout put away, when there are any. " +
-                        "Landscape: the pill is not over the camera, so the whole pill expands."
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_glyph),
+                    stringResource(R.string.guide_tap_glyph_result)
                 ),
-                GestureLine(Icons.Rounded.Swipe, "Swipe left", actionText(settings.pillSwipeLeftAction, SwipeAction.PreviousNotification, pill)),
-                GestureLine(Icons.Rounded.Swipe, "Swipe right", actionText(settings.pillSwipeRightAction, SwipeAction.NextNotification, pill)),
-                GestureLine(Icons.Rounded.ArrowUpward, "Swipe up", actionText(settings.pillSwipeUpAction, SwipeAction.DismissCurrent, pill)),
-                GestureLine(Icons.Rounded.ArrowDownward, "Swipe down", "Expands the island (fixed, cannot be changed)."),
-                GestureLine(Icons.Rounded.TouchApp, "Long press", longPressText),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_middle_band),
+                    stringResource(R.string.guide_tap_middle_band_result)
+                ),
+                GestureLine(Icons.Rounded.Swipe, stringResource(R.string.guide_swipe_left), actionText(settings.pillSwipeLeftAction, SwipeAction.PreviousNotification, pill)),
+                GestureLine(Icons.Rounded.Swipe, stringResource(R.string.guide_swipe_right), actionText(settings.pillSwipeRightAction, SwipeAction.NextNotification, pill)),
+                GestureLine(Icons.Rounded.ArrowUpward, stringResource(R.string.guide_swipe_up), actionText(settings.pillSwipeUpAction, SwipeAction.DismissCurrent, pill)),
+                GestureLine(Icons.Rounded.ArrowDownward, stringResource(R.string.guide_swipe_down), stringResource(R.string.guide_swipe_down_result)),
+                GestureLine(Icons.Rounded.TouchApp, stringResource(R.string.guide_long_press), longPressText),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_camera_hole),
-            note = "Where the pill's middle band does not reach the real camera hole, the hole sits outside the pill and gets its own touch target (at least finger-sized). If the band covers the hole, the band rules above apply. Notch mode counts as covering: the pill is the notch.",
+            note = stringResource(R.string.guide_camera_hole_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap the camera hole", "Nothing. Only a long press is handled there, so a stray tap on the hole never expands or closes anything."),
-                GestureLine(Icons.Rounded.TouchApp, "Long press the camera hole", "$longPressTitle. It never opens the quick-launch apps; that is the pill's own long press."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap or hold the middle band (hole covered)", "Same as the middle band above: tap puts the cards away, long press runs $longPressTitle, and the glyphs on either side open the apps."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_camera_hole),
+                    stringResource(R.string.guide_tap_camera_hole_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_long_press_camera_hole),
+                    stringResource(R.string.guide_long_press_camera_hole_result, longPressTitle)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_or_hold_band),
+                    stringResource(R.string.guide_tap_or_hold_band_result, longPressTitle)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_second_third_pill),
-            note = "The smaller pills beside the main one that show other events. Expanded, the second pill sits on the camera spot.",
+            note = stringResource(R.string.guide_second_third_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap the second pill", "Brings that event to the main pill and expands the island if it was collapsed."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap the second pill, expanded, card has siblings", "It shows three lines and opens the list of that app's other cards. A second tap closes the list."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap the third pill", "Switches to that event, and expands the island if it was collapsed."),
-                GestureLine(Icons.Rounded.TouchApp, "Landscape: the pill beside an open card", "Tap swaps to the other stored card. It takes the pill swipes and the long press just like the main pill."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_second_pill),
+                    stringResource(R.string.guide_tap_second_pill_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_second_pill_expanded),
+                    stringResource(R.string.guide_tap_second_pill_expanded_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_third_pill),
+                    stringResource(R.string.guide_tap_third_pill_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_landscape_pill_open_card),
+                    stringResource(R.string.guide_landscape_pill_open_card_result)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_idle_circle),
-            note = "The small circle that stays when there are no cards, mostly seen in landscape. Portrait has no separate circle: the middle band of the pill does its job.",
+            note = stringResource(R.string.guide_idle_circle_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap", "Brings back cards that the idle timeout put away. Landscape, while a card is on the island, the circle stays as a small control: one tap puts every card away at once and the circle swells, then settles."),
-                GestureLine(Icons.Rounded.TouchApp, "Long press", "$longPressTitle (hides or shows the pill by default). It never opens the quick-launch apps."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap),
+                    stringResource(R.string.guide_tap_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_long_press),
+                    stringResource(R.string.guide_idle_circle_long_press_result, longPressTitle)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_idle_widgets),
-            note = "Shown on the pill when no card is.",
+            note = stringResource(R.string.guide_idle_widgets_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap the glyph or the value", "Grows the pill into the small widget island. Tap again to close it."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap the middle band", "Brings back the stored cards, when there are any; otherwise nothing."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap outside the widget island", "Closes it. Taps on the island itself stay on it."),
-                GestureLine(Icons.Rounded.Swipe, "Swipe the widget pill", "Works even when the pill swipe actions are switched off. The small round circle keeps its own behaviour."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_glyph_or_value),
+                    stringResource(R.string.guide_tap_glyph_or_value_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_middle_band),
+                    stringResource(R.string.guide_idle_tap_middle_band_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_outside_widget),
+                    stringResource(R.string.guide_tap_outside_widget_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.Swipe, stringResource(R.string.guide_swipe_widget_pill),
+                    stringResource(R.string.guide_swipe_widget_pill_result)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_hidden_pill),
-            note = "After a long press hides it, or when Auto-hide has tucked it away. Its spot stays touchable.",
+            note = stringResource(R.string.guide_hidden_pill_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap its spot", "Auto-hidden: brings the pill back. Idle with cards put away: brings them back. Cards on the island: expands."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_its_spot),
+                    stringResource(R.string.guide_tap_its_spot_result)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_expanded_card),
-            note = "Touch anywhere on the open card.",
+            note = stringResource(R.string.guide_expanded_card_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap the card", "Opens the app the card came from."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap the middle of the top edge", "Portrait: that is the camera spot. It closes the island with the second pill's merge, then puts the cards away. A long press there runs $longPressTitle. The glyphs on either side keep switching cards."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap outside the card", "Closes things in order: an open picture first, then an open sibling list, then the island collapses back into the pill."),
-                GestureLine(Icons.Rounded.ArrowUpward, "Swipe up", actionText(settings.swipeUpAction, SwipeAction.DismissCurrent, card) + ". Inside a card with several steps it goes back one step first."),
-                GestureLine(Icons.Rounded.DeleteSweep, "Hold, then swipe up", actionText(settings.swipeHoldUpAction, SwipeAction.DismissAll, card) + ". Hold about 300 ms until you feel the pulse, then swipe."),
-                GestureLine(Icons.Rounded.ArrowDownward, "Swipe down", "Opens expandable text, a picture or a sticker when the card has one; otherwise nothing (fixed)."),
-                GestureLine(Icons.Rounded.Swipe, "Swipe left", actionText(settings.swipeLeftAction, SwipeAction.None, card)),
-                GestureLine(Icons.Rounded.Swipe, "Swipe right", actionText(settings.swipeRightAction, SwipeAction.None, card)),
-                GestureLine(Icons.Rounded.ArrowDownward, "Pull the handle", "The handle at the card's bottom edge opens the floating window with a longer, calmer pull (when Floating window is on)."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_card),
+                    stringResource(R.string.guide_tap_card_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_top_edge),
+                    stringResource(R.string.guide_tap_top_edge_result, longPressTitle)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_outside_card),
+                    stringResource(R.string.guide_tap_outside_card_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.ArrowUpward, stringResource(R.string.guide_swipe_up),
+                    actionText(settings.swipeUpAction, SwipeAction.DismissCurrent, card) + stringResource(R.string.guide_card_swipe_up_suffix)
+                ),
+                GestureLine(
+                    Icons.Rounded.DeleteSweep, stringResource(R.string.guide_hold_then_swipe_up),
+                    actionText(settings.swipeHoldUpAction, SwipeAction.DismissAll, card) + stringResource(R.string.guide_hold_swipe_up_suffix)
+                ),
+                GestureLine(
+                    Icons.Rounded.ArrowDownward, stringResource(R.string.guide_swipe_down),
+                    stringResource(R.string.guide_card_swipe_down_result)
+                ),
+                GestureLine(Icons.Rounded.Swipe, stringResource(R.string.guide_swipe_left), actionText(settings.swipeLeftAction, SwipeAction.None, card)),
+                GestureLine(Icons.Rounded.Swipe, stringResource(R.string.guide_swipe_right), actionText(settings.swipeRightAction, SwipeAction.None, card)),
+                GestureLine(
+                    Icons.Rounded.ArrowDownward, stringResource(R.string.guide_pull_handle),
+                    stringResource(R.string.guide_pull_handle_result)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_card_steps),
-            note = "Step by step: text, preview (last text and last picture), reader (all text and thumbnails), then the picture. Stickers have no steps. In these steps the normal swipe actions are off.",
+            note = stringResource(R.string.guide_card_steps_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap the arrow", "Opens the next step. The arrow beside a thumbnail opens that picture at full size."),
-                GestureLine(Icons.Rounded.ArrowDownward, "Swipe down", "One step deeper. The island follows your finger and finishes the step when you pass the halfway point."),
-                GestureLine(Icons.Rounded.ArrowUpward, "Swipe up", "One step back, and it never dismisses the card. The island stays in place."),
-                GestureLine(Icons.Rounded.Swipe, "Swipe left or right", "Nothing, and not mistaken for a tap either."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap a picture in the picker", "Opens it. With two or more pictures the picker's own taps stay with it; the card's tap does not open the app there."),
-                GestureLine(Icons.Rounded.ArrowUpward, "Scroll the reader text", "A drag the text consumes is its own and fires nothing else. Stopping a flinging reader with a touch is never a tap."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_arrow),
+                    stringResource(R.string.guide_tap_arrow_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.ArrowDownward, stringResource(R.string.guide_swipe_down),
+                    stringResource(R.string.guide_steps_swipe_down_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.ArrowUpward, stringResource(R.string.guide_swipe_up),
+                    stringResource(R.string.guide_steps_swipe_up_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.Swipe, stringResource(R.string.guide_swipe_left_or_right),
+                    stringResource(R.string.guide_swipe_left_or_right_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_picture_picker),
+                    stringResource(R.string.guide_tap_picture_picker_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.ArrowUpward, stringResource(R.string.guide_scroll_reader_text),
+                    stringResource(R.string.guide_scroll_reader_text_result)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_sibling_list),
-            note = "Opened by the second pill while the card has siblings.",
+            note = stringResource(R.string.guide_sibling_list_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap a row", "Shows that card."),
-                GestureLine(Icons.Rounded.Swipe, "Drag on the rows", "Scrolls the list. A drag that starts on its header is an island swipe."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap the second pill again, or outside", "Closes the list."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_row),
+                    stringResource(R.string.guide_tap_row_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.Swipe, stringResource(R.string.guide_drag_rows),
+                    stringResource(R.string.guide_drag_rows_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_second_pill_again),
+                    stringResource(R.string.guide_tap_second_pill_again_result)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_quick_launch),
-            note = "Opened by the long press above (App Shortcuts must be on). With no cards on the island, any drag in it belongs to the window.",
+            note = stringResource(R.string.guide_quick_launch_note),
             lines = listOf(
-                GestureLine(Icons.Rounded.ArrowUpward, "Swipe up or down", "Switches between your apps and the Utilities page, and loops."),
-                GestureLine(Icons.Rounded.Swipe, "Swipe left or right", "Switches between Apps and Recents (when Recents is on)."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap an app", "Opens it full screen."),
-                GestureLine(Icons.Rounded.TouchApp, "Long press an app", "App info, Floating window or Split screen. Keep dragging to move it or drop it on another app to make a folder."),
-                GestureLine(Icons.Rounded.TouchApp, "Tap outside", "Closes the window."),
+                GestureLine(
+                    Icons.Rounded.ArrowUpward, stringResource(R.string.guide_swipe_up_or_down),
+                    stringResource(R.string.guide_swipe_up_or_down_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.Swipe, stringResource(R.string.guide_swipe_left_or_right),
+                    stringResource(R.string.guide_quick_launch_swipe_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_app),
+                    stringResource(R.string.guide_tap_app_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_long_press_app),
+                    stringResource(R.string.guide_long_press_app_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_outside),
+                    stringResource(R.string.guide_tap_outside_result)
+                ),
             )
         ),
         GestureGroup(
             title = stringResource(R.string.guide_utilities_page),
             note = null,
             lines = listOf(
-                GestureLine(Icons.Rounded.TouchApp, "Tap a tile", "Runs it: flashlight, Wi-Fi, timer, stopwatch and the rest. The timer asks for a length first."),
-                GestureLine(Icons.Rounded.ArrowUpward, "Swipe on a scrolling widget's edge", "A widget that scrolls up and down keeps its own swipes, so use the thin strip on its left or right edge to go back to the apps page."),
+                GestureLine(
+                    Icons.Rounded.TouchApp, stringResource(R.string.guide_tap_tile),
+                    stringResource(R.string.guide_tap_tile_result)
+                ),
+                GestureLine(
+                    Icons.Rounded.ArrowUpward, stringResource(R.string.guide_swipe_widget_edge),
+                    stringResource(R.string.guide_swipe_widget_edge_result)
+                ),
             )
         ),
     )
@@ -223,7 +334,7 @@ fun GestureReferenceCard(settings: SmartIslandSettings) {
                 Column {
                     Text(stringResource(R.string.guide_all_gestures), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                     Text(
-                        "What every touch does right now. Change the actions in the cards above.",
+                        stringResource(R.string.guide_all_gestures_subtitle),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -275,76 +386,76 @@ private fun tourSteps(settings: SmartIslandSettings): List<TourStep> {
     val cardHold = getSwipeActionTitle(SwipeAction.fromId(settings.swipeHoldUpAction, SwipeAction.DismissAll))
     return listOf(
         TourStep(
-            Icons.Rounded.Gesture, "Meet your island",
+            Icons.Rounded.Gesture, stringResource(R.string.tour_meet_title),
             listOf(
-                "Smart Island sits around your camera cutout and shows what is happening: calls, music, timers, charging, downloads and notifications.",
-                "It starts small, as the pill. Everything else opens from it with a touch.",
-                "It needs a few permissions to work. The Permissions screen in the app walks you through them."
+                stringResource(R.string.tour_meet_point_1),
+                stringResource(R.string.tour_meet_point_2),
+                stringResource(R.string.tour_meet_point_3)
             ),
-            "No cards yet? Play some music or start a timer and the pill will show it."
+            stringResource(R.string.tour_meet_tip)
         ),
         TourStep(
-            Icons.Rounded.TouchApp, "Tap to open",
+            Icons.Rounded.TouchApp, stringResource(R.string.tour_tap_title),
             listOf(
-                "Tap a glyph on the pill once to expand it into a full card with its buttons.",
-                "Tap the empty middle of the pill, over the camera spot, to put the cards away. Open, the same spot at the top closes the island.",
-                "Tap the card to open the app it came from.",
-                "Tap anywhere outside the card to close it again.",
-                "Tap a smaller pill beside the main one to bring that event forward."
+                stringResource(R.string.tour_tap_point_1),
+                stringResource(R.string.tour_tap_point_2),
+                stringResource(R.string.tour_tap_point_3),
+                stringResource(R.string.tour_tap_point_4),
+                stringResource(R.string.tour_tap_point_5)
             ),
-            "On a hidden pill, one tap brings it back. Tapping the bare camera hole itself does nothing."
+            stringResource(R.string.tour_tap_tip)
         ),
         TourStep(
-            Icons.Rounded.Swipe, "Swipe the pill",
+            Icons.Rounded.Swipe, stringResource(R.string.tour_swipe_title),
             listOf(
-                "Swipe left: $left.",
-                "Swipe right: $right.",
-                "Swipe up: $up.",
-                "Swipe down: expands the island."
+                stringResource(R.string.tour_swipe_left, left),
+                stringResource(R.string.tour_swipe_right, right),
+                stringResource(R.string.tour_swipe_up, up),
+                stringResource(R.string.tour_swipe_down)
             ),
-            "The island follows your finger. Change your mind halfway and pull back to cancel."
+            stringResource(R.string.tour_swipe_tip)
         ),
         TourStep(
-            Icons.Rounded.TouchApp, "Long press",
+            Icons.Rounded.TouchApp, stringResource(R.string.guide_long_press),
             listOf(
                 if (settings.enableAppShortcuts) {
-                    "Long press the pill to open your quick-launch apps. Pin your favourites under App Shortcuts."
+                    stringResource(R.string.tour_long_press_apps)
                 } else {
-                    "Long press the pill to hide or show it."
+                    stringResource(R.string.tour_long_press_hide)
                 },
-                "Long press the camera hole itself, when it sits outside the pill, or the middle band: the normal long press action, so hide or show by default.",
-                "On the small idle circle, a long press hides or shows the pill."
+                stringResource(R.string.tour_long_press_point_2),
+                stringResource(R.string.tour_long_press_point_3)
             ),
-            "Prefer hide / show on the pill? Turn App Shortcuts off, or change the long press action."
+            stringResource(R.string.tour_long_press_tip)
         ),
         TourStep(
-            Icons.Rounded.ArrowUpward, "On the open card",
+            Icons.Rounded.ArrowUpward, stringResource(R.string.tour_card_title),
             listOf(
-                "Swipe up: $cardUp.",
-                "Hold for a moment until you feel a pulse, then swipe up: $cardHold.",
-                "Swipe down opens long text, pictures and stickers when the card has them, one step at a time. Swipe up goes one step back.",
-                "Pull the handle at the card's bottom edge to open the app in a floating window."
+                stringResource(R.string.tour_card_swipe_up, cardUp),
+                stringResource(R.string.tour_card_hold, cardHold),
+                stringResource(R.string.tour_card_point_3),
+                stringResource(R.string.tour_card_point_4)
             ),
-            "Buttons on a card are the app's own, so Reply, Pause or Stop work just like in the shade."
+            stringResource(R.string.tour_card_tip)
         ),
         TourStep(
-            Icons.Rounded.Apps, "Quick-launch and utilities",
+            Icons.Rounded.Apps, stringResource(R.string.tour_quick_title),
             listOf(
-                "In the quick-launch window, swipe up or down to switch between your apps and the Utilities page.",
-                "Swipe left or right for Recents, when it is on.",
-                "Utilities are one-tap tiles: flashlight, Wi-Fi, timer, stopwatch, screenshot and more. You can add widgets too.",
-                "A widget that scrolls up and down has a thin edge strip on each side that swipes back to the apps."
+                stringResource(R.string.tour_quick_point_1),
+                stringResource(R.string.tour_quick_point_2),
+                stringResource(R.string.tour_quick_point_3),
+                stringResource(R.string.tour_quick_point_4)
             ),
-            "Edit the grid under App Shortcuts."
+            stringResource(R.string.tour_quick_tip)
         ),
         TourStep(
-            Icons.Rounded.Tune, "Make it yours",
+            Icons.Rounded.Tune, stringResource(R.string.tour_yours_title),
             listOf(
-                "Every swipe action can be changed on the Gestures screen, or switched off.",
-                "Too twitchy or too stiff? Set Gesture sensitivity to Low, Normal or High.",
-                "Vibration strength, animation speed and colours are in Settings too."
+                stringResource(R.string.tour_yours_point_1),
+                stringResource(R.string.tour_yours_point_2),
+                stringResource(R.string.tour_yours_point_3)
             ),
-            "You can open this tour again any time from the top of the Gestures screen."
+            stringResource(R.string.tour_yours_tip)
         ),
     )
 }
@@ -371,7 +482,7 @@ fun NewUserTour(settings: SmartIslandSettings, onFinish: () -> Unit) {
             Column(modifier = Modifier.padding(22.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
                 Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        "Step ${index + 1} of ${steps.size}",
+                        stringResource(R.string.tour_step_of, index + 1, steps.size),
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
@@ -462,7 +573,7 @@ fun NewUserTourCard(onStart: () -> Unit) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(stringResource(R.string.guide_new_to_si), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                 Text(
-                    "Take a one-minute tour of the gestures.",
+                    stringResource(R.string.tour_card_subtitle),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

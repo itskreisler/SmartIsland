@@ -116,7 +116,8 @@ fun DemoSection(
                 ) {
                     Icon(Icons.Rounded.ClearAll, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(Modifier.width(8.dp))
-                    Text(if (showingKeys.isEmpty()) "No demo cards showing" else "Clear all demo cards (${showingKeys.size})")
+                    Text(if (showingKeys.isEmpty()) stringResource(R.string.demo_no_cards)
+                    else stringResource(R.string.demo_clear_all, showingKeys.size))
                 }
             }
         }
@@ -125,9 +126,10 @@ fun DemoSection(
         DemoEvents.available.groupBy { it.group }.entries.forEachIndexed { index, (group, events) ->
             val showingCount = events.count { DemoEvents.keyFor(it) in showingKeys }
             CollapsibleCard(
-                title = group,
+                title = stringResource(events.first().groupRes),
                 stateKey = "demo_group_$group",
-                summary = if (showingCount > 0) "$showingCount showing" else "${events.size} samples",
+                summary = if (showingCount > 0) stringResource(R.string.demo_showing_count, showingCount)
+                else stringResource(R.string.demo_samples_count, events.size),
                 icon = iconFor(events.first()),
                 initiallyExpanded = false
             ) {
@@ -138,8 +140,8 @@ fun DemoSection(
                     val showing = if (event == IslandEvent.FACE_UNLOCK) faceIdState.active else DemoEvents.keyFor(event) in showingKeys
                     val off = !settings.isEventEnabled(event.id)
                     DemoRow(
-                        title = if (event == IslandEvent.FACE_UNLOCK) "Face ID expanded / mix (no face found)" else event.label,
-                        subtitle = if (off) "Switched off on the Home tab" else null,
+                        title = if (event == IslandEvent.FACE_UNLOCK) stringResource(R.string.demo_face_id_expanded_mix_no_face) else stringResource(event.labelRes),
+                        subtitle = if (off) stringResource(R.string.demo_switched_off_home) else null,
                         event = event,
                         showing = showing,
                         enabled = notificationRepository != null || event == IslandEvent.FACE_UNLOCK,
@@ -162,7 +164,7 @@ fun DemoSection(
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f))
                         DemoRow(
                             title = stringResource(R.string.demo_face_id_expanded_accepted),
-                            subtitle = if (off) "Switched off on the Home tab" else null,
+                            subtitle = if (off) stringResource(R.string.demo_switched_off_home) else null,
                             event = event,
                             showing = faceIdState.active,
                             enabled = true,
@@ -174,7 +176,7 @@ fun DemoSection(
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f))
                         DemoRow(
                             title = stringResource(R.string.demo_face_id_mix_accepted),
-                            subtitle = if (off) "Switched off on the Home tab" else null,
+                            subtitle = if (off) stringResource(R.string.demo_switched_off_home) else null,
                             event = event,
                             showing = faceIdState.active,
                             enabled = true,
@@ -186,7 +188,7 @@ fun DemoSection(
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f))
                         DemoRow(
                             title = stringResource(R.string.demo_face_id_cutout_no_face),
-                            subtitle = if (off) "Switched off on the Home tab" else null,
+                            subtitle = if (off) stringResource(R.string.demo_switched_off_home) else null,
                             event = event,
                             showing = faceIdState.active,
                             enabled = true,
@@ -198,7 +200,7 @@ fun DemoSection(
                         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.2f))
                         DemoRow(
                             title = stringResource(R.string.demo_face_id_cutout_accepted),
-                            subtitle = if (off) "Switched off on the Home tab" else null,
+                            subtitle = if (off) stringResource(R.string.demo_switched_off_home) else null,
                             event = event,
                             showing = faceIdState.active,
                             enabled = true,

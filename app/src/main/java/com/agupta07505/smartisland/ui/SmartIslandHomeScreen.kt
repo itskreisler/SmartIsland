@@ -660,7 +660,7 @@ private fun StudioTopHeader(
             if (appIcon != null) {
                 Image(
                     bitmap = appIcon,
-                    contentDescription = "Smart Island Logo",
+                    contentDescription = stringResource(R.string.cd_smart_island_logo),
                     modifier = Modifier
                         .size(42.dp)
                         .clip(RoundedCornerShape(12.dp))
@@ -793,8 +793,8 @@ private fun MasterPowerCard(
                     .padding(bottom = 12.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                SetupChip("Accessibility", overlayGranted, onSetupPermissionsClick)
-                SetupChip("Notifications", notificationGranted, onSetupPermissionsClick)
+                SetupChip(stringResource(R.string.diag_accessibility), overlayGranted, onSetupPermissionsClick)
+                SetupChip(stringResource(R.string.diag_notifications), notificationGranted, onSetupPermissionsClick)
             }
             Box(
                 modifier = Modifier
@@ -828,7 +828,11 @@ private fun MasterPowerCard(
 
 @Composable
 private fun ThemeModeSelector(selected: String, onSelected: (String) -> Unit) {
-    val options = listOf("system" to "System", "light" to "Light", "dark" to "Dark")
+    val options = listOf(
+        "system" to stringResource(R.string.expanded_theme_system),
+        "light" to stringResource(R.string.expanded_theme_light),
+        "dark" to stringResource(R.string.expanded_theme_dark)
+    )
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -906,7 +910,7 @@ private fun SettingsOverviewSection(
         SettingsCategoryGroup(title = stringResource(R.string.category_system_core)) {
             FeatureStudioNavigationCard(
                 title = stringResource(R.string.card_permissions_setup_title),
-                subtitle = "Accessibility, notification access, battery",
+                subtitle = stringResource(R.string.card_permissions_setup_subtitle),
                 icon = Icons.Rounded.Shield,
                 iconColor = BadgeGreen,
                 statusText = if (!canEnable) stringResource(R.string.status_action_required) else null,
@@ -916,7 +920,7 @@ private fun SettingsOverviewSection(
 
             FeatureStudioNavigationCard(
                 title = stringResource(R.string.card_backup_restore_title),
-                subtitle = "Export or import all settings",
+                subtitle = stringResource(R.string.card_backup_restore_subtitle),
                 icon = Icons.Rounded.SettingsBackupRestore,
                 iconColor = BadgeBlue,
                 onClick = { onNavigateTo(FeatureDetailSection.BackupRestore) }
@@ -924,7 +928,7 @@ private fun SettingsOverviewSection(
 
             FeatureStudioNavigationCard(
                 title = stringResource(R.string.card_updates_downloads_title),
-                subtitle = "Check GitHub releases and download updates",
+                subtitle = stringResource(R.string.card_updates_downloads_subtitle),
                 icon = Icons.Rounded.Download,
                 iconColor = BadgeTeal,
                 onClick = { onNavigateTo(FeatureDetailSection.UpdatesAndDownloads) }
@@ -932,7 +936,7 @@ private fun SettingsOverviewSection(
 
             FeatureStudioNavigationCard(
                 title = stringResource(R.string.card_support_requests_title),
-                subtitle = "Report issues, feature requests & community",
+                subtitle = stringResource(R.string.card_support_requests_subtitle),
                 icon = Icons.Rounded.People,
                 iconColor = BadgePink,
                 onClick = { onNavigateTo(FeatureDetailSection.SupportCommunity) }
@@ -940,10 +944,10 @@ private fun SettingsOverviewSection(
 
             FeatureStudioNavigationCard(
                 title = stringResource(R.string.card_developer_options_title),
-                subtitle = "Diagnostics, log recording & developer options",
+                subtitle = stringResource(R.string.card_developer_options_subtitle),
                 icon = Icons.Rounded.Code,
                 iconColor = BadgeSlate,
-                statusText = if (settings.recordLogs) "Recording" else null,
+                statusText = if (settings.recordLogs) stringResource(R.string.status_recording) else null,
                 statusColor = MaterialTheme.colorScheme.primary,
                 onClick = { onNavigateTo(FeatureDetailSection.DeveloperOptions) }
             )
@@ -978,7 +982,7 @@ private fun SettingsOverviewSection(
 
                 FeatureStudioNavigationCard(
                     title = stringResource(R.string.card_color_studio_title),
-                    subtitle = "Colours, opacity, gradients and card styles",
+                    subtitle = stringResource(R.string.card_color_studio_subtitle),
                     icon = Icons.Rounded.Palette,
                     iconColor = BadgeViolet,
                     statusText = stringResource(R.string.card_color_studio_status, (settings.opacity * 100).toInt()),
@@ -988,7 +992,7 @@ private fun SettingsOverviewSection(
                 CollapsibleCard(
                     title = stringResource(R.string.island_font_title),
                     stateKey = "settings_appearance_fonts",
-                    summary = "Typography and font mixing",
+                    summary = stringResource(R.string.island_font_summary),
                     icon = Icons.Rounded.FontDownload,
                     initiallyExpanded = false
                 ) {
@@ -1003,7 +1007,7 @@ private fun SettingsOverviewSection(
             SettingsCategoryGroup(title = stringResource(R.string.category_behaviors_launcher)) {
                 FeatureStudioNavigationCard(
                     title = stringResource(R.string.card_notifications_privacy_title),
-                    subtitle = "Which apps and events show, lock screen privacy",
+                    subtitle = stringResource(R.string.card_notifications_privacy_subtitle),
                     icon = Icons.Rounded.Notifications,
                     statusText = if (settings.showOnLockScreen) stringResource(R.string.card_notifications_privacy_status_lock) else null,
                     onClick = { onNavigateTo(FeatureDetailSection.NotificationRules) }
@@ -1011,7 +1015,7 @@ private fun SettingsOverviewSection(
 
                 FeatureStudioNavigationCard(
                     title = stringResource(R.string.card_notification_history_title),
-                    subtitle = "Browse notifications the island has shown",
+                    subtitle = stringResource(R.string.card_notification_history_subtitle),
                     icon = Icons.Rounded.History,
                     iconColor = BadgeIndigo,
                     statusText = if (settings.enableNotificationHistory) stringResource(R.string.card_notification_history_status_active) else null,
@@ -1021,7 +1025,7 @@ private fun SettingsOverviewSection(
 
                 FeatureStudioNavigationCard(
                     title = stringResource(R.string.card_app_shortcuts_title),
-                    subtitle = "Launch favourite apps from the island",
+                    subtitle = stringResource(R.string.card_app_shortcuts_subtitle),
                     icon = Icons.Rounded.Apps,
                     iconColor = BadgeTeal,
                     statusText = if (settings.enableAppShortcuts) {
@@ -1036,7 +1040,7 @@ private fun SettingsOverviewSection(
             SettingsCategoryGroup(title = stringResource(R.string.category_interaction)) {
                 FeatureStudioNavigationCard(
                     title = stringResource(R.string.card_gestures_guide_title),
-                    subtitle = "Swipes, taps, long press, sensitivity and vibration",
+                    subtitle = stringResource(R.string.card_gestures_guide_subtitle),
                     icon = Icons.Rounded.Gesture,
                     iconColor = BadgePink,
                     onClick = { onNavigateTo(FeatureDetailSection.GesturesGuide) }
@@ -1279,7 +1283,7 @@ private fun DetailScreenHost(
             ) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.btn_back),
                     tint = MaterialTheme.colorScheme.onSurface
                 )
             }
@@ -1292,14 +1296,14 @@ private fun DetailScreenHost(
                 FeatureDetailSection.GesturesGuide -> stringResource(R.string.detail_title_gestures_guide)
                 FeatureDetailSection.PermissionsCenter -> stringResource(R.string.detail_title_permissions_center)
                 FeatureDetailSection.BackupRestore -> stringResource(R.string.detail_title_backup_restore)
-                FeatureDetailSection.Diagnostics -> "Diagnostic log"
+                FeatureDetailSection.Diagnostics -> stringResource(R.string.detail_diagnostic_log)
                 FeatureDetailSection.Timing -> stringResource(R.string.detail_title_timing)
                 FeatureDetailSection.IdleWidgets -> stringResource(R.string.idle_widgets_title)
                 FeatureDetailSection.About -> stringResource(R.string.detail_title_about)
                 FeatureDetailSection.UpdatesAndDownloads -> stringResource(R.string.detail_title_updates_downloads)
                 FeatureDetailSection.SupportCommunity -> stringResource(R.string.detail_title_support_community)
                 FeatureDetailSection.DeveloperOptions -> stringResource(R.string.detail_title_developer_options)
-                FeatureDetailSection.FaceIdSettings -> "Face ID settings"
+                FeatureDetailSection.FaceIdSettings -> stringResource(R.string.detail_face_id_settings)
                 FeatureDetailSection.WeatherSettings -> stringResource(R.string.weather_cfg_title)
                 FeatureDetailSection.NetSpeedSettings -> stringResource(R.string.net_cfg_title)
                 FeatureDetailSection.CalendarSettings -> stringResource(R.string.cal_cfg_title)
@@ -1492,7 +1496,7 @@ private fun WelcomeDialog(
                 if (appIcon != null) {
                     Image(
                         bitmap = appIcon,
-                        contentDescription = "Smart Island Logo",
+                        contentDescription = stringResource(R.string.cd_smart_island_logo),
                         modifier = Modifier
                             .size(68.dp)
                             .clip(RoundedCornerShape(18.dp))
@@ -1597,7 +1601,7 @@ private fun WelcomeDialog(
                 }
 
                 TextButton(onClick = onTakeTour, modifier = Modifier.fillMaxWidth()) {
-                    Text("Take a quick tour of the gestures", fontWeight = FontWeight.SemiBold)
+                    Text(stringResource(R.string.welcome_tour_prompt), fontWeight = FontWeight.SemiBold)
                 }
             }
         }

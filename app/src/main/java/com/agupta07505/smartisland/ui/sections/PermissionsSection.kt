@@ -203,10 +203,10 @@ fun PermissionsSection(
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             val shizukuStateText = when {
-                                !ShizukuManager.isInstalled(context) -> "Not Installed"
-                                !ShizukuManager.isBinderAvailable() -> "Shizuku Not Running"
-                                !ShizukuManager.hasPermission() -> "Permission Required"
-                                else -> "Ready to Auto-Grant"
+                                !ShizukuManager.isInstalled(context) -> stringResource(R.string.perm_shizuku_not_installed)
+                                !ShizukuManager.isBinderAvailable() -> stringResource(R.string.perm_shizuku_not_running)
+                                !ShizukuManager.hasPermission() -> stringResource(R.string.perm_shizuku_permission_required)
+                                else -> stringResource(R.string.perm_shizuku_ready)
                             }
                             Text(
                                 text = shizukuStateText,
@@ -268,14 +268,17 @@ fun PermissionsSection(
                                     result.onSuccess {
                                         Toast.makeText(
                                             context,
-                                            "Accessibility service repaired via Shizuku!",
+                                            context.getString(R.string.perm_accessibility_repaired),
                                             Toast.LENGTH_SHORT
                                         ).show()
                                         onRefreshPermissions()
                                     }.onFailure { err ->
                                         Toast.makeText(
                                             context,
-                                            "Repair failed: ${err.localizedMessage ?: "Unknown error"}",
+                                            context.getString(
+                                                R.string.perm_repair_failed,
+                                                err.localizedMessage ?: context.getString(R.string.perm_error_unknown)
+                                            ),
                                             Toast.LENGTH_LONG
                                         ).show()
                                     }
@@ -287,7 +290,8 @@ fun PermissionsSection(
                     contentPadding = PaddingValues(horizontal = 10.dp, vertical = 8.dp)
                 ) {
                     Text(
-                        text = if (isRepairingAccessibility) "Repairing Accessibility..." else "Repair Accessibility (Shizuku)",
+                        text = if (isRepairingAccessibility) stringResource(R.string.perm_repairing_accessibility)
+                        else stringResource(R.string.perm_repair_accessibility_btn),
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -477,7 +481,7 @@ fun PermissionsSection(
                         }
                         Column {
                             Text(
-                                text = "Suppress System Overlay Warning",
+                                text = stringResource(R.string.perm_suppress_overlay_warning),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -490,7 +494,7 @@ fun PermissionsSection(
                                         .padding(horizontal = 8.dp, vertical = 2.dp)
                                 ) {
                                     Text(
-                                        text = "Configured",
+                                        text = stringResource(R.string.perm_configured),
                                         color = Color(0xFF0F9F6E),
                                         fontSize = 11.sp,
                                         fontWeight = FontWeight.Bold
@@ -508,18 +512,23 @@ fun PermissionsSection(
                             }
                             context.safeStartActivity(
                                 intent,
-                                "Cannot open app notification settings on this device."
+                                context.getString(R.string.perm_cannot_open_notification_settings)
                             )
                         },
                         shape = RoundedCornerShape(10.dp),
                         contentPadding = PaddingValues(horizontal = 14.dp, vertical = 8.dp)
                     ) {
-                        Text(if (isOverlayWarningDisabled) "Open" else "Hide Alert", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                        Text(
+                            if (isOverlayWarningDisabled) stringResource(R.string.btn_open)
+                            else stringResource(R.string.perm_hide_alert),
+                            fontSize = 12.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
                     }
                 }
                 Spacer(Modifier.height(10.dp))
                 Text(
-                    text = "Opens Android system notification channels to hide the persistent \"Smart Island is displaying over other apps\" banner.",
+                    text = stringResource(R.string.perm_overlay_warning_desc),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     lineHeight = 16.sp
@@ -566,7 +575,7 @@ fun PermissionsSection(
                         }
                         Column {
                             Text(
-                                text = "OEM Autostart & Kill Protection",
+                                text = stringResource(R.string.perm_oem_autostart_title),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -579,7 +588,7 @@ fun PermissionsSection(
                                         .padding(horizontal = 8.dp, vertical = 2.dp)
                                 ) {
                                     Text(
-                                        text = "Configured",
+                                        text = stringResource(R.string.perm_configured),
                                         color = Color(0xFF0F9F6E),
                                         fontSize = 11.sp,
                                         fontWeight = FontWeight.Bold
@@ -597,9 +606,9 @@ fun PermissionsSection(
                                         val result = ShizukuManager.grantOemAutostartAndKillProtection(context)
                                         result.onSuccess {
                                             isOemAutostartEnabled = true
-                                            Toast.makeText(context, "OEM autostart granted via Shizuku!", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, context.getString(R.string.perm_oem_granted), Toast.LENGTH_SHORT).show()
                                         }.onFailure { err ->
-                                            Toast.makeText(context, "Error: ${err.localizedMessage}", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(context, context.getString(R.string.perm_error, err.localizedMessage ?: ""), Toast.LENGTH_SHORT).show()
                                         }
                                     }
                                 },
@@ -617,13 +626,13 @@ fun PermissionsSection(
                             shape = RoundedCornerShape(10.dp),
                             contentPadding = PaddingValues(horizontal = 12.dp, vertical = 8.dp)
                         ) {
-                            Text("Fix Kills", fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
+                            Text(stringResource(R.string.perm_fix_kills), fontSize = 12.sp, fontWeight = FontWeight.SemiBold)
                         }
                     }
                 }
                 Spacer(Modifier.height(10.dp))
                 Text(
-                    text = "On Xiaomi/HyperOS, Samsung OneUI, OPPO ColorOS, and Vivo OriginOS, enable Autostart to prevent custom OEM task killers from terminating Smart Island.",
+                    text = stringResource(R.string.perm_oem_autostart_desc),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     lineHeight = 16.sp

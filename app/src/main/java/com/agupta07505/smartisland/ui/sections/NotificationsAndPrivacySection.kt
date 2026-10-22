@@ -847,13 +847,13 @@ fun NotificationsAndPrivacySection(
                                 ) {
                                     Column(modifier = Modifier.weight(1f)) {
                                         Text(
-                                            text = event.shortLabel,
+                                            text = stringResource(event.shortLabelRes),
                                             style = MaterialTheme.typography.bodyMedium,
                                             fontWeight = FontWeight.SemiBold,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
                                         Text(
-                                            text = event.label,
+                                            text = stringResource(event.labelRes),
                                             style = MaterialTheme.typography.labelSmall,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant
                                         )
@@ -2014,7 +2014,7 @@ private fun LockScreenEventList(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Text(
-                        text = event.label,
+                        text = stringResource(event.labelRes),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.weight(1f)

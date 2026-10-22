@@ -121,13 +121,13 @@ fun AboutSection(
             Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Column {
                     Text(
-                        text = "Smart Island",
+                        text = stringResource(R.string.app_name),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "Version $currentVersion",
+                        text = stringResource(R.string.about_version, currentVersion),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -140,7 +140,7 @@ fun AboutSection(
                 ) {
                     RepoBadge(
                         icon = Icons.Rounded.Star,
-                        label = "Stars",
+                        label = stringResource(R.string.about_repo_stars),
                         value = repoStats?.stars?.toString() ?: "—",
                         tint = MaterialTheme.colorScheme.primary,
                         onClick = {
@@ -150,7 +150,7 @@ fun AboutSection(
                     )
                     RepoBadge(
                         icon = Icons.Rounded.ForkRight,
-                        label = "Forks",
+                        label = stringResource(R.string.about_repo_forks),
                         value = repoStats?.forks?.toString() ?: "—",
                         tint = MaterialTheme.colorScheme.primary,
                         onClick = {
@@ -160,7 +160,7 @@ fun AboutSection(
                     )
                     RepoBadge(
                         icon = Icons.Rounded.BugReport,
-                        label = "Issues",
+                        label = stringResource(R.string.about_repo_issues),
                         value = repoStats?.openIssues?.toString() ?: "—",
                         tint = MaterialTheme.colorScheme.primary,
                         onClick = {
@@ -170,7 +170,7 @@ fun AboutSection(
                     )
                     RepoBadge(
                         icon = Icons.Rounded.Description,
-                        label = "License",
+                        label = stringResource(R.string.about_repo_license),
                         value = repoStats?.licenseName ?: "GPL-3.0",
                         tint = MaterialTheme.colorScheme.primary,
                         onClick = {
@@ -203,20 +203,20 @@ fun AboutSection(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Security,
-                        contentDescription = "Privacy Shield",
+                        contentDescription = stringResource(R.string.about_privacy_shield_cd),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(22.dp)
                     )
                 }
                 Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     Text(
-                        text = "100% On-Device & Zero Telemetry",
+                        text = stringResource(R.string.about_privacy_title),
                         style = MaterialTheme.typography.titleSmall,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
                     )
                     Text(
-                        text = "Smart Island does not collect, store, or transmit any user data, identifiers, or notification details. All operations and settings remain strictly on your device. Network queries are unauthenticated, read-only requests for GitHub repository updates.",
+                        text = stringResource(R.string.about_privacy_desc),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant,
                         lineHeight = 18.sp
@@ -257,7 +257,7 @@ fun AboutSection(
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agupta07505/SmartIsland/blob/main/PRIVACY.md"))
                         runCatchingLogged("AboutSection", "Failed to open Privacy Policy") {
                             context.startActivity(intent)
-                        } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                     }
                 )
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.25f))
@@ -270,7 +270,7 @@ fun AboutSection(
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agupta07505/SmartIsland/blob/main/TERMS.md"))
                         runCatchingLogged("AboutSection", "Failed to open Terms of Use") {
                             context.startActivity(intent)
-                        } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                     }
                 )
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.25f))
@@ -283,7 +283,7 @@ fun AboutSection(
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agupta07505/SmartIsland"))
                         runCatchingLogged("AboutSection", "Failed to open Open Source link") {
                             context.startActivity(intent)
-                        } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                     }
                 )
             }
@@ -339,7 +339,7 @@ fun AboutSection(
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agupta07505"))
                             runCatchingLogged("AboutSection", "Failed to open GitHub profile") {
                                 context.startActivity(intent)
-                            } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                            } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.weight(1f)
                     )
@@ -350,7 +350,7 @@ fun AboutSection(
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://linkedin.com/in/agupta07505"))
                             runCatchingLogged("AboutSection", "Failed to open LinkedIn profile") {
                                 context.startActivity(intent)
-                            } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                            } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.weight(1f)
                     )
@@ -367,21 +367,21 @@ fun AboutSection(
                             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://instagram.com/agupta07505"))
                             runCatchingLogged("AboutSection", "Failed to open Instagram profile") {
                                 context.startActivity(intent)
-                            } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                            } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.weight(1f)
                     )
                     ContactButton(
                         icon = { EmailIcon(tint = Color(0xFFEA4335)) },
-                        label = "Email",
+                        label = stringResource(R.string.about_contact_email),
                         onClick = {
                             val intent = Intent(Intent.ACTION_SENDTO).apply {
                                 data = Uri.parse("mailto:agupta07505@gmail.com")
-                                putExtra(Intent.EXTRA_SUBJECT, "Smart Island App Feedback")
+                                putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.about_feedback_subject))
                             }
                             runCatchingLogged("AboutSection", "Failed to send email") {
                                 context.startActivity(intent)
-                            } ?: Toast.makeText(context, "Cannot open email app", Toast.LENGTH_SHORT).show()
+                            } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_email), Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.weight(1f)
                     )

@@ -178,9 +178,9 @@ fun EventTogglesSection(
 
             val onCount = events.count { isOn(it) }
             CollapsibleCard(
-                title = group,
+                title = stringResource(events.first().groupRes),
                 stateKey = "events_${if (landscape) "land" else "port"}_$group",
-                summary = "$onCount of ${events.size} on",
+                summary = stringResource(R.string.events_on_count, onCount, events.size),
                 icon = iconFor(events.first()),
                 initiallyExpanded = groupIndex == 0,
                 searchKeyPrefix = "event.$group.",
@@ -226,7 +226,7 @@ fun EventTogglesSection(
                         ) {
                             rowEvents.forEach { event ->
                                 EventTile(
-                                    title = event.shortLabel,
+                                    title = stringResource(event.shortLabelRes),
                                     icon = iconFor(event),
                                     checked = isOn(event),
                                     autoExpand = if (event.canSwitchAutoExpand) settings.isEventAutoExpand(event.id) else null,
