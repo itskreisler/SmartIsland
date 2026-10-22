@@ -1382,4 +1382,53 @@
     <string name="tour_yours_point_3">Vibration strength, animation speed and colours are in Settings too.</string>
     <string name="tour_yours_tip">You can open this tour again any time from the top of the Gestures screen.</string>
     <string name="tour_yours_title">Make it yours</string>
+
+    <!-- ===== Historial de notificaciones (EN) ===== -->
+    <string name="history_status_active">Logging active • On-device private</string>
+    <string name="history_status_disabled">Disabled</string>
+    <string name="history_retention_filter">Retention filter</string>
+    <string name="history_selected">Selected</string>
+    <string name="history_filter_prefix">Filter: %1$s</string>
+    <string name="history_clear_app_filter">Clear app filter</string>
+    <string name="history_delete_entry">Delete entry</string>
+    <string name="history_show_more">Show more</string>
+    <string name="history_show_less">Show less</string>
+    <string name="history_app_not_installed">App not installed</string>
+    <string name="history_text_copied">Notification text copied</string>
+    <string name="history_copy">Copy</string>
+    <string name="history_close">Close</string>
+    <string name="history_filter_dialog_desc">Select an app to view its notifications, or choose All Apps to see all logs together.</string>
+    <string name="history_delete_by_app">Delete by App</string>
+    <string name="history_delete_dialog_desc">Select an app to filter or delete all recorded notification logs for that app.</string>
+    <string name="history_delete_all_from">Delete all from %1$s</string>
+    <string name="history_details_title">Message Inspection Details</string>
+    <string name="history_field_application">Application</string>
+    <string name="history_field_title">Title</string>
+    <string name="history_field_text">Text Content</string>
+    <string name="history_field_subtext">SubText</string>
+    <string name="history_field_received">Received Time</string>
+    <string name="history_field_category">Category</string>
+    <string name="history_field_channel">Channel ID</string>
+    <string name="history_field_island_mode">Island Mode</string>
+    <string name="history_field_actions">Action Buttons</string>
+    <string name="history_delete_log">Delete Log</string>
+    <string name="history_datetime_pattern">EEEE, MMMM d, yyyy • h:mm:ss a</string>
+    <string name="history_date_pattern">EEEE, MMMM d, yyyy</string>
+    <string name="history_time_pattern">h:mm a</string>
+    <plurals name="history_notification_count">
+        <item quantity="one">%1$d notification</item>
+        <item quantity="other">%1$d notifications</item>
+    </plurals>
+    <plurals name="history_saved_count">
+        <item quantity="one">%1$d saved</item>
+        <item quantity="other">%1$d saved</item>
+    </plurals>
+    <plurals name="history_logs_count">
+        <item quantity="one">%1$s: %2$d log</item>
+        <item quantity="other">%1$s: %2$d logs</item>
+    </plurals>
+
+    <!-- ===== Historial de notificaciones: días (EN) ===== -->
+    <string name="history_today">Today</string>
+    <string name="history_yesterday">Yesterday</string>
 </resources>

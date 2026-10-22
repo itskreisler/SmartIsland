@@ -98,6 +98,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.core.graphics.drawable.toBitmap
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.pluralStringResource
 import com.agupta07505.smartisland.R
 import com.agupta07505.smartisland.data.INotificationHistoryRepository
 import com.agupta07505.smartisland.data.NotificationHistoryEntry
@@ -225,7 +226,7 @@ fun NotificationHistorySection(
     }
 
     val groupedByDay = remember(filteredEntries) {
-        groupEntriesByDay(filteredEntries)
+        groupEntriesByDay(filteredEntries, context)
     }
 
     if (showClearAllConfirm) {
@@ -381,7 +382,7 @@ fun NotificationHistorySection(
                                      color = MaterialTheme.colorScheme.onSurface
                                  )
                                  Text(
-                                     text = if (settings.enableNotificationHistory) "Logging active • On-device private" else "Disabled",
+                                     text = if (settings.enableNotificationHistory) stringResource(R.string.history_status_active) else stringResource(R.string.history_status_disabled),
                                      style = MaterialTheme.typography.bodySmall,
                                      color = if (settings.enableNotificationHistory) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
                                  )
@@ -521,20 +522,15 @@ fun NotificationHistorySection(
                                 ) {
                                     Icon(
                                         Icons.Rounded.FilterList,
-                                        contentDescription = "Retention filter",
+                                        contentDescription = stringResource(R.string.history_retention_filter),
                                         tint = MaterialTheme.colorScheme.primary,
                                         modifier = Modifier.size(16.dp)
                                     )
                                     Spacer(Modifier.width(6.dp))
                                     Text(
-                                        text = when (settings.notificationHistoryRetentionHours) {
-                                            24 -> "24 Hours"
-                                            72 -> "3 Days"
-                                            168 -> "7 Days"
-                                            720 -> "30 Days"
-                                            -1 -> "Forever"
-                                            else -> "3 Days"
-                                        },
+                                        text = stringResource(
+                                            retentionResMap[settings.notificationHistoryRetentionHours] ?: R.string.retention_72h
+                                        ),
                                         style = MaterialTheme.typography.labelSmall,
                                         fontWeight = FontWeight.Medium
                                     )
@@ -560,7 +556,7 @@ fun NotificationHistorySection(
                                                 {
                                                     Icon(
                                                         Icons.Rounded.Check,
-                                                        contentDescription = "Selected",
+                                                        contentDescription = stringResource(R.string.history_selected),
                                                         tint = MaterialTheme.colorScheme.primary,
                                                         modifier = Modifier.size(16.dp)
                                                     )
@@ -593,7 +589,7 @@ fun NotificationHistorySection(
                             trailingIcon = {
                                 if (searchQuery.isNotEmpty()) {
                                     IconButton(onClick = { searchQuery = "" }) {
-                                        Icon(Icons.Rounded.Clear, contentDescription = "Clear search", tint = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        Icon(Icons.Rounded.Clear, contentDescription = stringResource(R.string.settings_search_clear), tint = MaterialTheme.colorScheme.onSurfaceVariant)
                                     }
                                 }
                             },
@@ -692,7 +688,7 @@ fun NotificationHistorySection(
                                     horizontalArrangement = Arrangement.SpaceBetween
                                 ) {
                                     Text(
-                                        text = "Filter: $activeAppName",
+                                        text = stringResource(R.string.history_filter_prefix, activeAppName),
                                         style = MaterialTheme.typography.labelSmall,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onPrimaryContainer
@@ -701,7 +697,7 @@ fun NotificationHistorySection(
                                         onClick = { selectedFilterPackage = null },
                                         modifier = Modifier.size(20.dp)
                                     ) {
-                                        Icon(Icons.Rounded.Close, contentDescription = "Clear app filter", tint = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.size(14.dp))
+                                        Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.history_clear_app_filter), tint = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.size(14.dp))
                                     }
                                 }
                             }
@@ -714,10 +710,20 @@ fun NotificationHistorySection(
                         ) {
                             Text(
                                 text = if (selectedFilterPackage != null) {
-                                    val activeName = appSummaries.find { it.packageName == selectedFilterPackage }?.appName ?: selectedFilterPackage
-                                    "$activeName: ${filteredEntries.size} logs"
+                                    val activeName = appSummaries.find { it.packageName == selectedFilterPackage }?.appName
+                                        ?: selectedFilterPackage.orEmpty()
+                                    pluralStringResource(
+                                        R.plurals.history_logs_count,
+                                        filteredEntries.size,
+                                        activeName,
+                                        filteredEntries.size
+                                    )
                                 } else {
-                                    "${filteredEntries.size} saved"
+                                    pluralStringResource(
+                                        R.plurals.history_saved_count,
+                                        filteredEntries.size,
+                                        filteredEntries.size
+                                    )
                                 },
                                 style = MaterialTheme.typography.labelMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -874,8 +880,8 @@ private fun NotificationHistoryItemCard(
     var isExpanded by remember { mutableStateOf(false) }
     val appIcon = rememberAppIcon(entry.packageName)
 
-    val timeFormatted = remember(entry.postTimeMillis) {
-        val sdf = SimpleDateFormat("h:mm a", Locale.getDefault())
+    val timeFormatted = remember(entry.postTimeMillis, context) {
+        val sdf = SimpleDateFormat(context.getString(R.string.history_time_pattern), Locale.getDefault())
         sdf.format(Date(entry.postTimeMillis))
     }
 
@@ -960,7 +966,7 @@ private fun NotificationHistoryItemCard(
                 ) {
                     Icon(
                         Icons.Rounded.Delete,
-                        contentDescription = "Delete entry",
+                        contentDescription = stringResource(R.string.history_delete_entry),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                         modifier = Modifier.size(16.dp)
                     )
@@ -991,7 +997,7 @@ private fun NotificationHistoryItemCard(
 
             if (entry.text.length > 120 || entry.title.length > 80) {
                 Text(
-                    text = if (isExpanded) "Show less" else "Show more",
+                    text = if (isExpanded) stringResource(R.string.history_show_less) else stringResource(R.string.history_show_more),
                     style = MaterialTheme.typography.labelSmall,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Bold,
@@ -1034,7 +1040,7 @@ private fun NotificationHistoryItemCard(
                             launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             context.startActivity(launchIntent)
                         } else {
-                            Toast.makeText(context, "App not installed", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, context.getString(R.string.history_app_not_installed), Toast.LENGTH_SHORT).show()
                         }
                     },
                     shape = RoundedCornerShape(8.dp),
@@ -1043,7 +1049,7 @@ private fun NotificationHistoryItemCard(
                 ) {
                     Icon(Icons.AutoMirrored.Rounded.Launch, contentDescription = null, modifier = Modifier.size(12.dp))
                     Spacer(Modifier.width(4.dp))
-                    Text("Open App", fontSize = 11.sp)
+                    Text(stringResource(R.string.swipe_action_open_app_title), fontSize = 11.sp)
                 }
 
                 OutlinedButton(
@@ -1055,7 +1061,7 @@ private fun NotificationHistoryItemCard(
                         val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager
                         val clip = ClipData.newPlainText("SmartIsland Notification", fullText)
                         clipboard?.setPrimaryClip(clip)
-                        Toast.makeText(context, "Notification text copied", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, context.getString(R.string.history_text_copied), Toast.LENGTH_SHORT).show()
                     },
                     shape = RoundedCornerShape(8.dp),
                     contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp),
@@ -1063,7 +1069,7 @@ private fun NotificationHistoryItemCard(
                 ) {
                     Icon(Icons.Rounded.ContentCopy, contentDescription = null, modifier = Modifier.size(12.dp))
                     Spacer(Modifier.width(4.dp))
-                    Text("Copy", fontSize = 11.sp)
+                    Text(stringResource(R.string.history_copy), fontSize = 11.sp)
                 }
             }
         }
@@ -1110,12 +1116,12 @@ private fun AppFilterDialog(
                         )
                     }
                     IconButton(onClick = onDismiss, modifier = Modifier.size(28.dp)) {
-                        Icon(Icons.Rounded.Close, contentDescription = "Close", modifier = Modifier.size(18.dp))
+                        Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.history_close), modifier = Modifier.size(18.dp))
                     }
                 }
 
                 Text(
-                    text = "Select an app to view its notifications, or choose All Apps to see all logs together.",
+                    text = stringResource(R.string.history_filter_dialog_desc),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -1179,7 +1185,7 @@ private fun AppFilterDialog(
                                 if (isAllSelected) {
                                     Icon(
                                         Icons.Rounded.Check,
-                                        contentDescription = "Selected",
+                                        contentDescription = stringResource(R.string.history_selected),
                                         tint = MaterialTheme.colorScheme.primary,
                                         modifier = Modifier.size(20.dp)
                                     )
@@ -1244,7 +1250,7 @@ private fun AppFilterDialog(
                                         overflow = TextOverflow.Ellipsis
                                     )
                                     Text(
-                                        text = "${app.count} notification${if (app.count == 1) "" else "s"}",
+                                        text = pluralStringResource(R.plurals.history_notification_count, app.count, app.count),
                                         style = MaterialTheme.typography.labelSmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
@@ -1253,7 +1259,7 @@ private fun AppFilterDialog(
                                 if (isSelected) {
                                     Icon(
                                         Icons.Rounded.Check,
-                                        contentDescription = "Selected",
+                                        contentDescription = stringResource(R.string.history_selected),
                                         tint = MaterialTheme.colorScheme.primary,
                                         modifier = Modifier.size(20.dp)
                                     )
@@ -1300,18 +1306,18 @@ private fun DeleteByAppDialog(
                     ) {
                         Icon(Icons.Rounded.Apps, contentDescription = null, tint = MaterialTheme.colorScheme.primary)
                         Text(
-                            text = "Delete by App",
+                            text = stringResource(R.string.history_delete_by_app),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )
                     }
                     IconButton(onClick = onDismiss, modifier = Modifier.size(28.dp)) {
-                        Icon(Icons.Rounded.Close, contentDescription = "Close", modifier = Modifier.size(18.dp))
+                        Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.history_close), modifier = Modifier.size(18.dp))
                     }
                 }
 
                 Text(
-                    text = "Select an app to filter or delete all recorded notification logs for that app.",
+                    text = stringResource(R.string.history_delete_dialog_desc),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -1371,7 +1377,7 @@ private fun DeleteByAppDialog(
                                         overflow = TextOverflow.Ellipsis
                                     )
                                     Text(
-                                        text = "${app.count} notification${if (app.count == 1) "" else "s"}",
+                                        text = pluralStringResource(R.plurals.history_notification_count, app.count, app.count),
                                         style = MaterialTheme.typography.labelSmall,
                                         color = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
@@ -1383,7 +1389,7 @@ private fun DeleteByAppDialog(
                                 ) {
                                     Icon(
                                         Icons.Rounded.Delete,
-                                        contentDescription = "Delete all from ${app.appName}",
+                                        contentDescription = stringResource(R.string.history_delete_all_from, app.appName),
                                         tint = MaterialTheme.colorScheme.error,
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -1404,8 +1410,9 @@ private fun NotificationDetailDialog(
     onDelete: () -> Unit,
     onDeleteAllFromApp: () -> Unit
 ) {
-    val fullDateFormatted = remember(entry.postTimeMillis) {
-        val sdf = SimpleDateFormat("EEEE, MMMM d, yyyy • h:mm:ss a", Locale.getDefault())
+    val context = LocalContext.current
+    val fullDateFormatted = remember(entry.postTimeMillis, context) {
+        val sdf = SimpleDateFormat(context.getString(R.string.history_datetime_pattern), Locale.getDefault())
         sdf.format(Date(entry.postTimeMillis))
     }
 
@@ -1436,7 +1443,7 @@ private fun NotificationDetailDialog(
                         modifier = Modifier.size(24.dp)
                     )
                     Text(
-                        text = "Message Inspection Details",
+                        text = stringResource(R.string.history_details_title),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -1452,26 +1459,26 @@ private fun NotificationDetailDialog(
                         .verticalScroll(rememberScrollState()),
                     verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    DetailFieldItem(label = "Application", value = "${entry.appName} (${entry.packageName})")
+                    DetailFieldItem(label = stringResource(R.string.history_field_application), value = "${entry.appName} (${entry.packageName})")
                     if (entry.title.isNotBlank()) {
-                        DetailFieldItem(label = "Title", value = entry.title)
+                        DetailFieldItem(label = stringResource(R.string.history_field_title), value = entry.title)
                     }
                     if (entry.text.isNotBlank()) {
-                        DetailFieldItem(label = "Text Content", value = entry.text)
+                        DetailFieldItem(label = stringResource(R.string.history_field_text), value = entry.text)
                     }
                     if (!entry.subText.isNullOrBlank()) {
-                        DetailFieldItem(label = "SubText", value = entry.subText)
+                        DetailFieldItem(label = stringResource(R.string.history_field_subtext), value = entry.subText)
                     }
-                    DetailFieldItem(label = "Received Time", value = fullDateFormatted)
+                    DetailFieldItem(label = stringResource(R.string.history_field_received), value = fullDateFormatted)
                     if (!entry.category.isNullOrBlank()) {
-                        DetailFieldItem(label = "Category", value = entry.category)
+                        DetailFieldItem(label = stringResource(R.string.history_field_category), value = entry.category)
                     }
                     if (!entry.channelId.isNullOrBlank()) {
-                        DetailFieldItem(label = "Channel ID", value = entry.channelId)
+                        DetailFieldItem(label = stringResource(R.string.history_field_channel), value = entry.channelId)
                     }
-                    DetailFieldItem(label = "Island Mode", value = entry.mode)
+                    DetailFieldItem(label = stringResource(R.string.history_field_island_mode), value = entry.mode)
                     if (entry.actionTitles.isNotEmpty()) {
-                        DetailFieldItem(label = "Action Buttons", value = entry.actionTitles.joinToString(", "))
+                        DetailFieldItem(label = stringResource(R.string.history_field_actions), value = entry.actionTitles.joinToString(", "))
                     }
                 }
 
@@ -1492,14 +1499,14 @@ private fun NotificationDetailDialog(
                         ) {
                             Icon(Icons.Rounded.Delete, contentDescription = null, modifier = Modifier.size(16.dp))
                             Spacer(Modifier.width(4.dp))
-                            Text("Delete Log")
+                            Text(stringResource(R.string.history_delete_log))
                         }
 
                         Button(
                             onClick = onDismiss,
                             shape = RoundedCornerShape(8.dp)
                         ) {
-                            Text("Close")
+                            Text(stringResource(R.string.history_close))
                         }
                     }
 
@@ -1510,7 +1517,7 @@ private fun NotificationDetailDialog(
                     ) {
                         Icon(Icons.Rounded.DeleteSweep, contentDescription = null, modifier = Modifier.size(16.dp))
                         Spacer(Modifier.width(4.dp))
-                        Text("Delete All from ${entry.appName}", fontSize = 12.sp)
+                        Text(stringResource(R.string.history_delete_all_from, entry.appName), fontSize = 12.sp)
                     }
                 }
             }
@@ -1537,18 +1544,21 @@ private fun DetailFieldItem(label: String, value: String) {
     }
 }
 
-private fun groupEntriesByDay(entries: List<NotificationHistoryEntry>): Map<String, List<NotificationHistoryEntry>> {
+private fun groupEntriesByDay(
+    entries: List<NotificationHistoryEntry>,
+    context: android.content.Context
+): Map<String, List<NotificationHistoryEntry>> {
     val result = linkedMapOf<String, MutableList<NotificationHistoryEntry>>()
     val calToday = Calendar.getInstance()
     val calYesterday = Calendar.getInstance().apply { add(Calendar.DAY_OF_YEAR, -1) }
     val calEntry = Calendar.getInstance()
-    val fullDateFormat = SimpleDateFormat("EEEE, MMMM d, yyyy", Locale.getDefault())
+    val fullDateFormat = SimpleDateFormat(context.getString(R.string.history_date_pattern), Locale.getDefault())
 
     for (entry in entries) {
         calEntry.timeInMillis = entry.postTimeMillis
         val header = when {
-            isSameDay(calToday, calEntry) -> "Today"
-            isSameDay(calYesterday, calEntry) -> "Yesterday"
+            isSameDay(calToday, calEntry) -> context.getString(R.string.history_today)
+            isSameDay(calYesterday, calEntry) -> context.getString(R.string.history_yesterday)
             else -> fullDateFormat.format(Date(entry.postTimeMillis))
         }
         val list = result.getOrPut(header) { mutableListOf() }

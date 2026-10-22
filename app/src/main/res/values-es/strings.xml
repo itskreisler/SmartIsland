@@ -1382,4 +1382,53 @@
     <string name="tour_yours_point_3">La intensidad de la vibración, la velocidad de las animaciones y los colores también están en Ajustes.</string>
     <string name="tour_yours_tip">Puedes abrir este recorrido otra vez cuando quieras desde la parte superior de la pantalla Gestos.</string>
     <string name="tour_yours_title">Hazla tuya</string>
+
+    <!-- ===== Historial de notificaciones ===== -->
+    <string name="history_status_active">Registro activo • Privado en el dispositivo</string>
+    <string name="history_status_disabled">Desactivado</string>
+    <string name="history_retention_filter">Filtro de retención</string>
+    <string name="history_selected">Seleccionado</string>
+    <string name="history_filter_prefix">Filtro: %1$s</string>
+    <string name="history_clear_app_filter">Quitar el filtro de app</string>
+    <string name="history_delete_entry">Eliminar entrada</string>
+    <string name="history_show_more">Mostrar más</string>
+    <string name="history_show_less">Mostrar menos</string>
+    <string name="history_app_not_installed">La app no está instalada</string>
+    <string name="history_text_copied">Texto de la notificación copiado</string>
+    <string name="history_copy">Copiar</string>
+    <string name="history_close">Cerrar</string>
+    <string name="history_filter_dialog_desc">Selecciona una app para ver sus notificaciones, o elige Todas las apps para ver todos los registros juntos.</string>
+    <string name="history_delete_by_app">Eliminar por app</string>
+    <string name="history_delete_dialog_desc">Selecciona una app para filtrar o eliminar todos los registros de notificaciones de esa app.</string>
+    <string name="history_delete_all_from">Eliminar todo de %1$s</string>
+    <string name="history_details_title">Detalles del mensaje</string>
+    <string name="history_field_application">Aplicación</string>
+    <string name="history_field_title">Título</string>
+    <string name="history_field_text">Contenido del texto</string>
+    <string name="history_field_subtext">Subtexto</string>
+    <string name="history_field_received">Hora de recepción</string>
+    <string name="history_field_category">Categoría</string>
+    <string name="history_field_channel">ID del canal</string>
+    <string name="history_field_island_mode">Modo de isla</string>
+    <string name="history_field_actions">Botones de acción</string>
+    <string name="history_delete_log">Eliminar registro</string>
+    <string name="history_datetime_pattern">EEEE, d \'de\' MMMM \'de\' yyyy • H:mm:ss</string>
+    <string name="history_date_pattern">EEEE, d \'de\' MMMM \'de\' yyyy</string>
+    <string name="history_time_pattern">H:mm</string>
+    <plurals name="history_notification_count">
+        <item quantity="one">%1$d notificación</item>
+        <item quantity="other">%1$d notificaciones</item>
+    </plurals>
+    <plurals name="history_saved_count">
+        <item quantity="one">%1$d guardada</item>
+        <item quantity="other">%1$d guardadas</item>
+    </plurals>
+    <plurals name="history_logs_count">
+        <item quantity="one">%1$s: %2$d registro</item>
+        <item quantity="other">%1$s: %2$d registros</item>
+    </plurals>
+
+    <!-- ===== Historial de notificaciones: días ===== -->
+    <string name="history_today">Hoy</string>
+    <string name="history_yesterday">Ayer</string>
 </resources>
