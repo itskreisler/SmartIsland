@@ -93,6 +93,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.agupta07505.smartisland.R
@@ -1781,7 +1782,10 @@ fun NotificationsAndPrivacySection(
                                     )
                                 }
                             }
-                            Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Row(
+                                horizontalArrangement = Arrangement.spacedBy(6.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
                                 listOf(
                                     AppAutoExpand.DEFAULT to R.string.auto_expand_choice_default,
                                     AppAutoExpand.ALWAYS to R.string.auto_expand_choice_always,
@@ -1929,12 +1933,17 @@ private fun PrivacySegmentButton(
             .background(if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f))
             .border(0.5.dp, if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
             .bounceClick(onClick)
+            // Same height for every segment even when one label wraps to two lines.
+            .heightIn(min = 44.dp)
             .padding(vertical = 8.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
             text = label,
             fontSize = 12.sp,
+            lineHeight = 14.sp,
+            maxLines = 2,
+            textAlign = TextAlign.Center,
             color = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant,
             fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium
         )
