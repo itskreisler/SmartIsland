@@ -24,11 +24,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.HourglassBottom
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.material.icons.rounded.Pause
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Refresh
@@ -213,6 +215,7 @@ private fun TimerExpandedMiui(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
+            modifier = Modifier.weight(1f),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
@@ -238,7 +241,7 @@ private fun TimerExpandedMiui(
                 )
             }
 
-            Column {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = displayTime,
                     color = Color.White,
@@ -266,12 +269,15 @@ private fun TimerExpandedMiui(
                     text = timerSubtitle,
                     color = if (remainingSec == 0L && !isPaused) Color(0xFFEF4444) else timerColor,
                     fontSize = 12.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
 
         Row(
+            modifier = Modifier.wrapContentWidth(),
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -506,6 +512,7 @@ private fun TimerExpandedCurrent(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
+            modifier = Modifier.weight(1f),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
@@ -531,7 +538,7 @@ private fun TimerExpandedCurrent(
                 )
             }
 
-            Column {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = displayTime,
                     color = LocalIslandPalette.current.text,
@@ -559,12 +566,15 @@ private fun TimerExpandedCurrent(
                     text = timerSubtitle,
                     color = if (finished && !isPaused) LocalIslandPalette.current.danger else timerColor,
                     fontSize = 12.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
 
         Row(
+            modifier = Modifier.wrapContentWidth(),
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {

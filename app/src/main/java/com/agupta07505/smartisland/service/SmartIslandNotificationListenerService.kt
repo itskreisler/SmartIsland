@@ -1480,7 +1480,8 @@ class SmartIslandNotificationListenerService : NotificationListenerService() {
             ?: extras.getCharSequence(Notification.EXTRA_SUB_TEXT)?.toString()
             ?: extras.getCharSequence(Notification.EXTRA_INFO_TEXT)?.toString()
             ?: notification.tickerText?.toString()
-            ?: (if (mode == IslandMode.Stopwatch) "Running" else if (mode == IslandMode.Timer) "Running" else "")
+            ?: (if (mode == IslandMode.Stopwatch) getString(R.string.status_running)
+                else if (mode == IslandMode.Timer) getString(R.string.status_running) else "")
 
         // Transfer cards: score the notification once for state, speed/ETA text and a progress
         // value when the app has no real progress bar (Android 16 progress style, text-only apps).

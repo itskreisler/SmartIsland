@@ -46,6 +46,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import com.agupta07505.smartisland.R
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -211,6 +213,7 @@ private fun StopwatchExpandedMiui(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
+            modifier = Modifier.weight(1f),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
@@ -231,7 +234,7 @@ private fun StopwatchExpandedMiui(
                 )
             }
 
-            Column {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = displayTime,
                     color = Color.White,
@@ -257,12 +260,15 @@ private fun StopwatchExpandedMiui(
                     text = subtitle,
                     color = stopwatchColor,
                     fontSize = 12.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
 
         Row(
+            modifier = Modifier.wrapContentWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -393,10 +399,15 @@ private fun StopwatchExpandedCurrent(
 
     // Optimistic freeze after tapping Pause, until the app posts its paused notification.
     var tappedPauseAtSec by remember(notification?.key, frozenMs) { mutableLongStateOf(-1L) }
-    val isPaused = frozenMs != null || tappedPauseAtSec >= 0L
+    LaunchedEffect(frozenMs, notification?.recordingPaused) {
+        if (frozenMs != null || notification?.recordingPaused == true) {
+            tappedPauseAtSec = -1L
+        }
+    }
+    val isPaused = frozenMs != null || notification?.recordingPaused == true || tappedPauseAtSec >= 0L
 
     val liveSeconds = rememberRecordingSeconds(notification)
-    val elapsedSeconds = if (tappedPauseAtSec >= 0L) tappedPauseAtSec else liveSeconds
+    val elapsedSeconds = if (tappedPauseAtSec >= 0L) tappedPauseAtSec else if (frozenMs != null) (frozenMs / 1000L) else liveSeconds
 
     val displayTime = remember(elapsedSeconds) {
         TimerStopwatchParser.formatTime(elapsedSeconds)
@@ -426,6 +437,7 @@ private fun StopwatchExpandedCurrent(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Row(
+            modifier = Modifier.weight(1f),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(14.dp)
         ) {
@@ -446,7 +458,7 @@ private fun StopwatchExpandedCurrent(
                 )
             }
 
-            Column {
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = displayTime,
                     color = LocalIslandPalette.current.text,
@@ -470,12 +482,15 @@ private fun StopwatchExpandedCurrent(
                     text = subtitle,
                     color = stopwatchColor,
                     fontSize = 12.sp,
-                    fontWeight = FontWeight.SemiBold
+                    fontWeight = FontWeight.SemiBold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
                 )
             }
         }
 
         Row(
+            modifier = Modifier.wrapContentWidth(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
