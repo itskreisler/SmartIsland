@@ -1723,4 +1723,23 @@
     <string name="action_save">Guardar</string>
     <string name="backup_unknown_date">Desconocida</string>
     <string name="timing_minutes">%1$d min</string>
+
+    <!-- ===== Demo, eventos, posiciones y opciones de desarrollador ===== -->
+    <string name="demo_island_off">La isla está apagada. Actívala en la pestaña Inicio y toca un botón para ver esa tarjeta.</string>
+    <string name="demo_instructions">Toca Mostrar para poner una tarjeta de ejemplo en la isla. Los eventos cortos desaparecen solos; los demás se quedan hasta que los borres. Los eventos desactivados en la pestaña Inicio no se muestran.</string>
+    <string name="demo_clear_card">Borrar %1$s</string>
+    <string name="events_wifi_grant_location">Wi-Fi: concede permiso de ubicación para mostrar el nombre de la red</string>
+    <string name="events_wifi_location_services">Wi-Fi: activa los servicios de ubicación para mostrar el nombre de la red</string>
+    <string name="events_vpn_network_checks">VPN: la ubicación necesita las comprobaciones de red activadas</string>
+    <string name="btn_turn_on">Activar</string>
+    <string name="positions_summary_presets">Diseños con un toque para los recortes de cámara habituales</string>
+    <string name="positions_summary_exempt_apps">Apps que apagan la isla por completo en vertical</string>
+    <string name="positions_summary_tuning">Ancho, alto, desplazamientos y radio de las esquinas</string>
+    <string name="positions_summary_shadow">Sombra bajo la isla (la opacidad y el color están en Colores)</string>
+    <string name="dev_status_denied">Denegado</string>
+    <string name="dev_status_authorized">Autorizado</string>
+    <string name="dev_status_not_connected">No conectado</string>
+    <string name="dev_geometry_value">%1$dx%2$ddp (Y: %3$ddp, R: %4$ddp, Opacidad: %5$d%%)</string>
+    <string name="slider_decrease">Disminuir</string>
+    <string name="slider_increase">Aumentar</string>
 </resources>

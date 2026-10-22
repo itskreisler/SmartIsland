@@ -201,7 +201,7 @@ fun PositionsSection(
         CollapsibleCard(
             title = stringResource(R.string.presets_title),
             stateKey = "pos_presets_${if (settings.enableNotchMode) "notch" else "pill"}",
-            summary = "One-tap layouts for common camera cutouts",
+            summary = stringResource(R.string.positions_summary_presets),
             initiallyExpanded = false,
             framed = false
         ) {
@@ -404,7 +404,7 @@ fun PositionsSection(
         CollapsibleCard(
             title = stringResource(R.string.cooldown_excluded_apps_title),
             stateKey = "pos_exempt_apps",
-            summary = "Apps that switch the island totally off in portrait",
+            summary = stringResource(R.string.positions_summary_exempt_apps),
             initiallyExpanded = false
         ) {
             ExemptAppsCard(settings = settings, repository = repository, landscape = false)
@@ -413,7 +413,7 @@ fun PositionsSection(
         CollapsibleCard(
             title = stringResource(R.string.precision_tuning_title),
             stateKey = "pos_tuning_${if (settings.enableNotchMode) "notch" else "pill"}",
-            summary = "Width, height, offsets and corner radius",
+            summary = stringResource(R.string.positions_summary_tuning),
             initiallyExpanded = false,
             framed = false
         ) {
@@ -643,7 +643,7 @@ fun PositionsSection(
         CollapsibleCard(
             title = stringResource(R.string.toggle_drop_shadow_title),
             stateKey = "pos_look_${if (settings.enableNotchMode) "notch" else "pill"}",
-            summary = "Drop shadow under the island (opacity and colour are in Colors)",
+            summary = stringResource(R.string.positions_summary_shadow),
             initiallyExpanded = false,
             framed = false
         ) {

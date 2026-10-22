@@ -407,15 +407,24 @@ fun DeveloperOptionsSection(
                 )
                 DiagnosticItem(
                     label = stringResource(R.string.dev_label_overlay_permission),
-                    value = if (Settings.canDrawOverlays(context)) "Granted" else "Denied"
+                    value = if (Settings.canDrawOverlays(context)) stringResource(R.string.perm_status_granted)
+                    else stringResource(R.string.dev_status_denied)
                 )
                 DiagnosticItem(
                     label = stringResource(R.string.dev_label_shizuku_status),
-                    value = if (ShizukuManager.isBinderAvailable() && ShizukuManager.hasPermission()) "Authorized" else "Not Connected"
+                    value = if (ShizukuManager.isBinderAvailable() && ShizukuManager.hasPermission()) stringResource(R.string.dev_status_authorized)
+                    else stringResource(R.string.dev_status_not_connected)
                 )
                 DiagnosticItem(
                     label = stringResource(R.string.dev_label_island_geometry),
-                    value = "${settings.width.toInt()}x${settings.height.toInt()}dp (Y: ${settings.yOffset.toInt()}dp, R: ${settings.cornerRadius.toInt()}dp, Opacity: ${(settings.opacity * 100).toInt()}%)"
+                    value = stringResource(
+                        R.string.dev_geometry_value,
+                        settings.width.toInt(),
+                        settings.height.toInt(),
+                        settings.yOffset.toInt(),
+                        settings.cornerRadius.toInt(),
+                        (settings.opacity * 100).toInt()
+                    )
                 )
             }
         }

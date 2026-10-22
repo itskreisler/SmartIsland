@@ -7,6 +7,9 @@
 
 package com.agupta07505.smartisland.ui
 
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -84,7 +87,7 @@ fun SliderSettingItem(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Remove,
-                        contentDescription = "Decrease",
+                        contentDescription = stringResource(R.string.slider_decrease),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(14.dp)
                     )
@@ -121,7 +124,7 @@ fun SliderSettingItem(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Add,
-                        contentDescription = "Increase",
+                        contentDescription = stringResource(R.string.slider_increase),
                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                         modifier = Modifier.size(14.dp)
                     )

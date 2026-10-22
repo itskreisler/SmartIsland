@@ -259,17 +259,17 @@ fun EventTogglesSection(
                         val needsLocation = event == IslandEvent.WIFI && !locationGranted
                         val needsLocationSwitch = event == IslandEvent.WIFI && locationGranted && !locationOn
                         val note = when {
-                            needsLocation -> "Wi-Fi: grant location permission to show the network name"
-                            needsLocationSwitch -> "Wi-Fi: turn on location services to show the network name"
-                            event == IslandEvent.VPN && !settings.allowNetworkChecks -> "VPN: location needs network checks turned on"
+                            needsLocation -> stringResource(R.string.events_wifi_grant_location)
+                            needsLocationSwitch -> stringResource(R.string.events_wifi_location_services)
+                            event == IslandEvent.VPN && !settings.allowNetworkChecks -> stringResource(R.string.events_vpn_network_checks)
                             else -> null
                         }
                         if (note != null) {
                             EventNote(
                                 text = note,
                                 actionLabel = when {
-                                    needsLocation -> "Grant"
-                                    needsLocationSwitch -> "Turn on"
+                                    needsLocation -> stringResource(R.string.btn_grant)
+                                    needsLocationSwitch -> stringResource(R.string.btn_turn_on)
                                     else -> null
                                 },
                                 onAction = {

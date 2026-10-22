@@ -87,10 +87,9 @@ fun DemoSection(
                 )
                 Text(
                     text = when {
-                        notificationRepository == null -> "The island is not ready yet. Open the app again."
-                        !settings.enabled -> "The island is off. Turn it on from the Home tab, then tap a button to see that card."
-                        else -> "Tap Show to put a sample card on the island. Short events leave by themselves; " +
-                            "the others stay until you clear them. Events switched off on the Home tab stay hidden."
+                        notificationRepository == null -> stringResource(R.string.lab_not_ready)
+                        !settings.enabled -> stringResource(R.string.demo_island_off)
+                        else -> stringResource(R.string.demo_instructions)
                     },
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -274,7 +273,7 @@ private fun DemoRow(
         }
         if (showing) {
             IconButton(onClick = onClear, enabled = enabled) {
-                Icon(Icons.Rounded.Close, contentDescription = "Clear $title")
+                Icon(Icons.Rounded.Close, contentDescription = stringResource(R.string.demo_clear_card, title))
             }
         } else {
             FilledTonalButton(onClick = onShow, enabled = enabled) {

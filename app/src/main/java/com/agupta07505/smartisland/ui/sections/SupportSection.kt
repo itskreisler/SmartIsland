@@ -71,7 +71,7 @@ fun SupportSection() {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agupta07505/SmartIsland"))
                         runCatchingLogged("SupportSection", "Failed to open Star on GitHub link") {
                             context.startActivity(intent)
-                        } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                     }
                 )
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.25f))
@@ -84,7 +84,7 @@ fun SupportSection() {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://telegram.me/SmartIslandApp"))
                         runCatchingLogged("SupportSection", "Failed to open Telegram Community link") {
                             context.startActivity(intent)
-                        } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                     }
                 )
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.25f))
@@ -97,7 +97,7 @@ fun SupportSection() {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agupta07505/SmartIsland/issues/new?template=feature_request.md"))
                         runCatchingLogged("SupportSection", "Failed to open Feature Request link") {
                             context.startActivity(intent)
-                        } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                     }
                 )
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.25f))
@@ -110,7 +110,7 @@ fun SupportSection() {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agupta07505/SmartIsland/issues/new?template=bug_report.md"))
                         runCatchingLogged("SupportSection", "Failed to open Bug Report link") {
                             context.startActivity(intent)
-                        } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                     }
                 )
                 HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.25f))
@@ -123,7 +123,7 @@ fun SupportSection() {
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/agupta07505/SmartIsland/blob/main/LICENSE"))
                         runCatchingLogged("SupportSection", "Failed to open License link") {
                             context.startActivity(intent)
-                        } ?: Toast.makeText(context, "Cannot open link", Toast.LENGTH_SHORT).show()
+                        } ?: Toast.makeText(context, context.getString(R.string.about_cannot_open_link), Toast.LENGTH_SHORT).show()
                     }
                 )
             }

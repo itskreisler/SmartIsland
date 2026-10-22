@@ -577,7 +577,7 @@ internal fun ColorPresetRow(
                 if (isSelected) {
                     Icon(
                         imageVector = Icons.Rounded.Check,
-                        contentDescription = "Selected",
+                        contentDescription = stringResource(R.string.history_selected),
                         tint = Color.White,
                         modifier = Modifier.size(12.dp)
                     )
