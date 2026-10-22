@@ -1105,4 +1105,35 @@
     <string name="dev_label_shizuku_status">Shizuku Status</string>
     <string name="dev_label_island_geometry">Island Geometry</string>
     <string name="select_pinned_apps">Select Pinned Apps</string>
+
+    <string name="guide_collapsed_island">Collapsed island (the pill)</string>
+    <string name="guide_camera_hole">Camera hole</string>
+    <string name="guide_second_third_pill">Second and third pill</string>
+    <string name="guide_idle_circle">Idle circle</string>
+    <string name="guide_idle_widgets">Idle widgets (clock, weather and the rest)</string>
+    <string name="guide_hidden_pill">Hidden pill</string>
+    <string name="guide_expanded_card">Expanded card</string>
+    <string name="guide_card_steps">Card steps: long text, pictures, stickers</string>
+    <string name="guide_sibling_list">Sibling list (cards from the same app)</string>
+    <string name="guide_quick_launch">Quick-launch window</string>
+    <string name="guide_utilities_page">Utilities page</string>
+    <string name="guide_all_gestures">All gestures</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_next">Next</string>
+    <string name="guide_new_to_si">New to Smart Island?</string>
+    <string name="exempt_no_app">No app selected.</string>
+    <string name="btn_remove">Remove</string>
+    <string name="island_off_label">Island off</string>
+    <string name="static_island_label">Static island</string>
+    <string name="btn_select_apps">Select apps</string>
+    <string name="exempt_apps_landscape_title">Exempt apps (landscape)</string>
+    <string name="exempt_apps_portrait_title">Exempt apps (portrait)</string>
+    <string name="search_apps_placeholder">Search apps</string>
+    <string name="toast_cannot_open_dl_link">Cannot open download link</string>
+    <string name="btn_contribute">Contribute</string>
+    <string name="grant_usage_access_perm">Grant Usage Access Permission</string>
+    <string name="live_act_initial">Initial</string>
+    <string name="live_act_traveled">Traveled %1$d%%</string>
+    <string name="live_act_destination">Destination</string>
 </resources>

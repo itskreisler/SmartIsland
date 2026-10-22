@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.expanded
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -224,9 +226,9 @@ fun LiveActivityExpanded(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Text("Initial", color = LocalIslandPalette.current.textMuted, fontSize = 10.sp)
-                Text("Traveled ${(progressRatio * 100).toInt()}%", color = brandColor, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                Text("Destination", color = LocalIslandPalette.current.textMuted, fontSize = 10.sp)
+                Text(stringResource(R.string.live_act_initial), color = LocalIslandPalette.current.textMuted, fontSize = 10.sp)
+                Text(stringResource(R.string.live_act_traveled, (progressRatio * 100).toInt()), color = brandColor, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.live_act_destination), color = LocalIslandPalette.current.textMuted, fontSize = 10.sp)
             }
         }
 

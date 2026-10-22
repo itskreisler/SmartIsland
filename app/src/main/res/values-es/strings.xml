@@ -1105,4 +1105,35 @@
     <string name="dev_label_shizuku_status">Estado de Shizuku</string>
     <string name="dev_label_island_geometry">Geometría de la isla</string>
     <string name="select_pinned_apps">Seleccionar apps fijadas</string>
+
+    <string name="guide_collapsed_island">Píldora contraída</string>
+    <string name="guide_camera_hole">Agujero de la cámara</string>
+    <string name="guide_second_third_pill">Segunda y tercera píldora</string>
+    <string name="guide_idle_circle">Círculo en reposo</string>
+    <string name="guide_idle_widgets">Widgets en reposo</string>
+    <string name="guide_hidden_pill">Píldora oculta</string>
+    <string name="guide_expanded_card">Tarjeta expandida</string>
+    <string name="guide_card_steps">Pasos de tarjeta: texto largo y fotos</string>
+    <string name="guide_sibling_list">Tarjetas de la misma app</string>
+    <string name="guide_quick_launch">Inicio rápido</string>
+    <string name="guide_utilities_page">Página de utilidades</string>
+    <string name="guide_all_gestures">Todos los gestos</string>
+    <string name="btn_skip">Omitir</string>
+    <string name="btn_back">Atrás</string>
+    <string name="btn_next">Siguiente</string>
+    <string name="guide_new_to_si">¿Nuevo en Smart Island?</string>
+    <string name="exempt_no_app">Sin apps seleccionadas.</string>
+    <string name="btn_remove">Quitar</string>
+    <string name="island_off_label">Isla apagada</string>
+    <string name="static_island_label">Isla estática</string>
+    <string name="btn_select_apps">Seleccionar apps</string>
+    <string name="exempt_apps_landscape_title">Apps excluidas (horizontal)</string>
+    <string name="exempt_apps_portrait_title">Apps excluidas (vertical)</string>
+    <string name="search_apps_placeholder">Buscar apps</string>
+    <string name="toast_cannot_open_dl_link">No se puede abrir el enlace</string>
+    <string name="btn_contribute">Colaborar</string>
+    <string name="grant_usage_access_perm">Conceder permiso de acceso al uso</string>
+    <string name="live_act_initial">Origen</string>
+    <string name="live_act_traveled">Recorrido %1$d%%</string>
+    <string name="live_act_destination">Destino</string>
 </resources>

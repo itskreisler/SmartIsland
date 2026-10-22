@@ -6,6 +6,8 @@
  */
 
 package com.agupta07505.smartisland.ui.sections
+import androidx.compose.ui.res.stringResource
+import com.agupta07505.smartisland.R
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -85,7 +87,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
     }
     return listOf(
         GestureGroup(
-            title = "Collapsed island (the pill)",
+            title = stringResource(R.string.guide_collapsed_island),
             note = "Three touch areas: the glyph on the left, the glyph-free middle band over the camera spot, and the glyph or value on the right. Swipes follow your finger. Pull back before letting go to cancel.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap a glyph (left or right)", "Expands that event. On an auto-hidden pill it brings the pill back."),
@@ -103,7 +105,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Camera hole",
+            title = stringResource(R.string.guide_camera_hole),
             note = "Where the pill's middle band does not reach the real camera hole, the hole sits outside the pill and gets its own touch target (at least finger-sized). If the band covers the hole, the band rules above apply. Notch mode counts as covering: the pill is the notch.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap the camera hole", "Nothing. Only a long press is handled there, so a stray tap on the hole never expands or closes anything."),
@@ -112,7 +114,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Second and third pill",
+            title = stringResource(R.string.guide_second_third_pill),
             note = "The smaller pills beside the main one that show other events. Expanded, the second pill sits on the camera spot.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap the second pill", "Brings that event to the main pill and expands the island if it was collapsed."),
@@ -122,7 +124,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Idle circle",
+            title = stringResource(R.string.guide_idle_circle),
             note = "The small circle that stays when there are no cards, mostly seen in landscape. Portrait has no separate circle: the middle band of the pill does its job.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap", "Brings back cards that the idle timeout put away. Landscape, while a card is on the island, the circle stays as a small control: one tap puts every card away at once and the circle swells, then settles."),
@@ -130,7 +132,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Idle widgets (clock, weather and the rest)",
+            title = stringResource(R.string.guide_idle_widgets),
             note = "Shown on the pill when no card is.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap the glyph or the value", "Grows the pill into the small widget island. Tap again to close it."),
@@ -140,14 +142,14 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Hidden pill",
+            title = stringResource(R.string.guide_hidden_pill),
             note = "After a long press hides it, or when Auto-hide has tucked it away. Its spot stays touchable.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap its spot", "Auto-hidden: brings the pill back. Idle with cards put away: brings them back. Cards on the island: expands."),
             )
         ),
         GestureGroup(
-            title = "Expanded card",
+            title = stringResource(R.string.guide_expanded_card),
             note = "Touch anywhere on the open card.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap the card", "Opens the app the card came from."),
@@ -162,7 +164,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Card steps: long text, pictures, stickers",
+            title = stringResource(R.string.guide_card_steps),
             note = "Step by step: text, preview (last text and last picture), reader (all text and thumbnails), then the picture. Stickers have no steps. In these steps the normal swipe actions are off.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap the arrow", "Opens the next step. The arrow beside a thumbnail opens that picture at full size."),
@@ -174,7 +176,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Sibling list (cards from the same app)",
+            title = stringResource(R.string.guide_sibling_list),
             note = "Opened by the second pill while the card has siblings.",
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap a row", "Shows that card."),
@@ -183,7 +185,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Quick-launch window",
+            title = stringResource(R.string.guide_quick_launch),
             note = "Opened by the long press above (App Shortcuts must be on). With no cards on the island, any drag in it belongs to the window.",
             lines = listOf(
                 GestureLine(Icons.Rounded.ArrowUpward, "Swipe up or down", "Switches between your apps and the Utilities page, and loops."),
@@ -194,7 +196,7 @@ private fun gestureGroups(settings: SmartIslandSettings): List<GestureGroup> {
             )
         ),
         GestureGroup(
-            title = "Utilities page",
+            title = stringResource(R.string.guide_utilities_page),
             note = null,
             lines = listOf(
                 GestureLine(Icons.Rounded.TouchApp, "Tap a tile", "Runs it: flashlight, Wi-Fi, timer, stopwatch and the rest. The timer asks for a length first."),
@@ -219,7 +221,7 @@ fun GestureReferenceCard(settings: SmartIslandSettings) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                 IconBadge(Icons.Rounded.Gesture, size = 36)
                 Column {
-                    Text("All gestures", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                    Text(stringResource(R.string.guide_all_gestures), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                     Text(
                         "What every touch does right now. Change the actions in the cards above.",
                         style = MaterialTheme.typography.bodySmall,
@@ -375,7 +377,7 @@ fun NewUserTour(settings: SmartIslandSettings, onFinish: () -> Unit) {
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.weight(1f)
                     )
-                    if (!last) TextButton(onClick = onFinish) { Text("Skip") }
+                    if (!last) TextButton(onClick = onFinish) { Text(stringResource(R.string.btn_skip)) }
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     steps.indices.forEach { i ->
@@ -426,11 +428,11 @@ fun NewUserTour(settings: SmartIslandSettings, onFinish: () -> Unit) {
                 }
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                     if (index > 0) {
-                        TextButton(onClick = { index -= 1 }) { Text("Back") }
+                        TextButton(onClick = { index -= 1 }) { Text(stringResource(R.string.btn_back)) }
                     }
                     Spacer(Modifier.weight(1f))
                     Button(onClick = { if (last) onFinish() else index += 1 }, shape = RoundedCornerShape(14.dp)) {
-                        Text(if (last) "Done" else "Next", fontWeight = FontWeight.Bold)
+                        Text(if (last) stringResource(R.string.idle_select_done) else stringResource(R.string.btn_next), fontWeight = FontWeight.Bold)
                     }
                 }
             }
@@ -458,14 +460,14 @@ fun NewUserTourCard(onStart: () -> Unit) {
         ) {
             IconBadge(Icons.Rounded.Lightbulb, size = 40)
             Column(modifier = Modifier.weight(1f)) {
-                Text("New to Smart Island?", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                Text(stringResource(R.string.guide_new_to_si), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                 Text(
                     "Take a one-minute tour of the gestures.",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
-            Text("Start", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
+            Text(stringResource(R.string.btn_start), color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
         }
     }
 }
