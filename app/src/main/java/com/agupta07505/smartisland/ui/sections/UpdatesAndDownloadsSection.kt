@@ -289,7 +289,7 @@ private fun AppUpdateCheckerCard(
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
                 ) {
                     Text(
-                        text = "Installed",
+                        text = stringResource(R.string.updates_installed),
                         style = MaterialTheme.typography.labelSmall,
                         color = MaterialTheme.colorScheme.primary,
                         fontWeight = FontWeight.Bold,
@@ -307,14 +307,14 @@ private fun AppUpdateCheckerCard(
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = "Update Status",
+                        text = stringResource(R.string.updates_status),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                     when (updateStatus) {
                         is UpdateCheckStatus.Idle -> {
                             Text(
-                                text = "Ready to check",
+                                text = stringResource(R.string.updates_ready),
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -378,7 +378,7 @@ private fun AppUpdateCheckerCard(
                                     modifier = Modifier.size(16.dp)
                                 )
                                 Text(
-                                    text = "Offline Mode (Network Checks Disabled)",
+                                    text = stringResource(R.string.updates_offline),
                                     style = MaterialTheme.typography.bodySmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
@@ -425,7 +425,7 @@ private fun AppUpdateCheckerCard(
                         }
                         Icon(
                             imageVector = Icons.Rounded.Refresh,
-                            contentDescription = "Check",
+                            contentDescription = stringResource(R.string.btn_check_updates),
                             modifier = iconModifier
                         )
                         Text(
@@ -509,7 +509,7 @@ private fun AppUpdateCheckerCard(
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Rounded.Article,
-                            contentDescription = "Changelogs",
+                            contentDescription = stringResource(R.string.changelogs_title),
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(18.dp)
                         )
@@ -531,7 +531,8 @@ private fun AppUpdateCheckerCard(
 
                 Icon(
                     imageVector = if (isChangelogsExpanded) Icons.Rounded.ExpandLess else Icons.Rounded.ExpandMore,
-                    contentDescription = if (isChangelogsExpanded) "Collapse" else "Expand",
+                    contentDescription = if (isChangelogsExpanded) stringResource(R.string.action_collapse)
+                        else stringResource(R.string.action_expand),
                     tint = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
@@ -554,7 +555,7 @@ private fun AppUpdateCheckerCard(
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text(
-                                text = "Tap 'Check for updates' to fetch the latest release notes & changelogs.",
+                                text = stringResource(R.string.updates_tap_check),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 modifier = Modifier.padding(12.dp)
@@ -653,7 +654,7 @@ private fun TopContributorsCard(
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.People,
-                            contentDescription = "Contributors",
+                            contentDescription = stringResource(R.string.updates_contributors),
                             tint = MaterialTheme.colorScheme.primary,
                             modifier = Modifier.size(20.dp)
                         )
@@ -795,7 +796,7 @@ private fun RecentCommitsCard(
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Commit,
-                        contentDescription = "Commits",
+                        contentDescription = stringResource(R.string.updates_commits),
                         tint = MaterialTheme.colorScheme.primary,
                         modifier = Modifier.size(20.dp)
                     )
@@ -808,7 +809,7 @@ private fun RecentCommitsCard(
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "Latest activity on main branch",
+                        text = stringResource(R.string.updates_latest_main),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )

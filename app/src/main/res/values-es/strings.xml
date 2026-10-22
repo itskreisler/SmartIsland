@@ -1475,8 +1475,6 @@
     <string name="lab_pill_right">Isla: derecha</string>
     <string name="lab_step_idle">Círculo en reposo</string>
     <string name="lab_step_enter">Llega la tarjeta: el círculo cede el paso y la isla se desliza</string>
-    <string name="lab_step_expand">Expandir</string>
-    <string name="lab_step_collapse">Contraer</string>
     <string name="lab_step_second_slide">Segunda app: recorte secundario, fusión deslizante</string>
     <string name="lab_step_second_bubble">Segunda app otra vez: fusión en burbuja</string>
     <string name="lab_step_third">Tercera app: recorte terciario</string>
@@ -1518,4 +1516,34 @@
     <string name="face_capture_read_failed">No se pudo leer el registro: %1$s</string>
     <string name="face_capture_shell_error">error del shell</string>
     <string name="face_capture_done">Capturadas %1$d líneas. Cara: inicio %2$d, éxito %3$d, fallo %4$d, fin %5$d. Desbloqueos: %6$s.</string>
+
+    <!-- ===== Etiquetas de gestos ===== -->
+    <string name="gesture_swipe_left">Deslizar a la izquierda</string>
+    <string name="gesture_swipe_right">Deslizar a la derecha</string>
+    <string name="gesture_swipe_up">Deslizar arriba</string>
+    <string name="gesture_swipe_down">Deslizar abajo</string>
+    <string name="gesture_hold_swipe_up">Mantener y deslizar arriba</string>
+    <string name="gestures_pill_swipes_disabled">Las acciones de deslizamiento en la isla contraída están desactivadas. Tocar sigue expandiendo la isla.</string>
+
+    <!-- ===== Accesos directos ===== -->
+    <string name="shortcuts_usage_access_failed">No se pueden abrir los ajustes de acceso al uso en este dispositivo.</string>
+    <string name="shortcuts_slots_hint">Hasta 8 huecos en la isla. Arrastra una app sobre otra en la isla para crear una carpeta de hasta 4.</string>
+    <string name="shortcuts_no_apps_title">Aún no hay apps fijadas</string>
+    <string name="shortcuts_no_apps_body">Toca aquí para elegir apps que fijar en el lanzador de la isla.</string>
+    <string name="shortcuts_select_apps">Seleccionar o añadir apps fijadas</string>
+    <string name="shortcuts_manage_apps">Gestionar apps fijadas</string>
+    <string name="shortcuts_remove_app">Quitar %1$s</string>
+    <string name="shortcuts_reorder_app">Reordenar %1$s</string>
+
+    <!-- ===== Acciones y actualizaciones ===== -->
+    <string name="action_expand">Expandir</string>
+    <string name="action_collapse">Contraer</string>
+    <string name="updates_installed">Instalada</string>
+    <string name="updates_status">Estado de la actualización</string>
+    <string name="updates_ready">Lista para comprobar</string>
+    <string name="updates_offline">Modo sin conexión (comprobaciones de red desactivadas)</string>
+    <string name="updates_tap_check">Toca «Comprobar actualizaciones» para obtener las últimas notas de la versión y los registros de cambios.</string>
+    <string name="updates_contributors">Colaboradores</string>
+    <string name="updates_commits">Commits</string>
+    <string name="updates_latest_main">Última actividad en la rama main</string>
 </resources>

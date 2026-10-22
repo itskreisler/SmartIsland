@@ -132,8 +132,8 @@ const val LAB_INTERRUPT_AFTER_MS = 170L
 fun labSteps(): List<LabStep> = listOf(
     LabStep("idle", R.string.lab_step_idle, listOf(LabAction.RemoveAll), 1400, quick = true),
     LabStep("enter", R.string.lab_step_enter, listOf(LabAction.Post(LabCard.MUSIC)), 2000, quick = true),
-    LabStep("expand", R.string.lab_step_expand, listOf(LabAction.Expand), 2400, quick = true),
-    LabStep("collapse", R.string.lab_step_collapse, listOf(LabAction.Collapse), 1400, quick = false),
+    LabStep("expand", R.string.action_expand, listOf(LabAction.Expand), 2400, quick = true),
+    LabStep("collapse", R.string.action_collapse, listOf(LabAction.Collapse), 1400, quick = false),
     LabStep(
         "second_slide", R.string.lab_step_second_slide,
         listOf(LabAction.SetMerge(SLIDE), LabAction.Post(LabCard.MESSAGE)), 2400, quick = false

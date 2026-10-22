@@ -1475,8 +1475,6 @@
     <string name="lab_pill_right">Pill: right</string>
     <string name="lab_step_idle">Idle circle</string>
     <string name="lab_step_enter">Card arrives: circle gives way, pill slides in</string>
-    <string name="lab_step_expand">Expand</string>
-    <string name="lab_step_collapse">Collapse</string>
     <string name="lab_step_second_slide">Second app: secondary cutout, slide merge</string>
     <string name="lab_step_second_bubble">Second app again: bubble merge</string>
     <string name="lab_step_third">Third app: tertiary cutout</string>
@@ -1518,4 +1516,34 @@
     <string name="face_capture_read_failed">Could not read the log: %1$s</string>
     <string name="face_capture_shell_error">shell error</string>
     <string name="face_capture_done">Captured %1$d lines. Face: start %2$d, success %3$d, failure %4$d, ended %5$d. Unlocks: %6$s.</string>
+
+    <!-- ===== Gesture labels (EN) ===== -->
+    <string name="gesture_swipe_left">Swipe Left</string>
+    <string name="gesture_swipe_right">Swipe Right</string>
+    <string name="gesture_swipe_up">Swipe Up</string>
+    <string name="gesture_swipe_down">Swipe Down</string>
+    <string name="gesture_hold_swipe_up">Hold &amp; Swipe Up</string>
+    <string name="gestures_pill_swipes_disabled">Swipe actions on the collapsed pill are disabled. Tapping still expands the pill.</string>
+
+    <!-- ===== App shortcuts (EN) ===== -->
+    <string name="shortcuts_usage_access_failed">Cannot open Usage access settings on this device.</string>
+    <string name="shortcuts_slots_hint">Up to 8 slots on your island pill. Drag one app onto another in the island to make a folder of up to 4.</string>
+    <string name="shortcuts_no_apps_title">No Apps Pinned Yet</string>
+    <string name="shortcuts_no_apps_body">Tap here to select apps to pin to your island launcher.</string>
+    <string name="shortcuts_select_apps">Select / Add Pinned Apps</string>
+    <string name="shortcuts_manage_apps">Manage Pinned Apps</string>
+    <string name="shortcuts_remove_app">Remove %1$s</string>
+    <string name="shortcuts_reorder_app">Reorder %1$s</string>
+
+    <!-- ===== Actions and updates (EN) ===== -->
+    <string name="action_expand">Expand</string>
+    <string name="action_collapse">Collapse</string>
+    <string name="updates_installed">Installed</string>
+    <string name="updates_status">Update Status</string>
+    <string name="updates_ready">Ready to check</string>
+    <string name="updates_offline">Offline Mode (Network Checks Disabled)</string>
+    <string name="updates_tap_check">Tap \'Check for updates\' to fetch the latest release notes &amp; changelogs.</string>
+    <string name="updates_contributors">Contributors</string>
+    <string name="updates_commits">Commits</string>
+    <string name="updates_latest_main">Latest activity on main branch</string>
 </resources>

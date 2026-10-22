@@ -366,7 +366,7 @@ fun GesturesSection(
                                 modifier = Modifier.size(18.dp)
                             )
                             Text(
-                                text = "Swipe actions on the collapsed pill are disabled. Tapping still expands the pill.",
+                                text = stringResource(R.string.gestures_pill_swipes_disabled),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onErrorContainer
                             )
@@ -417,10 +417,10 @@ fun GesturesSection(
                                 )
                             }
                             val gestureLabel = when (gesture) {
-                                ConfigurableGesture.PillSwipeLeft -> "Swipe Left"
-                                ConfigurableGesture.PillSwipeRight -> "Swipe Right"
-                                ConfigurableGesture.PillSwipeUp -> "Swipe Up"
-                                ConfigurableGesture.PillSwipeDown -> "Swipe Down"
+                                ConfigurableGesture.PillSwipeLeft -> stringResource(R.string.gesture_swipe_left)
+                                ConfigurableGesture.PillSwipeRight -> stringResource(R.string.gesture_swipe_right)
+                                ConfigurableGesture.PillSwipeUp -> stringResource(R.string.gesture_swipe_up)
+                                ConfigurableGesture.PillSwipeDown -> stringResource(R.string.gesture_swipe_down)
                                 else -> stringResource(gesture.titleRes)
                             }
                             Column(modifier = Modifier.padding(end = 8.dp)) {
@@ -631,11 +631,11 @@ fun GesturesSection(
                                 )
                             }
                             val gestureLabel = when (gesture) {
-                                ConfigurableGesture.ExpandedSwipeUp -> "Swipe Up"
-                                ConfigurableGesture.ExpandedSwipeHoldUp -> "Hold & Swipe Up"
-                                ConfigurableGesture.ExpandedSwipeDown -> "Swipe Down"
-                                ConfigurableGesture.ExpandedSwipeLeft -> "Swipe Left"
-                                ConfigurableGesture.ExpandedSwipeRight -> "Swipe Right"
+                                ConfigurableGesture.ExpandedSwipeUp -> stringResource(R.string.gesture_swipe_up)
+                                ConfigurableGesture.ExpandedSwipeHoldUp -> stringResource(R.string.gesture_hold_swipe_up)
+                                ConfigurableGesture.ExpandedSwipeDown -> stringResource(R.string.gesture_swipe_down)
+                                ConfigurableGesture.ExpandedSwipeLeft -> stringResource(R.string.gesture_swipe_left)
+                                ConfigurableGesture.ExpandedSwipeRight -> stringResource(R.string.gesture_swipe_right)
                                 else -> stringResource(gesture.titleRes)
                             }
                             Column(modifier = Modifier.padding(end = 8.dp)) {

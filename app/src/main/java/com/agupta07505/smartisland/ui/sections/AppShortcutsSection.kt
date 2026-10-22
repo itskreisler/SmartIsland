@@ -256,7 +256,7 @@ fun AppShortcutsSection(
                                 if (enabled && !usageAccess) {
                                     context.safeStartActivity(
                                         Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS),
-                                        "Cannot open Usage access settings on this device."
+                                        context.getString(R.string.shortcuts_usage_access_failed)
                                     )
                                 }
                                 scope.launch { repository.setShowRecentApps(enabled) }
@@ -269,7 +269,7 @@ fun AppShortcutsSection(
                             onClick = {
                                 context.safeStartActivity(
                                     Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS),
-                                    "Cannot open Usage access settings on this device."
+                                    context.getString(R.string.shortcuts_usage_access_failed)
                                 )
                             },
                             shape = RoundedCornerShape(10.dp),
@@ -303,7 +303,7 @@ fun AppShortcutsSection(
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Up to 8 slots on your island pill. Drag one app onto another in the island to make a folder of up to 4.",
+                            text = stringResource(R.string.shortcuts_slots_hint),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -355,13 +355,13 @@ fun AppShortcutsSection(
                                 )
                             }
                             Text(
-                                text = "No Apps Pinned Yet",
+                                text = stringResource(R.string.shortcuts_no_apps_title),
                                 fontWeight = FontWeight.Bold,
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "Tap here to select apps to pin to your island launcher.",
+                                text = stringResource(R.string.shortcuts_no_apps_body),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
@@ -482,7 +482,7 @@ fun AppShortcutsSection(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Rounded.Close,
-                                        contentDescription = "Remove ${app.label}",
+                                        contentDescription = stringResource(R.string.shortcuts_remove_app, app.label),
                                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier.size(18.dp)
                                     )
@@ -493,7 +493,7 @@ fun AppShortcutsSection(
                                 if (dragOrder.size > 1) {
                                     Icon(
                                         imageVector = Icons.Rounded.DragHandle,
-                                        contentDescription = "Reorder ${app.label}",
+                                        contentDescription = stringResource(R.string.shortcuts_reorder_app, app.label),
                                         tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                         modifier = Modifier
                                             .size(28.dp)
@@ -592,14 +592,14 @@ fun AppShortcutsSection(
                                         ) {
                                             Icon(
                                                 imageVector = Icons.Rounded.Close,
-                                                contentDescription = "Remove ${member.label}",
+                                                contentDescription = stringResource(R.string.shortcuts_remove_app, member.label),
                                                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                                 modifier = Modifier.size(16.dp)
                                             )
                                         }
                                         Icon(
                                             imageVector = Icons.Rounded.DragHandle,
-                                            contentDescription = "Reorder ${member.label}",
+                                            contentDescription = stringResource(R.string.shortcuts_reorder_app, member.label),
                                             tint = MaterialTheme.colorScheme.onSurfaceVariant,
                                             modifier = Modifier
                                                 .size(24.dp)
@@ -672,7 +672,8 @@ fun AppShortcutsSection(
                     )
                     Spacer(Modifier.width(8.dp))
                     Text(
-                        text = if (pinnedApps.size < 8) "Select / Add Pinned Apps" else "Manage Pinned Apps",
+                        text = if (pinnedApps.size < 8) stringResource(R.string.shortcuts_select_apps)
+                        else stringResource(R.string.shortcuts_manage_apps),
                         fontWeight = FontWeight.SemiBold
                     )
                 }
