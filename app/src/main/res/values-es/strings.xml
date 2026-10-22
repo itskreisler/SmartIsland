@@ -1501,4 +1501,21 @@
     <string name="lab_play">Iniciar</string>
     <string name="lab_play_wait">Iniciar (empieza al girar a horizontal)</string>
     <string name="lab_section_description">Reproduce todas las animaciones de horizontal en la isla real: llega la tarjeta, expandir, segunda y tercera app (ambos estilos de fusión), selector de hermanos, llamada, ventana emergente, salida, salida interrumpida y toque del círculo en reposo. La rotación, la cámara y las posiciones se simulan, así que puedes ver el horizontal normal y el invertido sin girar el teléfono. Gira el teléfono a horizontal y mantén esta pestaña abierta. Tus ajustes no cambian.</string>
+
+    <!-- ===== Desbloqueo facial ===== -->
+    <string name="unlock_type_face">Rostro</string>
+    <string name="unlock_type_fingerprint">Huella</string>
+    <string name="unlock_type_credential">PIN / patrón / contraseña</string>
+    <string name="face_section_title">Desbloqueo con Face ID</string>
+    <string name="face_section_desc">Qué se reproduce tras el escaneo. «Solo desbloqueo facial» lee el registro del sistema a través de Shizuku y necesita la línea de éxito del desbloqueo facial del teléfono además del propio desbloqueo. Sin Shizuku solo funciona «Cualquier desbloqueo».</string>
+    <string name="face_last_unlock">Último desbloqueo visto en el registro: %1$s, %2$s</string>
+    <string name="face_last_unlock_none">Último desbloqueo visto en el registro: ninguno todavía (necesita Shizuku y el evento Face ID activado).</string>
+    <string name="face_capture_title">Capturar registro de desbloqueo facial</string>
+    <string name="face_capture_steps">1. Toca Iniciar. 2. Bloquea el teléfono, enciéndelo y desbloquéalo con la cara (y una vez con el dedo o el PIN). Para registrar en su lugar el desbloqueo de una app, abre una app bloqueada y desbloquéala con la cara. 3. Vuelve y toca Detener; luego guarda el archivo y envíalo.</string>
+    <string name="face_capture_shizuku_missing">Shizuku no se está ejecutando o no tiene permiso para Smart Island.</string>
+    <string name="face_capture_recording">Grabando. Desbloquea ahora con la cara y vuelve después.</string>
+    <string name="face_capture_start_failed">No se pudo iniciar: %1$s</string>
+    <string name="face_capture_read_failed">No se pudo leer el registro: %1$s</string>
+    <string name="face_capture_shell_error">error del shell</string>
+    <string name="face_capture_done">Capturadas %1$d líneas. Cara: inicio %2$d, éxito %3$d, fallo %4$d, fin %5$d. Desbloqueos: %6$s.</string>
 </resources>

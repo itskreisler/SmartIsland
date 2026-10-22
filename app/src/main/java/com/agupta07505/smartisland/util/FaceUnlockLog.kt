@@ -7,6 +7,9 @@
 
 package com.agupta07505.smartisland.util
 
+import androidx.annotation.StringRes
+import com.agupta07505.smartisland.R
+
 enum class FaceUnlockLogEvent {
     Start,
 
@@ -17,11 +20,11 @@ enum class FaceUnlockLogEvent {
     End
 }
 
-enum class UnlockType(val label: String) {
-    Face("Face"),
-    Fingerprint("Fingerprint"),
+enum class UnlockType(val label: String, @StringRes val labelRes: Int) {
+    Face("Face", R.string.unlock_type_face),
+    Fingerprint("Fingerprint", R.string.unlock_type_fingerprint),
 
-    Credential("PIN / pattern / password")
+    Credential("PIN / pattern / password", R.string.unlock_type_credential)
 }
 
 object FaceUnlockLog {

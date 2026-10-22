@@ -87,21 +87,23 @@ fun FaceUnlockSection(
             verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             Text(
-                text = "Face ID unlock",
+                text = stringResource(R.string.face_section_title),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
             Text(
-                text = "What plays the tick after the scan. \"Face unlock only\" reads the system log through Shizuku and needs the " +
-                    "phone's face-unlock success line plus the unlock itself. Without Shizuku only \"Any unlock\" works.",
+                text = stringResource(R.string.face_section_desc),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
             Text(
                 text = lastUnlock?.let {
-                    "Last unlock seen in the log: ${it.type.label}, " +
+                    stringResource(
+                        R.string.face_last_unlock,
+                        stringResource(it.type.labelRes),
                         java.text.DateFormat.getTimeInstance().format(java.util.Date(it.atMillis))
-                } ?: "Last unlock seen in the log: none yet (needs Shizuku and the Face ID event on).",
+                    )
+                } ?: stringResource(R.string.face_last_unlock_none),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary
             )
@@ -118,14 +120,12 @@ fun FaceUnlockSection(
                 )
             }
             Text(
-                text = "Capture face unlock log",
+                text = stringResource(R.string.face_capture_title),
                 style = MaterialTheme.typography.titleSmall,
                 fontWeight = FontWeight.SemiBold
             )
             Text(
-                text = "1. Tap Start. 2. Lock the phone, wake it and unlock with your face (and once with a finger or PIN). " +
-                    "To record an app unlock instead, open a locked app and unlock it with your face. " +
-                    "3. Come back and tap Stop, then save the file and send it in.",
+                text = stringResource(R.string.face_capture_steps),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -135,7 +135,7 @@ fun FaceUnlockSection(
                         enabled = !busy,
                         onClick = {
                             if (!ShizukuManager.hasPermission()) {
-                                status = "Shizuku is not running or not allowed for Smart Island."
+                                status = context.getString(R.string.face_capture_shizuku_missing)
                                 return@Button
                             }
                             busy = true
@@ -147,9 +147,13 @@ fun FaceUnlockSection(
                                 if (result.isSuccess) {
                                     capturing = true
                                     captureText = null
-                                    status = "Recording. Unlock with your face now, then come back."
+                                    status = context.getString(R.string.face_capture_recording)
                                 } else {
-                                    status = "Could not start: ${result.exceptionOrNull()?.localizedMessage ?: "shell error"}"
+                                    status = context.getString(
+                                        R.string.face_capture_start_failed,
+                                        result.exceptionOrNull()?.localizedMessage
+                                            ?: context.getString(R.string.face_capture_shell_error)
+                                    )
                                 }
                             }
                         }
@@ -165,7 +169,11 @@ fun FaceUnlockSection(
                                 capturing = false
                                 val dump = result.getOrNull()
                                 if (dump == null) {
-                                    status = "Could not read the log: ${result.exceptionOrNull()?.localizedMessage ?: "shell error"}"
+                                    status = context.getString(
+                                        R.string.face_capture_read_failed,
+                                        result.exceptionOrNull()?.localizedMessage
+                                            ?: context.getString(R.string.face_capture_shell_error)
+                                    )
                                     return@launch
                                 }
                                 val lines = FaceUnlockLog.extractCapture(dump)
@@ -192,10 +200,15 @@ fun FaceUnlockSection(
                                         appendLine(if (note == null) line else "$line   <<< $note")
                                     }
                                 }
-                                status = "Captured ${lines.size} lines. Face: " +
-                                    "start ${found[FaceUnlockLogEvent.Start] ?: 0}, success ${found[FaceUnlockLogEvent.Success] ?: 0}, " +
-                                    "failure ${found[FaceUnlockLogEvent.Failure] ?: 0}, ended ${found[FaceUnlockLogEvent.End] ?: 0}. " +
-                                    "Unlocks: $unlockSummary."
+                                status = context.getString(
+                                    R.string.face_capture_done,
+                                    lines.size,
+                                    found[FaceUnlockLogEvent.Start] ?: 0,
+                                    found[FaceUnlockLogEvent.Success] ?: 0,
+                                    found[FaceUnlockLogEvent.Failure] ?: 0,
+                                    found[FaceUnlockLogEvent.End] ?: 0,
+                                    unlockSummary
+                                )
                             }
                         }
                     ) { Text(stringResource(R.string.btn_stop)) }

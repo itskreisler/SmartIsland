@@ -1501,4 +1501,21 @@
     <string name="lab_play">Play</string>
     <string name="lab_play_wait">Play (starts when you turn to landscape)</string>
     <string name="lab_section_description">Plays every landscape animation on the real island: card arrives, expand, second and third app (both merge styles), sibling picker, call, popup, exit, interrupted exit and the idle circle tap. Rotation, camera and positions are simulated, so you can watch normal and reverse landscape without turning the phone. Turn the phone to landscape and keep this tab open. Your settings are not changed.</string>
+
+    <!-- ===== Face unlock (EN) ===== -->
+    <string name="unlock_type_face">Face</string>
+    <string name="unlock_type_fingerprint">Fingerprint</string>
+    <string name="unlock_type_credential">PIN / pattern / password</string>
+    <string name="face_section_title">Face ID unlock</string>
+    <string name="face_section_desc">What plays the tick after the scan. "Face unlock only" reads the system log through Shizuku and needs the phone\'s face-unlock success line plus the unlock itself. Without Shizuku only "Any unlock" works.</string>
+    <string name="face_last_unlock">Last unlock seen in the log: %1$s, %2$s</string>
+    <string name="face_last_unlock_none">Last unlock seen in the log: none yet (needs Shizuku and the Face ID event on).</string>
+    <string name="face_capture_title">Capture face unlock log</string>
+    <string name="face_capture_steps">1. Tap Start. 2. Lock the phone, wake it and unlock with your face (and once with a finger or PIN). To record an app unlock instead, open a locked app and unlock it with your face. 3. Come back and tap Stop, then save the file and send it in.</string>
+    <string name="face_capture_shizuku_missing">Shizuku is not running or not allowed for Smart Island.</string>
+    <string name="face_capture_recording">Recording. Unlock with your face now, then come back.</string>
+    <string name="face_capture_start_failed">Could not start: %1$s</string>
+    <string name="face_capture_read_failed">Could not read the log: %1$s</string>
+    <string name="face_capture_shell_error">shell error</string>
+    <string name="face_capture_done">Captured %1$d lines. Face: start %2$d, success %3$d, failure %4$d, ended %5$d. Unlocks: %6$s.</string>
 </resources>
