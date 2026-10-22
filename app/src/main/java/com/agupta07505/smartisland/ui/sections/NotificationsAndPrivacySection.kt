@@ -641,7 +641,7 @@ fun NotificationsAndPrivacySection(
                     val label = runCatching {
                         val pm = context.packageManager
                         pm.getApplicationLabel(pm.getApplicationInfo(dmPackage, 0)).toString()
-                    }.getOrNull()?.takeIf { it.isNotBlank() } ?: stringResource(R.string.dm_app_name)
+                    }.getOrNull()?.takeIf { it.isNotBlank() } ?: context.getString(R.string.dm_app_name)
                     (apps + LaunchableApp(packageName = dmPackage, label = label))
                         .sortedBy { it.label.lowercase() }
                 }

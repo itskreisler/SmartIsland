@@ -107,7 +107,7 @@ object LandscapeDemo {
                         }
                         _progress.value = LabProgress(
                             running = true, stageIndex = index, stageCount = stages.size,
-                            step = stage, stepTitle = appContext.getString(step.titleRes)
+                            stage = stage, stepTitle = appContext.getString(step.titleRes)
                         )
                         for (action in step.actions) perform(appContext, repo, action)
                         delay(step.holdMs)
