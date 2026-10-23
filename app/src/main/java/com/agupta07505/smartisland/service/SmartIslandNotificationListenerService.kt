@@ -1108,7 +1108,7 @@ class SmartIslandNotificationListenerService : NotificationListenerService() {
         ) {
             baseActions.filter { it.pendingIntent != null } + viewInfo.buttons
         } else if (isShadeFixCard) {
-            com.agupta07505.smartisland.util.ShadeActions.mirror(
+            var shown = com.agupta07505.smartisland.util.ShadeActions.mirror(
                 baseActions,
                 viewInfo?.buttons.orEmpty(),
                 if (mode == IslandMode.Stopwatch) {
@@ -1116,12 +1116,65 @@ class SmartIslandNotificationListenerService : NotificationListenerService() {
                 } else {
                     com.agupta07505.smartisland.util.TimerStopwatchParser.ClockKind.Timer
                 }
-            ).also { shown ->
+            )
+
+            val isGoogleOrAospDeskclock = sbn.packageName == "com.google.android.deskclock" || sbn.packageName == "com.android.deskclock"
+            if (isGoogleOrAospDeskclock && (mode == IslandMode.Stopwatch || mode == IslandMode.Timer)) {
+                val fromActions = baseActions.filter { act ->
+                    act.pendingIntent != null && com.agupta07505.smartisland.ui.expanded.classifyAction(act.title) in setOf(
+                        com.agupta07505.smartisland.ui.expanded.ActionRole.Pause,
+                        com.agupta07505.smartisland.ui.expanded.ActionRole.Resume,
+                        com.agupta07505.smartisland.ui.expanded.ActionRole.Lap,
+                        com.agupta07505.smartisland.ui.expanded.ActionRole.Reset,
+                        com.agupta07505.smartisland.ui.expanded.ActionRole.Stop,
+                        com.agupta07505.smartisland.ui.expanded.ActionRole.AddMinute
+                    )
+                }
+                val roles = fromActions.map { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) }.toSet()
+
+                shown = when (mode) {
+                    IslandMode.Stopwatch -> {
+                        if (com.agupta07505.smartisland.ui.expanded.ActionRole.Pause in roles) {
+                            // Running: only show what Google actually provides (typically Pause + Lap)
+                            listOfNotNull(
+                                fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Pause },
+                                fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Lap }
+                            )
+                        } else {
+                            // Paused: [Resume/Start, Reset/Stop]
+                            listOfNotNull(
+                                fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Resume },
+                                fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Reset }
+                                    ?: fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Stop }
+                            )
+                        }
+                    }
+                    IslandMode.Timer -> {
+                        if (com.agupta07505.smartisland.ui.expanded.ActionRole.Pause in roles) {
+                            // Timer running: prefer Pause + AddMinute if present
+                            listOfNotNull(
+                                fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Pause },
+                                fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.AddMinute }
+                            )
+                        } else {
+                            // Timer paused: [Resume, Reset/Stop]
+                            listOfNotNull(
+                                fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Resume },
+                                fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Reset }
+                                    ?: fromActions.firstOrNull { com.agupta07505.smartisland.ui.expanded.classifyAction(it.title) == com.agupta07505.smartisland.ui.expanded.ActionRole.Stop }
+                            )
+                        }
+                    }
+                    else -> shown
+                }
+            }
+
+            shown.also { shownActions ->
                 com.agupta07505.smartisland.util.AppLogRecorder.d(
                     "ShadeButtons",
                     "pkg=${sbn.packageName} mode=$mode standard=${baseActions.map { it.title }}" +
                         " viewShown=${viewInfo?.buttons?.map { it.title }}" +
-                        " viewHidden=${viewInfo?.hiddenButtons} island=${shown.map { it.title }}"
+                        " viewHidden=${viewInfo?.hiddenButtons} island=${shownActions.map { it.title }}"
                 )
             }
         } else {
